@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'RoboBananaFrontend';
+
+  testPrediction() {
+    console.log("test prediction");
+  }
+
+  testRaffle() {
+    console.log("test raffle");
+  }
+
+  testSub() {
+    console.log("test sub");
+  }
 }
