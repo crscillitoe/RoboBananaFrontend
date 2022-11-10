@@ -1,0 +1,67 @@
+.prediction-view {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.odds-and-timer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 30px;
+}
+
+.vote-bar {
+  margin-top: 5px;
+  height:60px;
+  display: flex;
+}
+
+.believe-bar {
+  width: 50%;
+}
+
+.doubt-bar {
+  width: 50%;
+}
+
+.option {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shadow-font {
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black, 0.12em 0.12em rgb(0 0 0 / 80%);
+  font-weight: 700;
+  font-family: 'Azeret Mono', monospace;
+  color: white;
+}
+
+.timer {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.raffle-odds, .percentage {
+  border-radius: 5px;
+}
+
+.raffle-odds {
+  width: 200px;
+}
+
+.believe, .believe-bar {
+  background-color: #387aff;
+}
+
+.doubt, .doubt-bar {
+  background-color: #f5009b;
+}
