@@ -2,27 +2,69 @@
   display: flex;
   flex-direction: column;
   width: 600px;
+  margin: 50px;
+
+  background-image: linear-gradient(to right, #FCFFDA, #E7FCFF);
+  border-radius: 10px;
+}
+
+.no-top-margin {
+  margin-top: 0px;
+}
+
+.title {
+  text-align: center;
 }
 
 .odds-and-timer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 30px;
+  height: 52px;
+}
+
+.odds-believe {
+  outline: 2px solid #FFD335;
+}
+
+.odds-doubt {
+  outline: 2px solid #30CDEF;
+}
+
+.option-odds {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .vote-bar {
-  margin-top: 5px;
-  height:60px;
+  height: 40px;
   display: flex;
 }
 
 .believe-bar {
-  width: 50%;
+  width: 70%;
+  border-radius: 0px 0px 0px 10px;
+  padding-left: 15px;
+}
+
+.percentage {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .doubt-bar {
-  width: 50%;
+  width: 30%;
+  border-radius: 0px 0px 10px 0px;
+  text-align: end;
+  padding-right: 15px;
 }
 
 .option {
@@ -36,32 +78,58 @@
 }
 
 .shadow-font {
-  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black, 0.12em 0.12em rgb(0 0 0 / 80%);
-  font-weight: 700;
-  font-family: 'Azeret Mono', monospace;
-  color: white;
+  color: #1E1E1E;
 }
 
 .timer {
-  text-align: center;
-  height: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
 }
 
-.raffle-odds, .percentage {
-  border-radius: 5px;
+.time-display {
+  background-color: #FFD335;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 20px;
+  position: relative;
+  bottom: 15px;
+}
+
+.option-odds-text {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.option-text {
+  width: 90px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .raffle-odds {
-  width: 200px;
+  width: 250px;
+  margin: 8px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.believe, .believe-bar {
-  background-color: #387aff;
+.believe-text, .believe-bar {
+  background-color: #FFD335;
 }
 
-.doubt, .doubt-bar {
-  background-color: #f5009b;
+.doubt-text, .doubt-bar {
+  background-color: #30CDEF;
 }
