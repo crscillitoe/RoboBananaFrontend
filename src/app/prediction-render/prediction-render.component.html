@@ -2,28 +2,28 @@
   <div class="timer">
     <div class="time-display">
       <b>
-        00:00
+        {{predictionTimer}}
       </b>
     </div>
   </div>
   <div class="title">
     <h1 class="no-top-margin">
-      Will the banana win this game?
+      {{predictionTitle}}
     </h1>
   </div>
   <div class="odds-and-timer">
     <div class="raffle-odds believe">
       <div class="option-text believe-text">
         <b>
-          Yes
+          {{believeChoiceText}}
         </b>
       </div>
       <div class="option-odds odds-believe">
         <div class="option-odds-text">
-          <b>1.29x</b>
+          <b>{{believePayoutMultiplier}}x</b>
         </div>
         <div class="option-odds-text">
-          <b>2.5k</b>
+          <b>{{believeTotalPoints}}</b>
         </div>
       </div>
     </div>
@@ -33,32 +33,30 @@
     <div class="raffle-odds doubt">
       <div class="option-odds odds-doubt">
         <div class="option-odds-text">
-          <b>2.4x</b>
+          <b>{{doubtTotalPoints}}</b>
         </div>
         <div class="option-odds-text">
-          <b>500</b>
+          <b>{{doubtPayoutMultiplier}}x</b>
         </div>
       </div>
       <div class="option-text doubt-text">
         <b>
-          No
+          {{doubtChoiceText}}
         </b>
       </div>
     </div>
   </div>
 
   <div class="vote-bar">
-    <div class="percentage believe-bar">
+    <div class="percentage believe-bar" [style.width]="'' + believePercentage + '%'">
       <b>
-        70%
+        {{believePercentage}}%
       </b>
     </div>
-    <div class="percentage doubt-bar">
+    <div class="percentage doubt-bar" [style.width]="'' + doubtPercentage + '%'">
       <b>
-        30%
+        {{doubtPercentage}}%
       </b>
     </div>
   </div>
 </div>
-
-<img src="https://cdn.discordapp.com/attachments/1032443060971380797/1040870347253235732/image.png">
