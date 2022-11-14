@@ -17,8 +17,8 @@ export class PredictionRenderComponent implements OnInit {
   doubtPayoutMultiplier: number = 2.4;
   doubtTotalPoints: number = 500;
 
-  believePercentage: number = 60;
-  doubtPercentage: number = 40;
+  believePercentage: number = 0;
+  doubtPercentage: number = 100;
 
   predictionTimer: string = "00:00";
   endTime: Date = new Date();
@@ -27,7 +27,9 @@ export class PredictionRenderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    var source = new EventSource("https://api.brad.coffee/stream");
+    let streamURL = decodeURIComponent(window.location.search);
+    streamURL = streamURL.slice(1, streamURL.length - 1);
+    var source = new EventSource(streamURL);
     console.log(source.readyState);
     source.addEventListener('open', (e) => {
       console.log("The connection has been established.");
@@ -71,6 +73,14 @@ export class PredictionRenderComponent implements OnInit {
     if (optionOne === 0) return 1;
     const multiplier = 1 + (optionTwo / optionOne)
     return Math.round((multiplier + Number.EPSILON) * 100) / 100
+  }
+
+  public getTimerColor() {
+    if (this.predictionTimer === "CLOSED") {
+      return "red";
+    }
+
+    return "#1E1E1E";
   }
 
   private startTimer(endTime: Date, acceptingEntries: boolean) {

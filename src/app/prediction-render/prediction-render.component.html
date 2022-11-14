@@ -1,7 +1,7 @@
 <div class="prediction-view">
   <div class="timer">
     <div class="time-display">
-      <b>
+      <b [style.color]="getTimerColor()">
         {{predictionTimer}}
       </b>
     </div>
@@ -49,12 +49,12 @@
 
   <div class="vote-bar">
     <div class="percentage believe-bar" [style.width]="'' + believePercentage + '%'">
-      <b>
+      <b *ngIf="believePercentage > 0">
         {{believePercentage}}%
       </b>
     </div>
     <div class="percentage doubt-bar" [style.width]="'' + doubtPercentage + '%'">
-      <b>
+      <b *ngIf="doubtPercentage > 0">
         {{doubtPercentage}}%
       </b>
     </div>
