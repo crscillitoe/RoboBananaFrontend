@@ -24,7 +24,7 @@
 }
 
 .odds-believe {
-  outline: 2px solid #FFD335;
+  outline: 2px solid #FFA1C2;
 }
 
 .odds-doubt {
@@ -48,7 +48,6 @@
 }
 
 .believe-bar {
-  border-radius: 0px 0px 0px 10px;
   padding-left: 15px;
 }
 
@@ -60,7 +59,6 @@
 }
 
 .doubt-bar {
-  border-radius: 0px 0px 10px 0px;
   text-align: end;
   padding-right: 15px;
 }
@@ -125,7 +123,21 @@
 }
 
 .believe-text, .believe-bar {
+  background-color: #FFA1C2;
+}
+
+.discord-ad {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.discord-bar {
   background-color: #FFD335;
+  border-radius: 0 0 5px 5px;
+  padding: 8px;
 }
 
 .doubt-text, .doubt-bar {
