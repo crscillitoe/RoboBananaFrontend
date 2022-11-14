@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { PredictionRenderComponent } from './prediction-render/prediction-render.component';
@@ -14,7 +15,8 @@ import { SubRenderComponent } from './sub-render/sub-render.component';
     SubRenderComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
