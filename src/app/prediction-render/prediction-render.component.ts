@@ -29,6 +29,7 @@ export class PredictionRenderComponent implements OnInit {
   ngOnInit(): void {
     let streamURL = decodeURIComponent(window.location.search);
     streamURL = streamURL.slice(1, streamURL.length - 1);
+    streamURL += "?channel=predictions"
     var source = new EventSource(streamURL);
     console.log(source.readyState);
     source.addEventListener('open', (e) => {
