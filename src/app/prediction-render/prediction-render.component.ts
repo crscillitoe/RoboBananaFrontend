@@ -8,6 +8,7 @@ import { PredictionSummary } from '../types/predictionSummary';
 })
 export class PredictionRenderComponent implements OnInit {
   predictionTitle: string = "Will the banana win this game?";
+  acceptingEntries: boolean = true;
 
   believeChoiceText: string = "Yes";
   believePayoutMultiplier: number = 1.29;
@@ -50,6 +51,7 @@ export class PredictionRenderComponent implements OnInit {
     this.doubtChoiceText = summary.optionTwo;
     this.believeTotalPoints = summary.optionOnePoints;
     this.doubtTotalPoints = summary.optionTwoPoints;
+    this.acceptingEntries = summary.acceptingEntries;
     this.updateCalculatedFields(summary);
     this.startTimer(new Date(summary.endTime), summary.acceptingEntries)
   }
@@ -81,6 +83,10 @@ export class PredictionRenderComponent implements OnInit {
     }
 
     return "#1E1E1E";
+  }
+
+  isClosed() {
+    return !this.acceptingEntries;
   }
 
   private startTimer(endTime: Date, acceptingEntries: boolean) {

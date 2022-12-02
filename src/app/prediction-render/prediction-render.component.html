@@ -1,4 +1,4 @@
-<div class="prediction-view">
+<div class="prediction-view" [ngClass]="{'closed': isClosed()}">
   <div class="timer">
     <div class="time-display">
       <b [style.color]="getTimerColor()">
