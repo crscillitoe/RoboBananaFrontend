@@ -6,4 +6,5 @@ export interface PredictionSummary {
     optionTwoPoints: number;
     endTime: string;
     acceptingEntries: boolean;
+    ended: boolean;
 }

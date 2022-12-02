@@ -8,6 +8,8 @@ import { PredictionSummary } from '../types/predictionSummary';
 })
 export class PredictionRenderComponent implements OnInit {
   predictionTitle: string = "Will the banana win this game?";
+  acceptingEntries: boolean = true;
+  ended: boolean = true;
 
   believeChoiceText: string = "Yes";
   believePayoutMultiplier: number = 1.29;
@@ -50,8 +52,10 @@ export class PredictionRenderComponent implements OnInit {
     this.doubtChoiceText = summary.optionTwo;
     this.believeTotalPoints = summary.optionOnePoints;
     this.doubtTotalPoints = summary.optionTwoPoints;
+    this.acceptingEntries = summary.acceptingEntries;
     this.updateCalculatedFields(summary);
     this.startTimer(new Date(summary.endTime), summary.acceptingEntries)
+    this.ended = summary.ended;
   }
 
   private updateCalculatedFields(summary: PredictionSummary): void {
@@ -83,6 +87,10 @@ export class PredictionRenderComponent implements OnInit {
     return "#1E1E1E";
   }
 
+  isClosed() {
+    return !this.acceptingEntries;
+  }
+
   private startTimer(endTime: Date, acceptingEntries: boolean) {
     if (!acceptingEntries) {
       if (this.timerInterval) clearInterval(this.timerInterval);
@@ -101,7 +109,7 @@ export class PredictionRenderComponent implements OnInit {
 
     let minutes;
     let seconds;
-    this.timerInterval = setInterval(() => {
+    const updateTimer = () => {
       minutes = Math.floor(timer / 60);
       seconds = timer % 60;
 
@@ -114,6 +122,8 @@ export class PredictionRenderComponent implements OnInit {
         timer = 0;
         clearInterval(this.timerInterval);
       }
-    }, 1000);
+    }
+    updateTimer();
+    this.timerInterval = setInterval(updateTimer, 1000);
   }
 }

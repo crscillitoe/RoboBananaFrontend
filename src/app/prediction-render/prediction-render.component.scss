@@ -124,10 +124,17 @@
   justify-content: space-between;
 }
 
-.believe-text, .believe-bar {
+.believe-text,
+.believe-bar {
   background-color: #FFD335;
 }
 
-.doubt-text, .doubt-bar {
+.doubt-text,
+.doubt-bar {
   background-color: #30CDEF;
+}
+
+.closed {
+  transform: scale(0.75) translateX(50%);
+  transition: all 1s linear;
 }
