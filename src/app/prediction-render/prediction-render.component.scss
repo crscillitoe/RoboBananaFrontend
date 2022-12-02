@@ -146,6 +146,6 @@
 }
 
 .closed {
-  transform: scale(0.75) translateX(150%);
-  transition: all 1s linear;
+  transform: scale(0.6) translateX(160%);
+  transition: all 2.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
