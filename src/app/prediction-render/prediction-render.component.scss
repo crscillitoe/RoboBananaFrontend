@@ -140,6 +140,12 @@
   padding: 8px;
 }
 
-.doubt-text, .doubt-bar {
+.doubt-text,
+.doubt-bar {
   background-color: #30CDEF;
+}
+
+.closed {
+  transform: scale(0.75) translateX(50%);
+  transition: all 1s linear;
 }
