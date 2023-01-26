@@ -1,0 +1,56 @@
+.horiz-center {
+  display: flex;
+  justify-content: center;
+}
+.tall {
+  height: 100%;
+}
+.verti-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.text {
+  font-size: 50px;
+  color: white;
+  font-family: 'Azeret Mono', monospace;
+font-family: 'Roboto', sans-serif;
+font-family: 'Roboto Mono', monospace;
+
+}
+.wrapper {
+  height: 100%;
+  width: 100%;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+background: linear-gradient(124deg, #ff240080, #e81d1d80, #e8b71d80, #e3e81d80, #1de84080, #1ddde880, #2b1de880, #dd00f380, #dd00f380);
+background-size: 1800% 1800%;
+
+-webkit-animation: rainbow 18s ease infinite;
+-z-animation: rainbow 18s ease infinite;
+-o-animation: rainbow 18s ease infinite;
+  animation: rainbow 18s ease infinite;}
+
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}

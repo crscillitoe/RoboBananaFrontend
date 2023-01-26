@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import {Howl, Howler} from 'howler';
+
 @Component({
   selector: 'app-sub-render',
   templateUrl: './sub-render.component.html',
@@ -7,21 +9,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubRenderComponent implements OnInit {
 
-  constructor() { }
+  displaySub: boolean = false;
+  subMessage: string = "THANK YOU WOOHOOJIN FOR THE T3";
+  subHowl: Howl;
+
+  lastTimeout: NodeJS.Timeout | undefined;
+
+  constructor() {
+    this.subHowl = new Howl({
+      src: ["assets/ChossBoss.wav"],
+      autoplay: false,
+      loop: false
+    });
+  }
 
   ngOnInit(): void {
     let streamURL = decodeURIComponent(window.location.search);
     streamURL = streamURL.slice(1, streamURL.length - 1);
     streamURL += "?channel=subs"
     let source = new EventSource(streamURL);
+
     source.addEventListener('open', (e) => {
       console.log("The connection has been established.");
+
+      if (this.lastTimeout) {
+        clearTimeout(this.lastTimeout);
+      }
+
+      this.displaySub = true;
+      this.subHowl.stop();
+      this.subHowl.play();
+      this.subHowl.fade(1, 0, 30000)
+
+      this.lastTimeout = setTimeout(() => {
+        this.displaySub = false;
+      }, 30000);
     });
+
     source.addEventListener('publish', (event) => {
+      if (this.lastTimeout) {
+        clearTimeout(this.lastTimeout);
+      }
+
       var data = JSON.parse(event.data);
-      // TODO: Play animation
-      console.log(data);
+      this.subMessage = data.message;
+      this.displaySub = true;
+      this.subHowl.stop();
+      this.subHowl.play();
+      this.subHowl.fade(1, 0, 30000)
+
+      this.lastTimeout = setTimeout(() => {
+        this.displaySub = false;
+      }, 30000);
     }, false);
+
     source.addEventListener('error', function (event) {
       console.log(event)
     }, false);
