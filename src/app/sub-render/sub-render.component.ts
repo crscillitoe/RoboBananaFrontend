@@ -39,7 +39,7 @@ export class SubRenderComponent implements OnInit {
       this.displaySub = true;
       this.subHowl.stop();
       this.subHowl.play();
-      this.subHowl.fade(1, 0, 30000)
+      this.subHowl.fade(0.6, 0, 30000)
 
       this.lastTimeout = setTimeout(() => {
         this.displaySub = false;
@@ -56,7 +56,7 @@ export class SubRenderComponent implements OnInit {
       this.displaySub = true;
       this.subHowl.stop();
       this.subHowl.play();
-      this.subHowl.fade(1, 0, 30000)
+      this.subHowl.fade(0.6, 0, 30000)
 
       this.lastTimeout = setTimeout(() => {
         this.displaySub = false;
