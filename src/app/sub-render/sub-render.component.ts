@@ -53,11 +53,6 @@ export class SubRenderComponent implements OnInit {
 
       var data = JSON.parse(event.data);
       this.subMessage = data.message;
-      this.displaySub = true;
-      this.subHowl.stop();
-      this.subHowl.play();
-      this.subHowl.fade(0.6, 0, 30000)
-
       let timeout = 5000;
       let role = data.tier;
       if (role === "THE ONES WHO KNOW (Discord Sub Tier 3)") {
@@ -65,6 +60,12 @@ export class SubRenderComponent implements OnInit {
       } else if (role === "SUPER KNOWER (Discord Sub Tier 2)") {
         timeout = 15000;
       }
+
+      this.displaySub = true;
+      this.subHowl.stop();
+      this.subHowl.play();
+      this.subHowl.fade(0.6, 0, timeout)
+
 
       this.lastTimeout = setTimeout(() => {
         this.displaySub = false;
