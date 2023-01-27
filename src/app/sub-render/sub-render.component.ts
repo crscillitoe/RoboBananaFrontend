@@ -10,7 +10,7 @@ import {Howl, Howler} from 'howler';
 export class SubRenderComponent implements OnInit {
 
   displaySub: boolean = false;
-  subMessage: string = "THANK YOU WOOHOOJIN FOR THE T3";
+  subMessage: string = "THANK YOU WOOHOOJIN FOR THE T3 I REALLY APPRECIATE IT DUDE GOOD LOOKS NICE JOB YOU'RE A KING";
   subHowl: Howl;
 
   lastTimeout: NodeJS.Timeout | undefined;
@@ -58,9 +58,17 @@ export class SubRenderComponent implements OnInit {
       this.subHowl.play();
       this.subHowl.fade(0.6, 0, 30000)
 
+      let timeout = 5000;
+      let role = data.tier;
+      if (role === "THE ONES WHO KNOW (Discord Sub Tier 3)") {
+        timeout = 30000;
+      } else if (role === "SUPER KNOWER (Discord Sub Tier 2)") {
+        timeout = 15000;
+      }
+
       this.lastTimeout = setTimeout(() => {
         this.displaySub = false;
-      }, 30000);
+      }, timeout);
     }, false);
 
     source.addEventListener('error', function (event) {

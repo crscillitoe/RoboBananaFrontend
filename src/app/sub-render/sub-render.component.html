@@ -1,10 +1,12 @@
-<div class="wrapper" *ngIf="displaySub">
+<div class="wrapper" *ngIf="displaySub || true">
   <div class="horiz-center tall">
-    <div class="verti-center text">
-  <div class="horiz-center" style="width: 800px">
-      <img width=400 src="assets/HOOJIN_TIME.png"/>
+    <div class="verti-center">
+      <div class="verti-center text" style="width: 800px">
+        <div class="horiz-center">
+          <img width=400 src="assets/HOOJIN_TIME.png" />
+        </div>
+        {{subMessage}}
       </div>
-      {{subMessage}}
     </div>
   </div>
 
