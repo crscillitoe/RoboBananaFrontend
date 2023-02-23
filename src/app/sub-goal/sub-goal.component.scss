@@ -6,7 +6,6 @@
   margin: 50px;
   padding: 20px;
 
-  background-image: linear-gradient(to right, #fbffca, #d1faff);
   border-radius: 10px;
 }
 
@@ -45,7 +44,7 @@
 }
 
 .vote-bar {
-  height: 40px;
+  height: 25px;
   border-radius: 5px;
   display: flex;
 }
@@ -127,8 +126,12 @@
 }
 
 .total {
-  color: #FF6262;
+  color: #FFD201;
   display: inline-block;
+}
+
+.white {
+  color: white;
 }
 
 .flex {
@@ -137,7 +140,7 @@
 }
 
 .believe-text, .believe-bar {
-  background-color: #30CDEF;
+  background-color: #ffea80;
 }
 
 .discord-ad {
