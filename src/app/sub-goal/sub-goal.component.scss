@@ -1,0 +1,165 @@
+
+.prediction-view {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 50px;
+  padding: 20px;
+
+  background-image: linear-gradient(to right, #fbffca, #d1faff);
+  border-radius: 10px;
+}
+
+.no-top-margin {
+  margin-top: 0px;
+}
+
+.title {
+  text-align: center;
+}
+
+.odds-and-timer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 52px;
+}
+
+.odds-believe {
+  outline: 2px solid #FFA1C2;
+}
+
+.odds-doubt {
+  outline: 2px solid #30CDEF;
+}
+
+.option-odds {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.vote-bar {
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+}
+
+.believe-bar {
+  padding-left: 15px;
+}
+
+.percentage {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.doubt-bar {
+  color: white;
+  text-align: end;
+  padding-right: 15px;
+}
+
+.option {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shadow-font {
+  color: #1E1E1E;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+}
+
+.time-display {
+  background-color: #FFD335;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 20px;
+  position: relative;
+  bottom: 15px;
+}
+
+.option-odds-text {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.option-text {
+  width: 90px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.raffle-odds {
+  width: 250px;
+  margin: 8px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.total {
+  color: #FF6262;
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.believe-text, .believe-bar {
+  background-color: #30CDEF;
+}
+
+.discord-ad {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.discord-bar {
+  border-radius: 0 0 5px 5px;
+  padding: 8px;
+  padding-bottom: 0px;
+}
+
+.doubt-text,
+.doubt-bar {
+  background-color: #303030;
+}
+
+.closed {
+  transform: scale(0.6) translateX(210%);
+  transition: all 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
