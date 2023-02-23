@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { PredictionRenderComponent } from './prediction-render/prediction-render.component';
 import { RaffleRenderComponent } from './raffle-render/raffle-render.component';
 import { SubRenderComponent } from './sub-render/sub-render.component';
+import { PollRenderComponent } from './poll-render/poll-render.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PredictionRenderComponent,
     RaffleRenderComponent,
-    SubRenderComponent
+    SubRenderComponent,
+    PollRenderComponent
   ],
   imports: [
     BrowserModule,
