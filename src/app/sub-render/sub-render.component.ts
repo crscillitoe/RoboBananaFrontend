@@ -43,7 +43,7 @@ export class SubRenderComponent implements OnInit {
 
       this.lastTimeout = setTimeout(() => {
         this.displaySub = false;
-      }, 30000);
+      }, 5000);
     });
 
     source.addEventListener('publish', (event) => {
@@ -56,9 +56,9 @@ export class SubRenderComponent implements OnInit {
       let timeout = 5000;
       let role = data.tier;
       if (role === "THE ONES WHO KNOW (Discord Sub Tier 3)") {
-        timeout = 30000;
+        timeout = 10000;
       } else if (role === "SUPER KNOWER (Discord Sub Tier 2)") {
-        timeout = 15000;
+        timeout = 10000;
       }
 
       this.displaySub = true;
