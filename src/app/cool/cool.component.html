@@ -1,0 +1,18 @@
+<div class="bar">
+  <ng-container *ngIf="cool < 0">
+    <div class="remainder-bar cool-bar" [style.width]="calculateRemainder() + '%'">
+    </div>
+    <div class="uncool-bar" [style.width]="calculateWidth() + '%'">
+    </div>
+    <div class="fill-bar uncool-bar">
+    </div>
+  </ng-container>
+  <ng-container *ngIf="cool >= 0">
+    <div class="fill-bar cool-bar">
+    </div>
+    <div class="cool-bar" [style.width]="calculateWidth() + '%'">
+    </div>
+    <div class="remainder-bar uncool-bar" [style.width]="calculateRemainder() + '%'">
+    </div>
+  </ng-container>
+</div>

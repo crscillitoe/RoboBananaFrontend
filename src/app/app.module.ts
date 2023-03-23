@@ -8,6 +8,7 @@ import { RaffleRenderComponent } from './raffle-render/raffle-render.component';
 import { SubRenderComponent } from './sub-render/sub-render.component';
 import { PollRenderComponent } from './poll-render/poll-render.component';
 import { SubGoalComponent } from './sub-goal/sub-goal.component';
+import { CoolComponent } from './cool/cool.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SubGoalComponent } from './sub-goal/sub-goal.component';
     RaffleRenderComponent,
     SubRenderComponent,
     PollRenderComponent,
-    SubGoalComponent
+    SubGoalComponent,
+    CoolComponent
   ],
   imports: [
     BrowserModule,

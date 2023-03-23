@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CoolComponent } from './cool/cool.component';
 import { PollRenderComponent } from './poll-render/poll-render.component';
 import { PredictionRenderComponent } from './prediction-render/prediction-render.component';
 import { SubGoalComponent } from './sub-goal/sub-goal.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
     {
       path: "subgoal",
       component: SubGoalComponent,
+    },
+    {
+      path: "cool",
+      component: CoolComponent,
     }
 ];
 
