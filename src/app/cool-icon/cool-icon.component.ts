@@ -59,5 +59,4 @@ export class CoolIconComponent implements OnInit, AfterViewInit {
     this.iconImage.nativeElement.style.setProperty('--top-position-end', `${endY}px`)
     this.iconImage.nativeElement.style.setProperty('--left-position-end', `${endX}px`)
   }
-
 }
