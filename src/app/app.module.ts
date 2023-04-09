@@ -9,6 +9,8 @@ import { SubRenderComponent } from './sub-render/sub-render.component';
 import { PollRenderComponent } from './poll-render/poll-render.component';
 import { SubGoalComponent } from './sub-goal/sub-goal.component';
 import { CoolComponent } from './cool/cool.component';
+import { CoolIconComponent } from './cool-icon/cool-icon.component';
+import { CoolIconDirective } from './cool/cool-icon-directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { CoolComponent } from './cool/cool.component';
     SubRenderComponent,
     PollRenderComponent,
     SubGoalComponent,
-    CoolComponent
+    CoolComponent,
+    CoolIconComponent,
+    CoolIconDirective
   ],
   imports: [
     BrowserModule,
