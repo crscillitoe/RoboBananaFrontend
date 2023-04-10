@@ -12,7 +12,7 @@ export class SubGoalComponent implements OnInit {
 
   total: number = 50;
 
-  goal: number = 1000;
+  goal: number = 1500;
 
   constructor() { }
 
