@@ -29,7 +29,7 @@ export class CoolComponent implements OnInit {
 
   constructor() { }
   ngOnInit(): void {
-    let streamURL = "/https://api.brad.coffee/stream/";//decodeURIComponent(window.location.search);
+    let streamURL = decodeURIComponent(window.location.search);
     streamURL = streamURL.slice(1, streamURL.length - 1);
     streamURL += "?channel=cool"
     var source = new EventSource(streamURL);
