@@ -7,10 +7,10 @@ import { AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChi
 })
 export class CoolIconComponent implements OnInit, AfterViewInit {
 
-  HALF_BAR_WIDTH = 433 / 2;
-  HALF_ICON_WIDTH = 10;
-  MAX_SKEW_X = 200;
-  MAX_SKEW_Y = 20;
+  QUARTER_BAR_WIDTH = 433 / 4;
+  HALF_ICON_WIDTH = 40;
+  MAX_SKEW_X = 100;
+  MAX_SKEW_Y = 400;
   @Input() iconName = '';
   public imageAsset = '';
 
@@ -27,20 +27,29 @@ export class CoolIconComponent implements OnInit, AfterViewInit {
   calculateStartX() {
     const width = window.innerWidth;
     const halfWidth = (width / 2) - this.HALF_ICON_WIDTH;
-    const random = (Math.random() * this.HALF_BAR_WIDTH);
+    const random = (Math.random() * this.QUARTER_BAR_WIDTH);
 
-    return this.iconName === "cool" ? halfWidth + random : halfWidth - random;
+    if (Math.random() > 0.5) {
+      return halfWidth + random;
+    } else {
+      return halfWidth - random;
+    }
   }
 
   calculateEndX() {
     const width = window.innerWidth;
     const randomSkew = Math.random() * this.MAX_SKEW_X;
-    return this.iconName === "cool" ? width + randomSkew : -randomSkew;
+
+    if (Math.random() > 0.5) {
+      return width + randomSkew;
+    } else {
+      return -randomSkew;
+    }
   }
 
   calculateEndY() {
     const height = window.innerHeight;
-    const randomSkew = Math.random() * this.MAX_SKEW_Y;
+    const randomSkew = Math.max(Math.random() * this.MAX_SKEW_Y, 50);
 
     // Flip a coin for whether we randomly fly up or down
     if (Math.random() > 0.5) {
@@ -54,6 +63,7 @@ export class CoolIconComponent implements OnInit, AfterViewInit {
     const startX = this.calculateStartX();
     const endX = this.calculateEndX();
     const endY = this.calculateEndY();
+    console.log(endY)
     this.iconImage.nativeElement.style.setProperty('--top-position-start', '7px') // icon looks centered on bar
     this.iconImage.nativeElement.style.setProperty('--left-position-start', `${startX}px`)
     this.iconImage.nativeElement.style.setProperty('--top-position-end', `${endY}px`)

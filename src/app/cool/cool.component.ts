@@ -29,7 +29,7 @@ export class CoolComponent implements OnInit {
 
   constructor() { }
   ngOnInit(): void {
-    let streamURL = decodeURIComponent(window.location.search);
+    let streamURL = "/https://api.brad.coffee/stream/";//decodeURIComponent(window.location.search);
     streamURL = streamURL.slice(1, streamURL.length - 1);
     streamURL += "?channel=cool"
     var source = new EventSource(streamURL);
@@ -58,7 +58,7 @@ export class CoolComponent implements OnInit {
 
       // Animation takes 1s
       // Clean up after the element is no longer visible
-      timer(1200).subscribe(() => {
+      timer(3200).subscribe(() => {
         componentRef.destroy();
       })
 
