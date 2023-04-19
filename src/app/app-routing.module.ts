@@ -5,6 +5,7 @@ import { PollRenderComponent } from './poll-render/poll-render.component';
 import { PredictionRenderComponent } from './prediction-render/prediction-render.component';
 import { SubGoalComponent } from './sub-goal/sub-goal.component';
 import { SubRenderComponent } from './sub-render/sub-render.component';
+import { VodReviewComponent } from './vod-review/vod-review.component';
 
 const routes: Routes = [
     {
@@ -26,6 +27,10 @@ const routes: Routes = [
     {
       path: "cool",
       component: CoolComponent,
+    },
+    {
+        path: "vods",
+        component: VodReviewComponent,
     }
 ];
 

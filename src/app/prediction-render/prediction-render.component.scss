@@ -4,12 +4,22 @@
   width: 600px;
   margin: 50px;
 
-  background-image: linear-gradient(to right, #fbffca, #d1faff);
+  filter: drop-shadow(3px 3px 8px black);
+
   border-radius: 10px;
+}
+
+.gradient {
+  padding-top: 8px;
+  border-color: #697d77;
+  border-style: solid;
+  border-radius: 15px;
+  background: linear-gradient(to right, #00000080, #d1faff30);
 }
 
 .no-top-margin {
   margin-top: 0px;
+  color: #f6dd79;
 }
 
 .title {
@@ -24,11 +34,11 @@
 }
 
 .odds-believe {
-  outline: 2px solid #FFA1C2;
+  outline: 2px solid #de5161;
 }
 
 .odds-doubt {
-  outline: 2px solid #30CDEF;
+  outline: 2px solid #68c3a6;
 }
 
 .option-odds {
@@ -98,6 +108,10 @@
   bottom: 15px;
 }
 
+.yellow-text {
+  color: #f6dd79;
+}
+
 .option-odds-text {
   display: flex;
   justify-content: center;
@@ -123,7 +137,7 @@
 }
 
 .believe-text, .believe-bar {
-  background-color: #FFA1C2;
+  background-color: #de5161;
 }
 
 .discord-ad {
@@ -142,10 +156,5 @@
 
 .doubt-text,
 .doubt-bar {
-  background-color: #30CDEF;
-}
-
-.closed {
-  transform: scale(0.6) translateX(210%);
-  transition: all 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: #68c3a6;
 }

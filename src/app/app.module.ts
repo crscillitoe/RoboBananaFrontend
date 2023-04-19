@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { PredictionRenderComponent } from './prediction-render/prediction-render.component';
 import { RaffleRenderComponent } from './raffle-render/raffle-render.component';
@@ -11,6 +12,7 @@ import { SubGoalComponent } from './sub-goal/sub-goal.component';
 import { CoolComponent } from './cool/cool.component';
 import { CoolIconComponent } from './cool-icon/cool-icon.component';
 import { CoolIconDirective } from './cool/cool-icon-directive';
+import { VodReviewComponent } from './vod-review/vod-review.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,12 @@ import { CoolIconDirective } from './cool/cool-icon-directive';
     SubGoalComponent,
     CoolComponent,
     CoolIconComponent,
-    CoolIconDirective
+    CoolIconDirective,
+    VodReviewComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

@@ -1,0 +1,20 @@
+<ng-container *ngIf="!complete">
+    <div class="rank-and-name-display">
+        <div class="rank-icon">
+            <img src="assets/{{rank}}">
+        </div>
+
+        <div class="usernames">
+            <div class="big-name">
+                {{username}}
+            </div>
+            <div class="full-name">
+                <img src="assets/fist.png">
+                {{riotid}}
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="complete">
+</ng-container>

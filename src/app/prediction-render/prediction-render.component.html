@@ -1,11 +1,15 @@
 <div class="prediction-view" [ngClass]="{'closed': isClosed()}" *ngIf="!this.ended">
   <div class="timer">
-    <div class="time-display">
+    <div class="time-display" *ngIf="!isClosed()">
       <b [style.color]="getTimerColor()">
         {{predictionTimer}}
       </b>
     </div>
+    <div *ngIf="isClosed()" style="height:34px;">
+
+    </div>
   </div>
+  <div class="gradient">
   <div class="title">
     <h1 class="no-top-margin">
       {{predictionTitle}}
@@ -20,10 +24,10 @@
       </div>
       <div class="option-odds odds-believe">
         <div class="option-odds-text">
-          <b>{{believePayoutMultiplier}}x</b>
+          <b class="yellow-text">{{believePayoutMultiplier}}x</b>
         </div>
         <div class="option-odds-text">
-          <b>{{believeTotalPoints}}</b>
+          <b class="yellow-text">{{believeTotalPoints}}</b>
         </div>
       </div>
     </div>
@@ -33,10 +37,10 @@
     <div class="raffle-odds doubt">
       <div class="option-odds odds-doubt">
         <div class="option-odds-text">
-          <b>{{doubtTotalPoints}}</b>
+          <b class="yellow-text">{{doubtTotalPoints}}</b>
         </div>
         <div class="option-odds-text">
-          <b>{{doubtPayoutMultiplier}}x</b>
+          <b class="yellow-text">{{doubtPayoutMultiplier}}x</b>
         </div>
       </div>
       <div class="option-text doubt-text">
@@ -59,12 +63,5 @@
       </b>
     </div>
   </div>
-
-  <div class="discord-bar">
-    <div class="discord-ad" [style.width]="'100%'">
-      <b>
-        Join the prediction at Discord.gg/Woohoojin
-      </b>
-    </div>
   </div>
 </div>

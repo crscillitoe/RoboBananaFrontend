@@ -9,22 +9,21 @@ import { timer } from "rxjs";
   styleUrls: ['./cool.component.scss']
 })
 export class CoolComponent implements OnInit {
-  cool: number = 0;
+  cool: number = 10;
 
-  thresholds: number = 50;
+  thresholds: number = 100;
   @ViewChild(CoolIconDirective, { static: true }) coolIconHost!: CoolIconDirective;
 
   calculateWidth() {
-    let neutralCool = Math.abs(this.cool);
-    if (neutralCool > 50) {
-      return 50;
+    if (this.cool > 100) {
+      return 100;
     }
 
-    return neutralCool;
+    return this.cool;
   }
 
   calculateRemainder() {
-    return 50 - this.calculateWidth();
+    return 100 - this.calculateWidth();
   }
 
   constructor() { }
@@ -41,12 +40,12 @@ export class CoolComponent implements OnInit {
       let cool = data.cool;
       this.cool += cool;
 
-      if (this.cool > 50) {
-        this.cool = 50;
+      if (this.cool > 100) {
+        this.cool = 100;
       }
 
-      if (this.cool < -50) {
-        this.cool = -50;
+      if (this.cool < 0) {
+        this.cool = 0;
       }
 
       // Dynamically create icon component
