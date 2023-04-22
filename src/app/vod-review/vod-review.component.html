@@ -1,6 +1,6 @@
 <ng-container *ngIf="!complete">
     <div class="rank-and-name-display">
-        <div class="rank-icon">
+        <div class="rank-icon" *ngIf="rank !== 'none_Rank.png'">
             <img src="assets/{{rank}}">
         </div>
 
@@ -9,7 +9,7 @@
                 {{username}}
             </div>
             <div class="full-name">
-                <img src="assets/fist.png">
+                <img src="assets/fist.png" *ngIf="rank !== 'none_Rank.png'">
                 {{riotid}}
             </div>
         </div>
