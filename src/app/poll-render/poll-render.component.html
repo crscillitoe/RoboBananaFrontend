@@ -1,1 +1,53 @@
-<p>poll-render works!</p>
+<ng-container *ngIf="timeLeft > 0">
+    <div class="outer-box">
+        <div class="timer">
+            <div class="time-display">
+                {{predictionTimer}}
+            </div>
+        </div>
+
+        <div class="title">
+            {{title}}
+        </div>
+
+        <div class="poll-options">
+            <ng-container *ngFor="let option of options; let i=index">
+                <div class="option-bars" *ngIf="option !== ''">
+                    <div class="option-description">
+                        <div class="option-number">
+                            /hooj vote {{i + 1}}
+                        </div>
+                        <div class="option-text">
+                            {{option}}
+                        </div>
+
+                    </div>
+                    <div class="option-progress">
+                        <div class="progress-percent">
+                            {{getBarWidth(i + 1)}}%
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" [style.width.%]="getBarWidth(i+1)">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="voter">
+            <div class="vote-display">
+                <ng-container *ngIf="totalVotes === 1">
+                    1 Vote
+                </ng-container>
+                <ng-container *ngIf="totalVotes !== 1">
+                    {{totalVotes}} Votes
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+
+</ng-container>

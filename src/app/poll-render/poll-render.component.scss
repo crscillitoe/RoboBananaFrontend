@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+html {
+    background-color: black;
+}
+
+.outer-box {
+    margin-top: 50px;
+    background: linear-gradient(to right, #386647ff, #0f2113ff);
+    padding: 0px 30px 0px 30px;
+    border-radius: 15px;
+    border-color: #697d77;
+    border-style: solid;
+}
+
+.title {
+    font-family: 'Montserrat', sans-serif;
+    color: #f6dd79;
+    font-size: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.option-description {
+    display: flex;
+}
+
+.option-number, .option-text {
+    font-size: 30px;
+}
+
+.option-progress {
+    margin-top: 5px;
+    display: flex;
+}
+
+.progress-bar {
+    width: 777px;
+    display: flex;
+    border-bottom-right-radius: 15px;
+    background-color: #556862;
+}
+
+.progress-fill {
+    background-color: #f9e15a;
+    transition: width 1s ease-in-out;
+}
+
+.progress-empty {
+    background-color: #556862;
+    border-bottom-right-radius: 15px;
+}
+
+.option-bars {
+    margin-top: 30px;
+}
+
+.progress-percent {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #519781;
+    color: #2e4940;
+    padding: 10px 0px;
+    padding-left: 15px;
+    z-index: 2;
+    width: 50px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom-left-radius: 15px;
+}
+
+.option-text {
+    font-family: 'Montserrat', sans-serif;
+    color: #f6dd79;
+    border-color: #697d77;
+    margin-left: -5px;
+    z-index: 1;
+    border-style: solid;
+    padding: 0px 20px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top-right-radius: 15px;
+}
+
+.option-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    background-color: #68c3a6;
+    color: #2e4940;
+    padding: 10px 0px;
+    padding-left: 15px;
+    z-index: 2;
+    width: 140px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top-left-radius: 15px;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+}
+
+.time-display {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #FFD335;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 25px;
+  position: relative;
+  bottom: 20px;
+}
+
+.voter {
+  display: flex;
+  justify-content: center;
+}
+
+.vote-display {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #68c3a6;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 25px;
+  position: relative;
+  top: 20px;
+}
