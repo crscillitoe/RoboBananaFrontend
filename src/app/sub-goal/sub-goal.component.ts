@@ -10,7 +10,7 @@ export class SubGoalComponent implements OnInit {
   tier2: number = 0;
   tier3: number = 0;
 
-  total: number = 50;
+  total: number = 1000;
 
   goal: number = 1500;
 

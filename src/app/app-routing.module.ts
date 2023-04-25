@@ -6,6 +6,7 @@ import { PredictionRenderComponent } from './prediction-render/prediction-render
 import { SubGoalComponent } from './sub-goal/sub-goal.component';
 import { SubRenderComponent } from './sub-render/sub-render.component';
 import { VodReviewComponent } from './vod-review/vod-review.component';
+import { TimerRenderComponent } from './timer-render/timer-render.component';
 
 const routes: Routes = [
     {
@@ -31,6 +32,10 @@ const routes: Routes = [
     {
         path: "vods",
         component: VodReviewComponent,
+    },
+    {
+        path: "timer",
+        component: TimerRenderComponent,
     }
 ];
 

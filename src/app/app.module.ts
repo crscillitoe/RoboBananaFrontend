@@ -13,6 +13,7 @@ import { CoolComponent } from './cool/cool.component';
 import { CoolIconComponent } from './cool-icon/cool-icon.component';
 import { CoolIconDirective } from './cool/cool-icon-directive';
 import { VodReviewComponent } from './vod-review/vod-review.component';
+import { TimerRenderComponent } from './timer-render/timer-render.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { VodReviewComponent } from './vod-review/vod-review.component';
     CoolComponent,
     CoolIconComponent,
     CoolIconDirective,
-    VodReviewComponent
+    VodReviewComponent,
+    TimerRenderComponent
   ],
   imports: [
     BrowserModule,

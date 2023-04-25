@@ -1,20 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+.discord-logo {
+  height: 40px;
+  margin-right: -15px;
+  margin-top: -6px;
+  z-index: 1;
+}
 
 .prediction-view {
   display: flex;
   flex-direction: column;
   width: 400px;
   margin: 50px;
-  padding: 20px;
+  padding: 0px 20px 20px 20px;
 
-  border-radius: 10px;
-}
-
-.no-top-margin {
-  margin-top: 0px;
+  border-color: #697d77;
+  border-style: solid;
+  background: linear-gradient(to right, #00000080, #d1faff30);
+  border-radius: 15px;
 }
 
 .title {
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: #f6dd79;
+  font-size: 30px;
+  padding: 5px 0px;
 }
 
 .odds-and-timer {
@@ -49,8 +60,20 @@
   display: flex;
 }
 
+.white, .total {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+
+.multiply {
+  font-family: 'Montserrat', sans-serif;
+  mix-blend-mode: multiply;
+  color: #b7b7b7;
+}
+
 .believe-bar {
   padding-left: 15px;
+  background-image: linear-gradient(0deg, #f3d950, #ffeb66)
 }
 
 .percentage {
@@ -159,7 +182,7 @@
 
 .doubt-text,
 .doubt-bar {
-  background-color: #303030;
+  background-color: #677d76;
 }
 
 .closed {

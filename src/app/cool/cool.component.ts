@@ -28,6 +28,14 @@ export class CoolComponent implements OnInit {
 
   constructor() { }
   ngOnInit(): void {
+    const updateCool = () => {
+      if (this.cool > 10) {
+        this.cool--;
+      }
+    }
+
+    setInterval(updateCool, 5000);
+
     let streamURL = decodeURIComponent(window.location.search);
     streamURL = streamURL.slice(1, streamURL.length - 1);
     streamURL += "?channel=cool"
