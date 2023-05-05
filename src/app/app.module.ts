@@ -14,6 +14,8 @@ import { CoolIconComponent } from './cool-icon/cool-icon.component';
 import { CoolIconDirective } from './cool/cool-icon-directive';
 import { VodReviewComponent } from './vod-review/vod-review.component';
 import { TimerRenderComponent } from './timer-render/timer-render.component';
+import { OverlayBoxComponent } from './overlay-box/overlay-box.component';
+import { OverlayTitleComponent } from './overlay-title/overlay-title.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { TimerRenderComponent } from './timer-render/timer-render.component';
     CoolIconComponent,
     CoolIconDirective,
     VodReviewComponent,
-    TimerRenderComponent
+    TimerRenderComponent,
+    OverlayBoxComponent,
+    OverlayTitleComponent
   ],
   imports: [
     BrowserModule,
