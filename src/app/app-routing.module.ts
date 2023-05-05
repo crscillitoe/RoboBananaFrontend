@@ -8,6 +8,7 @@ import { SubRenderComponent } from './sub-render/sub-render.component';
 import { VodReviewComponent } from './vod-review/vod-review.component';
 import { TimerRenderComponent } from './timer-render/timer-render.component';
 import { OverlayBoxComponent } from './overlay-box/overlay-box.component';
+import { TestingComponent } from './testing/testing.component';
 
 const routes: Routes = [
     {
@@ -40,7 +41,7 @@ const routes: Routes = [
     },
     {
         path: "testing",
-        component: OverlayBoxComponent,
+        component: TestingComponent,
     }
 ];
 

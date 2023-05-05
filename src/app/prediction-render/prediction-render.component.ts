@@ -7,7 +7,7 @@ import { PredictionSummary } from '../types/predictionSummary';
   styleUrls: ['./prediction-render.component.scss']
 })
 export class PredictionRenderComponent implements OnInit {
-  predictionTitle: string = "Will the banana win this game?";
+  predictionTitle: string = "IS THIS GAME A DUB?";
   acceptingEntries: boolean = true;
   ended: boolean = true;
 

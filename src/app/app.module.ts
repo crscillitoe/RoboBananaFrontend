@@ -16,6 +16,7 @@ import { VodReviewComponent } from './vod-review/vod-review.component';
 import { TimerRenderComponent } from './timer-render/timer-render.component';
 import { OverlayBoxComponent } from './overlay-box/overlay-box.component';
 import { OverlayTitleComponent } from './overlay-title/overlay-title.component';
+import { TestingComponent } from './testing/testing.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +32,16 @@ import { OverlayTitleComponent } from './overlay-title/overlay-title.component';
     VodReviewComponent,
     TimerRenderComponent,
     OverlayBoxComponent,
-    OverlayTitleComponent
+    OverlayTitleComponent,
+    TestingComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule
+  ],
+  exports: [
+    SubGoalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
