@@ -110,16 +110,19 @@ export class PredictionRenderComponent implements OnInit {
     let minutes;
     let seconds;
     const updateTimer = () => {
-      minutes = Math.floor(timer / 60);
-      seconds = timer % 60;
+      if (timer >= 0) {
+        minutes = Math.floor(timer / 60);
+        seconds = timer % 60;
 
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      this.predictionTimer = minutes + ":" + seconds;
+        this.predictionTimer = minutes + ":" + seconds;
+      }
 
       if (--timer < 0) {
-        timer = 0;
+        timer = -1;
+        this.predictionTimer = "00:00";
         clearInterval(this.timerInterval);
       }
     }
