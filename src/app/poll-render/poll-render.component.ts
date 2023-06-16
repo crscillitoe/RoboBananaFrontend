@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PollRenderComponent implements OnInit {
   title: string = "Who's the best valorant gamer?";
   options: string[] = ["JeyG", "Dopai", "", ""];
-  timeLeft: number = 60;
+  timeLeft: number = 0;
 
   predictionTimer: string = "1:00"
   totalVotes: number = 0;

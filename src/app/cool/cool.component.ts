@@ -34,7 +34,7 @@ export class CoolComponent implements OnInit {
       }
     }
 
-    setInterval(updateCool, 5000);
+    setInterval(updateCool, 20000);
 
     let streamURL = decodeURIComponent(window.location.search);
     streamURL = streamURL.slice(1, streamURL.length - 1);
