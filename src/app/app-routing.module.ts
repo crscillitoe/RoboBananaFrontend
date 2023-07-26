@@ -9,6 +9,7 @@ import { VodReviewComponent } from './vod-review/vod-review.component';
 import { TimerRenderComponent } from './timer-render/timer-render.component';
 import { OverlayBoxComponent } from './overlay-box/overlay-box.component';
 import { TestingComponent } from './testing/testing.component';
+import { StreamLayoutComponent } from './stream-layout/stream-layout.component';
 
 const routes: Routes = [
     {
@@ -24,12 +25,12 @@ const routes: Routes = [
         component: PollRenderComponent,
     },
     {
-      path: "subgoal",
-      component: SubGoalComponent,
+        path: "subgoal",
+        component: SubGoalComponent,
     },
     {
-      path: "cool",
-      component: CoolComponent,
+        path: "cool",
+        component: CoolComponent,
     },
     {
         path: "vods",
@@ -42,6 +43,10 @@ const routes: Routes = [
     {
         path: "testing",
         component: TestingComponent,
+    },
+    {
+        path: "stream-layout",
+        component: StreamLayoutComponent,
     }
 ];
 

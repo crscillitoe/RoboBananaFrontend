@@ -17,6 +17,7 @@ import { TimerRenderComponent } from './timer-render/timer-render.component';
 import { OverlayBoxComponent } from './overlay-box/overlay-box.component';
 import { OverlayTitleComponent } from './overlay-title/overlay-title.component';
 import { TestingComponent } from './testing/testing.component';
+import { StreamLayoutComponent } from './stream-layout/stream-layout.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TestingComponent } from './testing/testing.component';
     TimerRenderComponent,
     OverlayBoxComponent,
     OverlayTitleComponent,
-    TestingComponent
+    TestingComponent,
+    StreamLayoutComponent
   ],
   imports: [
     BrowserModule,

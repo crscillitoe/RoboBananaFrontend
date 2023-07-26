@@ -1,0 +1,13 @@
+div.outer-container {
+    height: 1080px;
+    width: 1920px;
+    outline: black solid 5px;
+}
+
+app-sub-goal {
+    width: 500px;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
