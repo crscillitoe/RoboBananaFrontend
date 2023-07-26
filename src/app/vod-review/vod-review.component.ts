@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { getBaseStreamURL } from '../utility';
 
 @Component({
   selector: 'app-vod-review',
@@ -25,9 +26,7 @@ export class VodReviewComponent implements OnInit {
       console.log(data);
     });
 
-    let streamURL = decodeURIComponent(window.location.search);
-    streamURL = streamURL.slice(1, streamURL.length - 1);
-    streamURL += "?channel=vod-reviews"
+    const streamURL = getBaseStreamURL() + "?channel=vod-reviews"
     var source = new EventSource(streamURL);
     source.addEventListener('open', (e) => {
       console.log("The connection has been established.");

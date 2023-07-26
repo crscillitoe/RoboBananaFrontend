@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getBaseStreamURL } from '../utility';
 
 @Component({
   selector: 'app-poll-render',
@@ -54,8 +55,7 @@ export class PollRenderComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetStuff();
-    let streamURL = decodeURIComponent(window.location.search);
-    streamURL = streamURL.slice(1, streamURL.length - 1);
+    const streamURL = getBaseStreamURL();
     const newPollURL = streamURL + "?channel=polls"
     const newPollAnswerURL = streamURL + "?channel=poll-answers"
 

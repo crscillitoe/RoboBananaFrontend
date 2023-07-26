@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getBaseStreamURL } from '../utility';
 
 
 type TimerDirection = "inc" | "dec";
@@ -16,9 +17,7 @@ export class TimerRenderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    let streamURL = decodeURIComponent(window.location.search);
-    streamURL = streamURL.slice(1, streamURL.length - 1);
-    streamURL += "?channel=timer"
+    const streamURL = getBaseStreamURL() + "?channel=timer"
     var source = new EventSource(streamURL);
     source.addEventListener('open', (e) => {
       console.log("The connection has been established.");
