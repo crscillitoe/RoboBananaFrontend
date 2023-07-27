@@ -1,10 +1,10 @@
-<app-overlay-box>
+<app-overlay-box imageName="assets/right.png">
   <app-overlay-title>
-    MASTER RAZE + PEEL REVEAL
+    RAZE + PEEL REVEAL
   </app-overlay-title>
 
   <div class="vote-bar">
-    <img class="discord-logo" src="assets/DiscordLogo.png">
+    <img class="discord-logo" src="assets/discord.svg">
     <div class="percentage believe-bar" [style.width]="'' + getPercentage() + '%'">
       <div class="multiply">
         SUBSCRIBERS
@@ -18,12 +18,14 @@
     <div class="discord-ad" [style.width]="'100%'">
       <b class="flex">
         <div class="white" style="visibility: hidden;">
-            <div class="total">{{total}}</div>/{{goal}}
+          <div class="total flex-column">{{total}}</div>
+          <div class="goal flex-column">{{goal}}</div>
         </div>
         <div>
         </div>
         <div class="white">
-            <div class="total">{{total}}</div>/{{goal}}
+          <div class="total">{{total}}</div>
+          <div class="goal">{{goal}}</div>
         </div>
       </b>
     </div>

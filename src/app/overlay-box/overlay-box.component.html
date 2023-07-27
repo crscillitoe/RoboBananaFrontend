@@ -1,3 +1,5 @@
-<div class = "overlay-box">
-  <ng-content></ng-content>
+<div class="overlay-wrapper" [ngStyle]="{ 'background-image': 'url(' + imageName + ')'}">
+  <div class="overlay-box">
+    <ng-content></ng-content>
+  </div>
 </div>

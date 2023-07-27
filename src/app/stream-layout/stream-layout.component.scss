@@ -1,0 +1,25 @@
+div.outer-container {
+    height: 1080px;
+    width: 1920px;
+}
+
+app-sub-goal {
+    width: 498px;
+    height: 154px;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+img#footer {
+    position: absolute;
+    bottom: 0px;
+    right: 498px;
+}
+
+img#left {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}

@@ -16,14 +16,13 @@
 
   border-color: #697d77;
   border-style: solid;
-  background: linear-gradient(to right, #00000080, #d1faff30);
   border-radius: 15px;
 }
 
 .title {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  color: #f6dd79;
+  color: var(--light);
   font-size: 30px;
   padding: 5px 0px;
 }
@@ -57,23 +56,33 @@
 .vote-bar {
   height: 25px;
   border-radius: 5px;
+  padding-left: 28px;
+  padding-right: 36px;
   display: flex;
 }
 
-.white, .total {
+.white,
+.total {
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
 }
 
 .multiply {
-  font-family: 'Montserrat', sans-serif;
-  mix-blend-mode: multiply;
-  color: #b7b7b7;
+  font-family: 'Montserrat';
+  mix-blend-mode: hard-light;
+  opacity: 0.8500000238418579;
+  color: var(--dark);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
 }
 
 .believe-bar {
   padding-left: 15px;
-  background-image: linear-gradient(0deg, #f3d950, #ffeb66)
+  background-color: var(--light);
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.20);
 }
 
 .percentage {
@@ -151,7 +160,50 @@
 .total {
   color: #FFD201;
   display: inline-block;
+  color: #000;
+  text-align: right;
+  font-variant-numeric: lining-nums tabular-nums;
+  /* Label 2 - Bold */
+  font-family: 'Montserrat';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
+  background-color: var(--light);
+  padding: 3px 4px;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.20);
+  border-radius: 4px 0px 0px 4px;
 }
+
+.goal {
+  display: inline-block;
+  padding: 3px 4px;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: stretch;
+  font-variant-numeric: lining-nums tabular-nums;
+  /* Label 2 - Bold */
+  font-family: 'Montserrat';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
+  background-color: var(--dark);
+  color: var(--light);
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.20);
+  border-radius: 0px 4px 4px 0px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+
 
 .white {
   color: white;
@@ -160,10 +212,12 @@
 .flex {
   display: flex;
   justify-content: space-between;
+  padding-right: 36px;
 }
 
-.believe-text, .believe-bar {
-  background-color: #ffea80;
+.believe-text,
+.believe-bar {
+  background-color: var(--light);
 }
 
 .discord-ad {
@@ -172,17 +226,23 @@
   justify-content: center;
   flex-direction: column;
   font-size: 14px;
+  margin-top: 18px;
 }
 
 .discord-bar {
-  border-radius: 0 0 5px 5px;
-  padding: 8px;
-  padding-bottom: 0px;
+  display: flex;
+  height: 18px;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 4px;
+  margin-top: 10px;
 }
 
 .doubt-text,
 .doubt-bar {
-  background-color: #677d76;
+  border-radius: 0px 4px 4px 0px;
+  background-color: var(--dark);
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.20);
 }
 
 .closed {

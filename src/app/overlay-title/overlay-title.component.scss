@@ -1,9 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
+
 .overlay-title {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  color: var(--less-dark);
+  text-align: center;
+  /* H2 - Bold */
+  font-family: 'Montserrat';
+  font-size: 36px;
+  font-style: normal;
   font-weight: 900;
-  font-size: 30px;
-  color: #f6dd79;
-   text-transform: uppercase;
+  line-height: normal;
+  text-transform: uppercase;
+  padding-top: 32px;
+  padding-bottom: 4px;
 }
