@@ -1,26 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
+@keyframes up {
+  from { padding-top: 74px; }
+  to { padding-top: 0px; }
+}
+
+.rank-animation {
+    animation-name: up;
+    animation-duration: 2s;
+}
+
 .rank-and-name-display {
-    width: 100vw;
+    width: 274px;
+    height: 74px;
     display: flex;
     filter: drop-shadow(3px 3px 8px black);
 }
 
+.box {
+    display: flex;
+    justify-content: center;
+}
+
 .usernames {
+    padding-top: 8px;
+    padding-right: 19px;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .big-name {
-    font-family: 'Montserrat', sans-serif;
-    color: #ffe400;
-    font-size: 120px;
+    text-align: center;
+    /* H3 - Bold */
+    font-family: 'Montserrat';
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-transform: uppercase;
 }
 
 .full-name {
-    margin-top: -30px;
-    font-family: 'Montserrat', sans-serif;
-    color: #3697a7;
-    font-size: 50px;
-    text-align: center;
+    color: var(--chat-msg);
+    font-variant-numeric: lining-nums tabular-nums;
+    /* Label 1 */
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;   text-align: center;
+}
+
+.rank-icon {
+    position: absolute;
+    right: -30px;
+    top: -20px;
+}
+
+.rank-image {
+    width: 60px;
+    height: 60px;
 }
