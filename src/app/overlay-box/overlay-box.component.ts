@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-overlay-box',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./overlay-box.component.scss']
 })
 export class OverlayBoxComponent implements OnInit {
+
+  @Input() imageName: string = "";
 
   constructor() { }
 
