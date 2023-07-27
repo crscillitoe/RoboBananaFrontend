@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import {Howl, Howler} from 'howler';
+import { Howl, Howler } from 'howler';
+import { getBaseStreamURL } from '../utility';
 
 @Component({
   selector: 'app-sub-render',
@@ -24,9 +25,7 @@ export class SubRenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let streamURL = decodeURIComponent(window.location.search);
-    streamURL = streamURL.slice(1, streamURL.length - 1);
-    streamURL += "?channel=subs"
+    const streamURL = getBaseStreamURL() + "?channel=subs"
     let source = new EventSource(streamURL);
 
     source.addEventListener('open', (e) => {

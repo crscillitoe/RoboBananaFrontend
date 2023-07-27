@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PredictionSummary } from '../types/predictionSummary';
+import { getBaseStreamURL } from '../utility';
 
 @Component({
   selector: 'app-prediction-render',
@@ -29,9 +30,7 @@ export class PredictionRenderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    let streamURL = decodeURIComponent(window.location.search);
-    streamURL = streamURL.slice(1, streamURL.length - 1);
-    streamURL += "?channel=predictions"
+    const streamURL = getBaseStreamURL() + "?channel=predictions"
     var source = new EventSource(streamURL);
     source.addEventListener('open', (e) => {
       console.log("The connection has been established.");

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { getBaseStreamURL } from '../utility';
+
+
+type TimerDirection = "inc" | "dec";
 
 @Component({
   selector: 'app-timer-render',
@@ -13,9 +17,7 @@ export class TimerRenderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    let streamURL = decodeURIComponent(window.location.search);
-    streamURL = streamURL.slice(1, streamURL.length - 1);
-    streamURL += "?channel=timer"
+    const streamURL = getBaseStreamURL() + "?channel=timer"
     var source = new EventSource(streamURL);
     source.addEventListener('open', (e) => {
       console.log("The connection has been established.");
@@ -24,24 +26,25 @@ export class TimerRenderComponent implements OnInit {
       var data = JSON.parse(event.data);
       console.log(data);
       clearInterval(this.timerInterval);
-      this.startTimer(data.time);
+      this.startTimer(data.time, data.direction);
     }, false);
     source.addEventListener('error', function (event) {
       console.log(event)
     }, false);
   }
 
-  private startTimer(timeLeft: number) {
+  private startTimer(timeLeft: number, direction: TimerDirection) {
     const now = new Date();
     const later = now.getTime() + 1000 * timeLeft;
 
 
     let timer = Math.round((later - now.getTime()) / 1000);
+    const timerEnd = timer;
 
     let minutes;
     let seconds;
     let hours;
-    const updateTimer = () => {
+    const updateTimerDisplay = () => {
       hours = Math.floor(timer / 3600);
       minutes = Math.floor(timer / 60) % 60;
       seconds = timer % 60;
@@ -51,17 +54,34 @@ export class TimerRenderComponent implements OnInit {
       seconds = seconds < 10 ? "0" + seconds : seconds;
 
       if (hours !== '00') {
-        this.predictionTimer = hours + ":" +  minutes + ":" + seconds;
+        this.predictionTimer = hours + ":" + minutes + ":" + seconds;
       } else {
         this.predictionTimer = minutes + ":" + seconds;
       }
-
+    }
+    const decrementTimer = () => {
+      updateTimerDisplay();
       if (--timer < 0) {
         timer = 0;
         clearInterval(this.timerInterval);
       }
     }
-    updateTimer();
-    this.timerInterval = setInterval(updateTimer, 1000);
+    const incrementTimer = () => {
+      updateTimerDisplay();
+      if (++timer > timerEnd) {
+        timer = timerEnd;
+        clearInterval(this.timerInterval);
+      }
+    }
+    if (direction === 'dec') { // timer counts down
+      decrementTimer();
+      this.timerInterval = setInterval(decrementTimer, 1000);
+    }
+    else { // timer counts up
+      timer = 0;
+      incrementTimer();
+      this.timerInterval = setInterval(incrementTimer, 1000);
+    }
+
   }
 }

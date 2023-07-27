@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CoolIconComponent } from '../cool-icon/cool-icon.component';
 import { CoolIconDirective } from './cool-icon-directive';
 import { timer } from "rxjs";
+import { getBaseStreamURL } from '../utility';
 
 @Component({
   selector: 'app-cool',
@@ -36,9 +37,7 @@ export class CoolComponent implements OnInit {
 
     setInterval(updateCool, 20000);
 
-    let streamURL = decodeURIComponent(window.location.search);
-    streamURL = streamURL.slice(1, streamURL.length - 1);
-    streamURL += "?channel=cool"
+    const streamURL = getBaseStreamURL() + "?channel=cool"
     var source = new EventSource(streamURL);
     source.addEventListener('open', (e) => {
       console.log("The connection has been established.");
