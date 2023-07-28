@@ -31,3 +31,19 @@
     </div>
   </div>
 </app-overlay-box>
+
+<div [@slideUp] class="wrapper" *ngIf="displaySub">
+  <div style="background-image: url('assets/right.png');" class="horiz-center tall">
+    <div class="verti-center">
+      <div class="verti-center text">
+        <div class="horiz-center">
+          <img width=120 height=140 style="padding-left: 10px;" src="assets/HOOJIN_TIME.png" />
+        </div>
+
+        <div class="sub-message">
+          {{subMessage}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
