@@ -10,7 +10,7 @@ import { getBaseStreamURL } from '../utility';
 export class PredictionRenderComponent implements OnInit {
   predictionTitle: string = "C9 VS SEN - GAME 2";
   acceptingEntries: boolean = true;
-  ended: boolean = false;
+  ended: boolean = true;
 
   believeChoiceText: string = "Yes";
   believePayoutMultiplier: number = 1.29;
