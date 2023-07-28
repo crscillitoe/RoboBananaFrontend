@@ -1,11 +1,9 @@
 <div class="prediction-view" [ngClass]="{'closed': isClosed()}" *ngIf="!this.ended">
   <div class="timer">
     <div class="time-display" *ngIf="!isClosed()">
-      <b [style.color]="getTimerColor()">
-        {{predictionTimer}}
-      </b>
+        OPEN
     </div>
-    <div *ngIf="isClosed()" style="height:34px;">
+    <div *ngIf="isClosed()" style="height:22px;">
 
     </div>
   </div>
@@ -16,7 +14,7 @@
   <div class="odds-and-timer">
     <div class="raffle-odds believe">
       <div class="option-text believe-text">
-        <b>
+        <b class="believe-percentage">
           {{believeChoiceText}}
         </b>
       </div>
@@ -25,7 +23,7 @@
           <b class="yellow-text">{{believePayoutMultiplier}}x</b>
         </div>
         <div class="option-odds-text">
-          <b class="yellow-text">{{believeTotalPoints}}</b>
+          <b class="yellow-text">{{truncateNumber(believeTotalPoints)}}</b>
         </div>
       </div>
     </div>
@@ -35,14 +33,14 @@
     <div class="raffle-odds doubt">
       <div class="option-odds odds-doubt">
         <div class="option-odds-text">
-          <b class="yellow-text">{{doubtTotalPoints}}</b>
+          <b class="yellow-text">{{truncateNumber(doubtTotalPoints)}}</b>
         </div>
         <div class="option-odds-text">
           <b class="yellow-text">{{doubtPayoutMultiplier}}x</b>
         </div>
       </div>
       <div class="option-text doubt-text">
-        <b>
+        <b class="doubt-percentage">
           {{doubtChoiceText}}
         </b>
       </div>
@@ -51,12 +49,12 @@
 
   <div class="vote-bar">
     <div class="percentage believe-bar" [style.width]="'' + believePercentage + '%'">
-      <b *ngIf="believePercentage > 0">
+      <b class="believe-percentage" *ngIf="believePercentage > 0">
         {{believePercentage}}%
       </b>
     </div>
     <div class="percentage doubt-bar" [style.width]="'' + doubtPercentage + '%'">
-      <b *ngIf="doubtPercentage > 0">
+      <b class="doubt-percentage" *ngIf="doubtPercentage > 0">
         {{doubtPercentage}}%
       </b>
     </div>

@@ -1,33 +1,35 @@
 <app-overlay-box imageName="assets/right.png">
-  <app-overlay-title>
-    RAZE + PEEL REVEAL
-  </app-overlay-title>
+  <div class="hacky-lower-thing">
+    <app-overlay-title>
+      RAZE + PEEL REVEAL
+    </app-overlay-title>
 
-  <div class="vote-bar">
-    <img class="discord-logo" src="assets/discord.svg">
-    <div class="percentage believe-bar" [style.width]="'' + getPercentage() + '%'">
-      <div class="multiply">
-        SUBSCRIBERS
+    <div class="vote-bar">
+      <img class="discord-logo" src="assets/discord.svg">
+      <div class="percentage believe-bar" [style.width]="'' + getPercentage() + '%'">
+        <div class="multiply">
+          SUBSCRIBERS
+        </div>
+      </div>
+      <div class="percentage doubt-bar" [style.width]="'' + (100 - getPercentage()) + '%'">
       </div>
     </div>
-    <div class="percentage doubt-bar" [style.width]="'' + (100 - getPercentage()) + '%'">
-    </div>
-  </div>
 
-  <div class="discord-bar">
-    <div class="discord-ad" [style.width]="'100%'">
-      <b class="flex">
-        <div class="white" style="visibility: hidden;">
-          <div class="total flex-column">{{total}}</div>
-          <div class="goal flex-column">{{goal}}</div>
-        </div>
-        <div>
-        </div>
-        <div class="white">
-          <div class="total">{{total}}</div>
-          <div class="goal">{{goal}}</div>
-        </div>
-      </b>
+    <div class="discord-bar">
+      <div class="discord-ad" [style.width]="'100%'">
+        <b class="flex">
+          <div class="white" style="visibility: hidden;">
+            <div class="total flex-column">{{total}}</div>
+            <div class="goal flex-column">{{goal}}</div>
+          </div>
+          <div>
+          </div>
+          <div class="white">
+            <div class="total">{{total}}</div>
+            <div class="goal">{{goal}}</div>
+          </div>
+        </b>
+      </div>
     </div>
   </div>
 </app-overlay-box>

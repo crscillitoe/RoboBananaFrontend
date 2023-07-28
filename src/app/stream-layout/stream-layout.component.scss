@@ -3,6 +3,15 @@ div.outer-container {
     width: 1920px;
 }
 
+app-prediction-render {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 542px;
+    height: 154px;
+    z-index: 50;
+}
+
 app-vod-review {
     width: 274px;
     height: 74px;

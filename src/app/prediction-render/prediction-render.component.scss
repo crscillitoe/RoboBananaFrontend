@@ -1,24 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
+
+app-overlay-box {
+  position: relative;
+  top: -5px;
+}
+
 .prediction-view {
   display: flex;
   flex-direction: column;
-  width: 600px;
-  margin: 50px;
-
-
-  border-radius: 10px;
+  width: 542px;
 }
 
 .gradient {
-  padding-top: 8px;
-  border-color: #697d77;
   border-style: solid;
-  border-radius: 15px;
-  background: linear-gradient(to right, #00000080, #d1faff30);
-}
-
-.no-top-margin {
-  margin-top: 0px;
-  color: #f6dd79;
 }
 
 .title {
@@ -29,31 +23,39 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 52px;
+  height: 36px;
+  margin-left: 53px;
+  margin-right: 53px;
 }
 
-.odds-believe {
-  outline: 2px solid #de5161;
+.odds-believe, .believe-text {
+  border-radius: 2px;
+  border: 2px solid var(--light);
 }
 
-.odds-doubt {
-  outline: 2px solid #68c3a6;
+.odds-doubt, .doubt-text {
+  border-radius: 2px;
+  border: 2px solid var(--dark);
 }
 
 .option-odds {
   margin-left: 10px;
+  width: 130px;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.20);
   margin-right: 10px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  border-radius: 5px;
-  width: 100%;
+  height: 24px;
+  border-radius: 2px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .vote-bar {
-  height: 40px;
+  margin-left: 53px;
+  margin-right: 53px;
+  height: 24px;
   display: flex;
+  border-radius: 4px;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.20);
 }
 
 .believe-bar {
@@ -88,55 +90,80 @@
 
 .timer {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .time-display {
-  background-color: #FFD335;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 15px;
-  padding-left: 15px;
-  border-radius: 20px;
+  background-color: var(--cerise);
+  color: var(--light);
+  display: inline-flex;
+  gap: 10px;
+  padding: 0px 2px;
+  border-radius: 2px;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.25);
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 20px;
   position: relative;
-  bottom: 15px;
+  text-align: center;
+  font-variant-numeric: lining-nums tabular-nums;
+  /* Label 1 */
+  font-family: 'Montserrat';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  right: 5px;
+  top: 5px;
 }
 
 .yellow-text {
-  color: #f6dd79;
+  color: var(--dark);
+}
+
+.believe-percentage, .doubt-percentage {
+  text-transform: uppercase;
+}
+
+.believe-percentage, .doubt-percentage, .yellow-text {
+  font-variant-numeric: lining-nums tabular-nums;
+  /* Label 1 */
+  font-family: 'Montserrat';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .option-odds-text {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 10px;
 }
 
 .option-text {
-  width: 90px;
-  border-radius: 10px;
+  width: 52px;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.20);
+  height: 24px;
   text-align: center;
   display: flex;
+  border-radius: 2px;
   justify-content: center;
   flex-direction: column;
 }
 
 .raffle-odds {
-  width: 250px;
-  margin: 8px;
-  border-radius: 5px;
+  border-radius: 2px;
   display: flex;
+  height: 24px;
   justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
 }
 
 .believe-text, .believe-bar {
-  background-color: #de5161;
+  background-color: var(--light);
 }
 
 .discord-ad {
@@ -153,7 +180,15 @@
   padding: 8px;
 }
 
+.doubt-percentage {
+  color: var(--light);
+}
+
+.believe-percentage {
+  color: var(--dark);
+}
+
 .doubt-text,
 .doubt-bar {
-  background-color: #68c3a6;
+  background-color: var(--dark);
 }

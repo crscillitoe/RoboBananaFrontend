@@ -8,20 +8,20 @@ import { getBaseStreamURL } from '../utility';
   styleUrls: ['./prediction-render.component.scss']
 })
 export class PredictionRenderComponent implements OnInit {
-  predictionTitle: string = "IS THIS GAME A DUB?";
+  predictionTitle: string = "C9 VS SEN - GAME 2";
   acceptingEntries: boolean = true;
-  ended: boolean = true;
+  ended: boolean = false;
 
   believeChoiceText: string = "Yes";
   believePayoutMultiplier: number = 1.29;
-  believeTotalPoints: number = 2500;
+  believeTotalPoints: number = 53800320;
 
   doubtChoiceText: string = "No";
   doubtPayoutMultiplier: number = 2.4;
-  doubtTotalPoints: number = 500;
+  doubtTotalPoints: number = 53800320;
 
-  believePercentage: number = 0;
-  doubtPercentage: number = 100;
+  believePercentage: number = 35;
+  doubtPercentage: number = 65;
 
   predictionTimer: string = "00:00";
   endTime: Date = new Date();
@@ -43,6 +43,29 @@ export class PredictionRenderComponent implements OnInit {
     source.addEventListener('error', function (event) {
       console.log(event)
     }, false);
+  }
+
+  truncateNumber(num: number): string {
+    const thousand = num / 1000;
+    const million = num / 1000000;
+
+    if (num < 1000) {
+      return '' + num;
+    }
+
+    if (thousand < 1000) {
+      if (thousand < 100) {
+        return thousand.toFixed(1) + 'K';
+      }
+
+      return Math.floor(thousand) + 'K';
+    }
+
+    if (million < 100) {
+      return million.toFixed(1) + 'M';
+    }
+
+    return Math.floor(million) + 'M';
   }
 
   private updatePredictionSummary(summary: PredictionSummary): void {
