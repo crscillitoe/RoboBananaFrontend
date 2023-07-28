@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { getBaseStreamURL } from '../utility';
 import { state, trigger, style, transition, animate } from '@angular/animations';
+import { BotConnectorService } from '../services/bot-connector.service';
 
 @Component({
   selector: 'app-vod-review',
@@ -41,18 +42,10 @@ export class VodReviewComponent implements OnInit {
   complete: boolean = true;
   nameColor: string = this.colors["Diamond"];
 
-  constructor(private client: HttpClient) { }
+  constructor(private botService: BotConnectorService) { }
 
   ngOnInit(): void {
-    const streamURL = getBaseStreamURL() + "?channel=vod-reviews"
-    var source = new EventSource(streamURL);
-    source.addEventListener('open', (e) => {
-      console.log("The connection has been established.");
-    });
-    source.addEventListener('publish', (event) => {
-      var data = JSON.parse(event.data);
-      console.log(data);
-
+    this.botService.getStream("vod-reviews").subscribe(data => {
       this.rank = data.rank + "_Rank.png";
       let rankName = data.rank.replace(/[\d_]+/g, '');
       this.background = rankName + ".png";
@@ -60,10 +53,7 @@ export class VodReviewComponent implements OnInit {
       this.riotid = data.riotid;
       this.username = data.username;
       this.complete = data.complete;
-    }, false);
-    source.addEventListener('error', function (event) {
-      console.log(event)
-    }, false);
+    });
   }
 
 }

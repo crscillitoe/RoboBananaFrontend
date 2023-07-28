@@ -19,6 +19,7 @@ import { OverlayBoxComponent } from './overlay-box/overlay-box.component';
 import { OverlayTitleComponent } from './overlay-title/overlay-title.component';
 import { TestingComponent } from './testing/testing.component';
 import { StreamLayoutComponent } from './stream-layout/stream-layout.component';
+import { AdsComponent } from './ads/ads.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { StreamLayoutComponent } from './stream-layout/stream-layout.component';
     OverlayBoxComponent,
     OverlayTitleComponent,
     TestingComponent,
-    StreamLayoutComponent
+    StreamLayoutComponent,
+    AdsComponent
   ],
   imports: [
     BrowserModule,

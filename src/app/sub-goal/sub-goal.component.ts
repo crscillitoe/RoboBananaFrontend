@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { getBaseStreamURL } from '../utility';
 import { Howl } from 'howler';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { BotConnectorService } from '../services/bot-connector.service';
 
 @Component({
   selector: 'app-sub-goal',
@@ -33,7 +34,7 @@ export class SubGoalComponent implements OnInit {
   subHowl: Howl;
   lastTimeout: NodeJS.Timeout | undefined;
 
-  constructor() {
+  constructor(private botService: BotConnectorService) {
     this.subHowl = new Howl({
       src: ["assets/ChossBoss.wav"],
       autoplay: false,
@@ -46,43 +47,11 @@ export class SubGoalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const streamURL = getBaseStreamURL() + "?channel=subs-count"
-    const subNotifStreamURL = getBaseStreamURL() + "?channel=subs"
-    var source = new EventSource(streamURL);
-    var subSource = new EventSource(subNotifStreamURL);
-
-    source.addEventListener('open', (e) => {
-      console.log("The connection has been established.");
-    });
-    source.addEventListener('publish', (event) => {
-      var data = JSON.parse(event.data);
-      console.log(data);
-
-      this.tier1 = data.tier1Count;
-      this.tier2 = data.tier2Count;
-      this.tier3 = data.tier3Count;
-
-      this.total = this.tier1 + this.tier2 + this.tier3;
-    }, false);
-    source.addEventListener('error', function (event) {
-      console.log(event)
-    }, false);
-
-
-    subSource.addEventListener('open', (e) => {
-      console.log("The connection has been established.");
-
-      if (this.lastTimeout) {
-        clearTimeout(this.lastTimeout);
-      }
-    });
-
-    subSource.addEventListener('publish', (event) => {
+    this.botService.getStream("subs").subscribe(data => {
       if (this.lastTimeout) {
         clearTimeout(this.lastTimeout);
       }
 
-      var data = JSON.parse(event.data);
       this.subMessage = data.message;
       let timeout = 5000;
 
@@ -97,11 +66,14 @@ export class SubGoalComponent implements OnInit {
       this.lastTimeout = setTimeout(() => {
         this.displaySub = false;
       }, timeout);
-    }, false);
+    });
 
-    subSource.addEventListener('error', function (event) {
-      console.log(event)
-    }, false);
+    this.botService.getStream("subs-count").subscribe(data => {
+      this.tier1 = data.tier1Count;
+      this.tier2 = data.tier2Count;
+      this.tier3 = data.tier3Count;
+
+      this.total = this.tier1 + this.tier2 + this.tier3;
+    });
   }
-
 }

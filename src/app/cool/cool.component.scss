@@ -2,16 +2,16 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column-reverse;
-  width: 24px;
-  height: 1080px;
-  background-color: #384f48;
-  filter: drop-shadow(3px 3px 8px black);
+  width: 8px;
+  height: 776px;
+  background-color: var(--slate);
 }
 
 .sheesh {
   margin-top: -10px;
   margin-left: -18px;
-  width: 50px;
+  width: 35px;
+  transform: rotate(-20deg);
 }
 
 .fill-bar {
@@ -19,10 +19,10 @@
 }
 
 .cool-bar {
-  background-image: linear-gradient(0deg, #FFD335, #d87a35);
+  background-color: var(--accent);
   transition: height 0.2s ease-in-out;
 }
 
 .uncool-bar {
-  background-color: #384f48;
+  background-color: var(--slate);
 }

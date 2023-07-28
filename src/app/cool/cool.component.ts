@@ -3,6 +3,7 @@ import { CoolIconComponent } from '../cool-icon/cool-icon.component';
 import { CoolIconDirective } from './cool-icon-directive';
 import { timer } from "rxjs";
 import { getBaseStreamURL } from '../utility';
+import { BotConnectorService } from '../services/bot-connector.service';
 
 @Component({
   selector: 'app-cool',
@@ -27,7 +28,8 @@ export class CoolComponent implements OnInit {
     return 100 - this.calculateWidth();
   }
 
-  constructor() { }
+  constructor(private botService: BotConnectorService) { }
+
   ngOnInit(): void {
     const updateCool = () => {
       if (this.cool > 10) {
@@ -37,13 +39,7 @@ export class CoolComponent implements OnInit {
 
     setInterval(updateCool, 20000);
 
-    const streamURL = getBaseStreamURL() + "?channel=cool"
-    var source = new EventSource(streamURL);
-    source.addEventListener('open', (e) => {
-      console.log("The connection has been established.");
-    });
-    source.addEventListener('publish', (event) => {
-      var data = JSON.parse(event.data);
+    this.botService.getStream("cool").subscribe(data => {
       let cool = data.cool;
       this.cool += cool;
 
@@ -54,23 +50,6 @@ export class CoolComponent implements OnInit {
       if (this.cool < 0) {
         this.cool = 0;
       }
-
-      // Dynamically create icon component
-      const viewContainerRef = this.coolIconHost.viewContainerRef;
-      const componentRef = viewContainerRef.createComponent<CoolIconComponent>(CoolIconComponent);
-
-      const iconName = cool > 0 ? "cool" : "uncool";
-      componentRef.instance.iconName = iconName;
-
-      // Animation takes 1s
-      // Clean up after the element is no longer visible
-      timer(1200).subscribe(() => {
-        componentRef.destroy();
-      })
-
-    }, false);
-    source.addEventListener('error', function (event) {
-      console.log(event)
-    }, false);
+    });
   }
 }

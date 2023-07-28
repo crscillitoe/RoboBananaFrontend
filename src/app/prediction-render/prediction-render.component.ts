@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PredictionSummary } from '../types/predictionSummary';
 import { getBaseStreamURL } from '../utility';
+import { BotConnectorService } from '../services/bot-connector.service';
 
 @Component({
   selector: 'app-prediction-render',
@@ -27,22 +28,12 @@ export class PredictionRenderComponent implements OnInit {
   endTime: Date = new Date();
   timerInterval: NodeJS.Timer | undefined;
 
-  constructor() { }
+  constructor(private botService: BotConnectorService) { }
 
   ngOnInit(): void {
-    const streamURL = getBaseStreamURL() + "?channel=predictions"
-    var source = new EventSource(streamURL);
-    source.addEventListener('open', (e) => {
-      console.log("The connection has been established.");
-    });
-    source.addEventListener('publish', (event) => {
-      var data = JSON.parse(event.data);
-      console.log(data);
+    this.botService.getStream("predictions").subscribe(data => {
       this.updatePredictionSummary(data as PredictionSummary)
-    }, false);
-    source.addEventListener('error', function (event) {
-      console.log(event)
-    }, false);
+    });
   }
 
   truncateNumber(num: number): string {

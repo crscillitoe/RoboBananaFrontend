@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Howl, Howler } from 'howler';
 import { getBaseStreamURL } from '../utility';
+import { BotConnectorService } from '../services/bot-connector.service';
 
 @Component({
   selector: 'app-sub-render',
@@ -16,7 +17,7 @@ export class SubRenderComponent implements OnInit {
 
   lastTimeout: NodeJS.Timeout | undefined;
 
-  constructor() {
+  constructor(private botService: BotConnectorService) {
     this.subHowl = new Howl({
       src: ["assets/ChossBoss.wav"],
       autoplay: false,
@@ -25,6 +26,10 @@ export class SubRenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.botService.getStream("subs").subscribe(data => {
+      console.log(data);
+    });
+
     const streamURL = getBaseStreamURL() + "?channel=subs"
     let source = new EventSource(streamURL);
 
