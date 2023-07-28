@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  streamURL: ""
+  streamURL: "https://overlay.woohooj.in/stream/"
 };
