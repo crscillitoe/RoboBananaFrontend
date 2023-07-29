@@ -7,6 +7,15 @@ app-ads {
     position: absolute;
     top: 0px;
     left: 0px;
+    z-index: 100;
+}
+
+app-chat {
+    position:absolute;
+    bottom: 228px;
+    left: 0px;
+    width: 274px;
+    height: 778px;
 }
 
 app-cool {

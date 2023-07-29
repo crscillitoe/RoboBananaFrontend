@@ -1,1 +1,22 @@
-<p>chat works!</p>
+<div class="chat-container">
+    <div class="render-reverse-column">
+        <ng-container *ngFor="let message of messages">
+            <div class="message">
+                <div class="message-header" [style.color]="message.authorColor">
+                    {{message.displayName}}
+
+                    <div class="vertical-center">
+                        <img class="rank-image" *ngIf="message.badgeURL !== ''" src="{{message.badgeURL}}"/>
+                    </div>
+                </div>
+
+                <div class="message-content">
+                    {{message.content}}
+                    <ng-container *ngIf="message.stickerURL != ''">
+                        <img class="sticker" src="{{message.stickerURL}}"/>
+                    </ng-container>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
