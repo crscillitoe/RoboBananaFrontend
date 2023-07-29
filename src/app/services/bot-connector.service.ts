@@ -41,6 +41,6 @@ export class BotConnectorService {
 
 export const StreamNames = ["predictions", "subs", "subs-count",
                                       "poll-answers", "polls", "cool",
-                                      "vod-reviews", "timer", "tamagachi"] as const;
+                                      "vod-reviews", "timer", "tamagachi", "chat-message"] as const;
 
 export type StreamName = typeof StreamNames[number];

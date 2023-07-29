@@ -20,6 +20,7 @@ import { OverlayTitleComponent } from './overlay-title/overlay-title.component';
 import { TestingComponent } from './testing/testing.component';
 import { StreamLayoutComponent } from './stream-layout/stream-layout.component';
 import { AdsComponent } from './ads/ads.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AdsComponent } from './ads/ads.component';
     OverlayTitleComponent,
     TestingComponent,
     StreamLayoutComponent,
-    AdsComponent
+    AdsComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
