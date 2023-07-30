@@ -39,9 +39,31 @@
     padding-top: 15px;
 }
 
-.message-content {
+.message-text {
     color: var(--chat-msg);
     word-wrap: break-word;
+}
+
+img.message-emoji {
+    vertical-align: bottom;
+}
+
+img.message-emoji:not(.small) {
+    width: 70px;
+}
+
+img.message-emoji.small {
+    height: 18px;
+    display: inline;
+}
+
+.message-chunk {
+    display: inline-block;
+    justify-content: baseline;
+}
+
+.message-chunk.pad-left {
+    margin-left: 0.3em;
 }
 
 .chat-container {

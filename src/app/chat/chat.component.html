@@ -6,14 +6,23 @@
                     {{message.displayName}}
 
                     <div class="vertical-center">
-                        <img class="rank-image" *ngIf="message.badgeURL !== ''" src="{{message.badgeURL}}"/>
+                        <img class="rank-image" *ngIf="message.badgeURL !== ''" src="{{message.badgeURL}}" />
                     </div>
                 </div>
 
                 <div class="message-content">
-                    {{message.content}}
+                    <div class="message-chunk" *ngFor="let chunk of message.chatMessage.chunks; let i = index"
+                        [class.pad-left]="i !== 0">
+                        <ng-container *ngIf="chunk.type === ChatChunkType.IMG">
+                            <img [class.small]="message.chatMessage.textChunkCount > 0 || message.chatMessage.imgChunkCount > 3"
+                                class="message-emoji" src="{{chunk.content}}" />
+                        </ng-container>
+                        <ng-container *ngIf="chunk.type === ChatChunkType.TEXT">
+                            <div class="message-text">{{chunk.content}}</div>
+                        </ng-container>
+                    </div>
                     <ng-container *ngIf="message.stickerURL != ''">
-                        <img class="sticker" src="{{message.stickerURL}}"/>
+                        <img class="sticker" src="{{message.stickerURL}}" />
                     </ng-container>
                 </div>
             </div>
