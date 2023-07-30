@@ -21,6 +21,7 @@ import { TestingComponent } from './testing/testing.component';
 import { StreamLayoutComponent } from './stream-layout/stream-layout.component';
 import { AdsComponent } from './ads/ads.component';
 import { ChatComponent } from './chat/chat.component';
+import { TalkingPngComponent } from './talking-png/talking-png.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ChatComponent } from './chat/chat.component';
     TestingComponent,
     StreamLayoutComponent,
     AdsComponent,
-    ChatComponent
+    ChatComponent,
+    TalkingPngComponent
   ],
   imports: [
     BrowserModule,
