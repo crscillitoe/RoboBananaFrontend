@@ -42,6 +42,7 @@
 .message-text {
     color: var(--chat-msg);
     word-wrap: break-word;
+    max-width: 244px;
 }
 
 img.message-emoji {
