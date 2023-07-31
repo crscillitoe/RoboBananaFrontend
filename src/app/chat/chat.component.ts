@@ -17,6 +17,7 @@ interface ChatMessage {
   textChunkCount: number;
   imgChunkCount: number;
 }
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
