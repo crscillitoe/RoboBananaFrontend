@@ -10,7 +10,16 @@ app-ads {
     z-index: 100;
 }
 
+app-chess {
+    position: absolute;
+    top: 200px;
+    width: 500px;
+    height: 500px;
+    left: 800px;
+}
+
 app-chat {
+
     position:absolute;
     bottom: 228px;
     left: 0px;
