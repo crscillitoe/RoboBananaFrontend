@@ -3,7 +3,8 @@ import { BotConnectorService } from '../services/bot-connector.service';
 
 enum ChatChunkType {
   TEXT = 0,
-  IMG = 1
+  IMG = 1,
+  MENTION = 2,
 }
 
 interface ChatChunk {
@@ -29,7 +30,7 @@ export class ChatComponent implements OnInit {
   constructor(private botService: BotConnectorService) { }
 
   ngOnInit(): void {
-    this.botService.getStream("chat-message").subscribe(data => {
+    this.botService.getStream("chat-test-message").subscribe(data => {
       if (data.content.length > 200) {
         return;
       }
@@ -65,7 +66,8 @@ export class ChatComponent implements OnInit {
         }
       }
 
-      const chatMessage = this.processEmoijs(data.content, data.emojis)
+      const emojiChatMessage = this.processEmoijs(data.content, data.emojis);
+      const chatMessage = this.processMentions(emojiChatMessage, data.mentions);
 
       data.chatMessage = chatMessage;
 
@@ -132,6 +134,66 @@ export class ChatComponent implements OnInit {
       chunks: chatChunks,
       imgChunkCount,
       textChunkCount
+    }
+  }
+
+  processMentions(chatMessage: ChatMessage, mentionContent: { [key: string]: string }[]): ChatMessage {
+    const currentChunks = chatMessage.chunks;
+    const newChunks: ChatChunk[] = [];
+    const mentionMap = new Map<string, string>();
+
+    mentionContent.forEach(mention => {
+      const mentionText = mention["mention_text"]
+      mentionMap.set(mentionText, mention["display_name"])
+      currentChunks.forEach(chunk => {
+        if (chunk.type !== ChatChunkType.TEXT) return;
+        chunk.content = chunk.content.replaceAll(mentionText, ` ${mentionText} `);
+      })
+    });
+
+    currentChunks.forEach(chunk => {
+      if (chunk.type !== ChatChunkType.TEXT) {
+        newChunks.push(chunk);
+        return;
+      }
+
+      let currentText = "";
+      chunk.content.split(" ").forEach(word => {
+        if (mentionMap.has(word)) {
+          if (currentText.trim() !== "") {
+            newChunks.push(
+              {
+                "type": ChatChunkType.TEXT,
+                "content": currentText.trim()
+              }
+            );
+            currentText = "";
+          }
+          const displayName = mentionMap.get(word)!;
+          newChunks.push(
+            {
+              "type": ChatChunkType.MENTION,
+              "content": displayName
+            }
+          )
+        } else {
+          currentText += word + " ";
+        }
+      });
+      if (currentText.trim() !== "") {
+        newChunks.push(
+          {
+            "type": ChatChunkType.TEXT,
+            "content": currentText.trim()
+          }
+        )
+      }
+
+    })
+    return {
+      chunks: newChunks,
+      imgChunkCount: chatMessage.imgChunkCount,
+      textChunkCount: chatMessage.textChunkCount
     }
   }
 

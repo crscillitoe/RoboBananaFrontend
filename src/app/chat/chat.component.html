@@ -20,6 +20,9 @@
                         <ng-container *ngIf="chunk.type === ChatChunkType.TEXT">
                             <div class="message-text">{{chunk.content}}</div>
                         </ng-container>
+                        <ng-container *ngIf="chunk.type === ChatChunkType.MENTION">
+                            <div class="message-text message-mention">@{{chunk.content}}</div>
+                        </ng-container>
                     </div>
                     <ng-container *ngIf="message.stickerURL != ''">
                         <img class="sticker" src="{{message.stickerURL}}" />
