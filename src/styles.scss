@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@800&family=Roboto+Mono:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@800&family=Roboto+Mono:wght@600&family=Roboto:wght@500&display=swap');
+@import '~cm-chessboard-ts/assets/styles/cm-chessboard.css';
 
 * {
     font-family: 'Inter', sans-serif;
@@ -27,6 +28,7 @@ body {
     --cerise: #E52E5E;
     --slate: #262626;
     --accent: #FFC700;
+    --blue-dodger: #24AFFE;
 }
 
 .cg-wrap {

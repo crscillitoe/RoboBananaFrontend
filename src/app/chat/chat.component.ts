@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BotConnectorService } from '../services/bot-connector.service';
 
 enum ChatChunkType {
@@ -25,6 +25,11 @@ interface ChatMessage {
 })
 export class ChatComponent implements OnInit {
 
+  // 0 == All
+  // 1 == NA
+  // 2 == NOT NA
+  @Input() regionCheck: number = 0;
+
   QUEUE_LENGTH: number = 25;
   messages: any[] = [];
 
@@ -32,6 +37,10 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.botService.getStream("chat-message").subscribe(data => {
+      if (this.regionCheck !== 0) {
+        if (this.regionCheck === 1 && !data.isNA) return;
+        if (this.regionCheck === 2 && data.isNA) return;
+      }
       if (data.content.length > 200) {
         return;
       }
@@ -42,29 +51,6 @@ export class ChatComponent implements OnInit {
 
       if (data.displayName.length > 12) {
         data.displayName = data.displayName.slice(0, 11);
-      }
-
-      if (data.stickers.length > 0) {
-        data["stickerURL"] = data.stickers[0].url;
-      } else {
-        data["stickerURL"] = "";
-      }
-
-      data["badgeURL"] = "";
-      data["authorColor"] = "rgb(255, 255, 255)"
-      data.roles.reverse();
-      for (let role of data.roles) {
-        if (role.icon != null) {
-          data["badgeURL"] = role.icon;
-          break;
-        }
-      }
-
-      for (let role of data.roles) {
-        if (role.colorR != 0 || role.colorG != 0 || role.colorB != 0) {
-          data["authorColor"] = `rgb(${role.colorR}, ${role.colorG}, ${role.colorB})`;
-          break;
-        }
       }
 
       const emojiChatMessage = this.processEmoijs(data.content, data.emojis);

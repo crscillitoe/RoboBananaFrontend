@@ -1,1 +1,36 @@
-<div id="board"></div>
+<div class="full-board" [style.marginTop.px]="getDisplay()">
+    <div class="header">
+        HOOJ WILL BE RIGHT BACK, CHAT PLAYS CHESS!
+    </div>
+    <div class="content">
+        <div class="na team-container">
+            <div class="move blue">
+                <div class="move-header">{{naPlayer.toUpperCase()}}</div>
+                <div class="move-content blue">{{naMove.toUpperCase()}}</div>
+            </div>
+            <app-chat class="na-chat chat" [regionCheck]="1"></app-chat>
+        </div>
+
+        <div class="board-display">
+            <div id="board"></div>
+        </div>
+
+        <div class="eu team-container">
+            <div class="move red">
+                <div class="move-header">{{euPlayer.toUpperCase()}}</div>
+                <div class="move-content red">{{euMove.toUpperCase()}}</div>
+            </div>
+            <app-chat class="eu-chat chat" [regionCheck]="2"></app-chat>
+        </div>
+    </div>
+
+    <div class="score header">
+        <div class="na-score">
+            NA - {{naScore}} WINS<div class="turn" *ngIf="turnNumber % 2 === 1"><-- TURN</div>
+        </div>
+
+        <div class="eu-score">
+            <div class="turn" *ngIf="turnNumber % 2 === 0">TURN --&gt;</div> NOT NA - {{euScore}} WINS
+        </div>
+    </div>
+</div>

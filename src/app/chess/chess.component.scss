@@ -1,4 +1,104 @@
 #board {
+    width: 650px;
+    height: 650px;
+}
+
+.header {
+    height: 81px;
     width: 100%;
-    height: 100%;
+    color: var(--dark);
+    background-color: #ffe400;
+    font-family: 'Montserrat';
+    font-size: 65px;
+    font-style: normal;
+    text-align: center;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.turn {
+    display: inline-block;
+    color: var(--cerise);
+}
+
+.content {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 650px;
+}
+
+.full-board {
+    width: 1920px;
+    height: 1080px;
+    background-color: #303030;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.blue {
+    color: var(--blue-dodger);
+}
+
+.red {
+    color: var(--cerise);
+}
+
+.banner {
+    width: 100%;
+    height: 24px;
+    text-align: center;
+    color: #FFE400;
+}
+
+.score {
+    display: flex;
+    justify-content: space-between;
+}
+
+.na-score, .eu-score {
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.chat {
+    overflow: hidden;
+    display: block;
+    height: 400px;
+    width: 274px;
+}
+
+.move-header {
+    font-family: 'Montserrat';
+    font-size: 40px;
+    font-style: normal;
+    text-align: center;
+    font-weight: 700;
+    overflow: hidden;
+    line-height: normal;
+    color: var(--light);
+    word-wrap: break-word;
+    max-width: 274px;
+    white-space: nowrap;
+}
+
+.move {
+    height: 200px;
+    width: 274px;
+}
+
+.move-content {
+    font-family: 'Montserrat';
+    font-size: 100px;
+    font-style: normal;
+    text-align: center;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.team-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }

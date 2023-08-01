@@ -12,10 +12,11 @@ app-ads {
 
 app-chess {
     position: absolute;
-    top: 200px;
-    width: 500px;
-    height: 500px;
-    left: 800px;
+    top: 0px;
+    width: 1920px;
+    height: 1080px;
+    left: 0px;
+    z-index: 1000;
 }
 
 app-chat {
