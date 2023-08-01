@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Chess } from 'chess.js';
+import { Chess, Move } from 'chess.js';
 import { BotConnectorService } from '../services/bot-connector.service';
-import { ChessBoardInstance, Chessboard } from 'cm-chessboard-ts';
+import { ChessBoardInstance, Chessboard, MARKER_TYPE } from 'cm-chessboard-ts';
 
 @Component({
   selector: 'app-chess',
@@ -24,10 +24,14 @@ export class ChessComponent implements OnInit {
 
   getBackgroundColor(parity: number) {
     if ((this.turnNumber + parity) % 2 === 0) {
-      return "#303030";
+      return "#FFFFFF";
     }
 
     return "#FFE400";
+  }
+
+  isTurn(parity: number ) {
+    return (this.turnNumber + parity) % 2 === 0;
   }
 
   getDisplay() {
@@ -48,10 +52,20 @@ export class ChessComponent implements OnInit {
     this.euPlayer = "";
   }
 
+  processMove(moveString: string) {
+    const move = this.chess.move(moveString);
+    this.chessBoard.setPosition(this.chess.fen(), true);
+    this.chessBoard.removeMarkers(MARKER_TYPE.square);
+    this.chessBoard.addMarker(MARKER_TYPE.square, move.from);
+    this.chessBoard.addMarker(MARKER_TYPE.square, move.to);
+  }
+
   ngOnInit(): void {
     this.chess = new Chess();
     const boardDOM = document.getElementById('board')!;
-    this.chessBoard = new Chessboard(boardDOM)
+    this.chessBoard = new Chessboard(boardDOM, {
+      "animationDuration": 300
+    });
     this.chessBoard.setPosition(this.chess.fen());
 
     let naScore = localStorage.getItem("naScore");
@@ -88,11 +102,11 @@ export class ChessComponent implements OnInit {
 
     this.botService.getStream("chat-message").subscribe(data => {
       if (!this.playing) return;
-      if ((this.turnNumber % 2 == 0 && !data.isNA) || (this.turnNumber % 2 == 1 && data.isNA)) {
+      if (true || (this.turnNumber % 2 == 0 && !data.isNA) || (this.turnNumber % 2 == 1 && data.isNA)) {
         try {
-          this.chess.move(data.content);
+          this.processMove(data.content);
           this.turnNumber++;
-          const moveText = `${data.displayName} played ${data.content}!`;
+
           if (data.isNA) {
             this.naPlayer = data.displayName;
             this.naMove = data.content;
@@ -100,8 +114,6 @@ export class ChessComponent implements OnInit {
             this.euPlayer = data.displayName;
             this.euMove = data.content;
           }
-
-          this.chessBoard.setPosition(this.chess.fen());
 
           if (this.chess.isCheckmate()) {
             if (this.turnNumber % 2 == 0) {

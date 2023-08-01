@@ -3,11 +3,9 @@
     height: 650px;
 }
 
-.header {
+.header, .header-dark {
     height: 81px;
     width: 100%;
-    color: var(--dark);
-    background-color: #ffe400;
     font-family: 'Montserrat';
     font-size: 65px;
     font-style: normal;
@@ -16,9 +14,47 @@
     line-height: normal;
 }
 
+.header-dark {
+    background-color: var(--less-dark);
+}
+
+.header {
+    color: var(--dark);
+    background-color: #ffe400;
+}
+
+.header-bottom {
+    padding-top: 30px;
+}
+
 .turn {
     display: inline-block;
     color: var(--cerise);
+}
+
+.chat-with-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.white {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.black {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+.chat-header {
+    width: 100%;
+    font-family: 'Montserrat';
+    font-size: 35px;
+    font-style: normal;
+    text-align: center;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .content {
@@ -31,7 +67,7 @@
 .full-board {
     width: 1920px;
     height: 1080px;
-    background-color: #303030;
+    background-color: var(--slate);
     display: flex;
     justify-content: space-between;
     flex-direction: column;
