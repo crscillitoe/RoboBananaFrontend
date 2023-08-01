@@ -4,15 +4,11 @@
     </div>
     <div class="content">
         <div class="na team-container">
-            <div class="move blue" *ngIf="isTurn(0)">
+            <div class="move blue">
                 <div class="move-header">{{naPlayer.toUpperCase()}}</div>
-                <div class="move-content blue">{{naMove.toUpperCase()}}</div>
+                <div class="move-content blue">{{getMostRecentMove('b').toUpperCase()}}</div>
             </div>
 
-            <div class="move blue" *ngIf="isTurn(1)">
-                <div class="move-header">YOUR TURN</div>
-                <div class="move-content blue">??</div>
-            </div>
             <div class="chat-with-header">
                 <div class="chat-header black">
                     NA
@@ -22,6 +18,10 @@
         </div>
 
         <div class="board-display">
+            <div class="eval-bar">
+                <div class="eval-black" [style.height.%]="100 - evalWhite()"></div>
+                <div class="eval-white" [style.height.%]="evalWhite()"></div>
+            </div>
             <div id="board"></div>
         </div>
 
@@ -32,15 +32,11 @@
                 </div>
                 <app-chat class="eu-chat chat" [regionCheck]="2"></app-chat>
             </div>
-            <div class="move red" *ngIf="isTurn(1)">
+            <div class="move red">
                 <div class="move-header header-bottom">{{euPlayer.toUpperCase()}}</div>
-                <div class="move-content red">{{euMove.toUpperCase()}}</div>
+                <div class="move-content red">{{getMostRecentMove('w').toUpperCase()}}</div>
             </div>
 
-            <div class="move red" *ngIf="isTurn(0)">
-                <div class="move-header header-bottom">YOUR TURN</div>
-                <div class="move-content red">??</div>
-            </div>
         </div>
     </div>
 

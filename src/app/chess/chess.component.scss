@@ -3,6 +3,32 @@
     height: 650px;
 }
 
+.board-display {
+    display: flex;
+    justify-content: center;
+    filter: drop-shadow(3px 3px 8px black);
+}
+
+.eval-bar {
+    width: 20px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.eval-black {
+    background-color: black;
+}
+
+.eval-white {
+    background-color: var(--light);
+}
+
+.eval-black, .eval-white {
+    transition: height 0.2s ease-in-out;
+}
+
 .header, .header-dark {
     height: 81px;
     width: 100%;
@@ -67,7 +93,7 @@
 .full-board {
     width: 1920px;
     height: 1080px;
-    background-color: var(--slate);
+    background-color: var(--grunge-slate);
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -103,6 +129,7 @@
     display: block;
     height: 400px;
     width: 274px;
+    border: 4px solid black;
 }
 
 .move-header {

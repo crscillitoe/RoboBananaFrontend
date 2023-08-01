@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chess, Move } from 'chess.js';
+import { Chess, Color, Move } from 'chess.js';
 import { BotConnectorService } from '../services/bot-connector.service';
 import { ChessBoardInstance, Chessboard, MARKER_TYPE } from 'cm-chessboard-ts';
 
@@ -12,13 +12,13 @@ export class ChessComponent implements OnInit {
   turnNumber: number = 0;
   naPlayer: string = "";
   euPlayer: string = "";
-  naMove: string = "";
-  euMove: string = "";
   playing: boolean = false;
   naScore: number = 0;
   euScore: number = 0;
   chessBoard!: ChessBoardInstance;
   chess!: Chess;
+  stockfish!: Worker;
+  evaluation: number = 0.0;
 
   constructor(private botService: BotConnectorService) { }
 
@@ -46,26 +46,82 @@ export class ChessComponent implements OnInit {
     this.turnNumber = 0;
     this.chess.reset();
     this.chessBoard.setPosition(this.chess.fen());
-    this.naMove = "";
-    this.euMove = "";
+    this.chessBoard.removeMarkers(MARKER_TYPE.square);
+    this.evaluation = 0;
     this.naPlayer = "";
     this.euPlayer = "";
   }
 
   processMove(moveString: string) {
     const move = this.chess.move(moveString);
+    this.turnNumber++;
+    this.stockfish.postMessage(`position fen ${this.chess.fen()}`);
+    this.stockfish.postMessage('eval');
     this.chessBoard.setPosition(this.chess.fen(), true);
     this.chessBoard.removeMarkers(MARKER_TYPE.square);
     this.chessBoard.addMarker(MARKER_TYPE.square, move.from);
     this.chessBoard.addMarker(MARKER_TYPE.square, move.to);
   }
 
+  getMostRecentMove(color: Color) {
+    const currentTurn = this.chess.turn();
+
+    let move = "";
+    if (currentTurn !== color) {
+      move = this.chess.history()[this.chess.history().length - 1];
+    } else {
+      move = this.chess.history()[this.chess.history().length - 2];
+    }
+
+    if (move == undefined) return "";
+    return move;
+  }
+
+  testMoves(moves: string[]) {
+    setTimeout(() => {
+      const move = moves.shift()!;
+      this.processMove(move);
+
+      if (moves.length > 0) {
+        this.testMoves(moves);
+      }
+    }, 1000);
+  }
+
+  evalWhite() {
+    if (this.evaluation > 10) return 100;
+    if (this.evaluation < -10) return -100;
+
+    const adjusted = Math.abs(this.evaluation + 10);
+    const percentage = adjusted * 5;
+    if (percentage > 100) return 100;
+    return percentage;
+  }
+
   ngOnInit(): void {
+    this.stockfish = new Worker('/assets/stockfish.js');
+    this.stockfish.postMessage('uci');
+    this.stockfish.onmessage = ({ data }) => {
+      if (data.includes("(white side)")) {
+        const evaluation: string = data;
+        const cut1 = evaluation.replace("Total evaluation: ", "");
+        const cut2 = cut1.replace("(white side)", "");
+        const finalEval = parseFloat(cut2);
+        this.evaluation = finalEval;
+      }
+    };
+
+
     this.chess = new Chess();
     const boardDOM = document.getElementById('board')!;
     this.chessBoard = new Chessboard(boardDOM, {
       "animationDuration": 300
     });
+
+    // this.testMoves(["e4", "e5", "Nf3", "Nc6",
+    //                       "Bc4", "Nf6", "Ng5", "d5",
+    //                       "Nxf7", "Kxf7", "exd5", "Nxd5", "Qf3+"]);
+
     this.chessBoard.setPosition(this.chess.fen());
 
     let naScore = localStorage.getItem("naScore");
@@ -105,14 +161,11 @@ export class ChessComponent implements OnInit {
       if ((this.turnNumber % 2 == 0 && !data.isNA) || (this.turnNumber % 2 == 1 && data.isNA)) {
         try {
           this.processMove(data.content);
-          this.turnNumber++;
 
           if (data.isNA) {
             this.naPlayer = data.displayName;
-            this.naMove = data.content;
           } else {
             this.euPlayer = data.displayName;
-            this.euMove = data.content;
           }
 
           if (this.chess.isCheckmate()) {

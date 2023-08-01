@@ -29,6 +29,9 @@ body {
     --slate: #262626;
     --accent: #FFC700;
     --blue-dodger: #24AFFE;
+    --tile-dark: #FFC700;
+    --tile-light: #FFFBD3;
+    --grunge-slate: #262626;
 }
 
 
@@ -36,3 +39,11 @@ body {
   fill: yellow !important;
   opacity: 0.5 !important;
 }
+
+// rect.black {
+//   fill: var(--tile-dark) !important;
+// }
+
+// rect.white {
+//   fill: var(--tile-light) !important;
+// }

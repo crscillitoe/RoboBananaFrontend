@@ -24,6 +24,7 @@
     "cm-chessboard-ts": "^5.2.23",
     "howler": "^2.2.3",
     "rxjs": "~7.5.0",
+    "stockfish.js": "^10.0.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.1"
   },
