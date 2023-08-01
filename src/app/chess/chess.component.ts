@@ -102,7 +102,7 @@ export class ChessComponent implements OnInit {
 
     this.botService.getStream("chat-message").subscribe(data => {
       if (!this.playing) return;
-      if (true || (this.turnNumber % 2 == 0 && !data.isNA) || (this.turnNumber % 2 == 1 && data.isNA)) {
+      if ((this.turnNumber % 2 == 0 && !data.isNA) || (this.turnNumber % 2 == 1 && data.isNA)) {
         try {
           this.processMove(data.content);
           this.turnNumber++;
