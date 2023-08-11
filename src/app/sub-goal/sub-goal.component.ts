@@ -55,8 +55,6 @@ export class SubGoalComponent implements OnInit {
       this.subMessage = data.message;
       let timeout = 5000;
 
-      this.total++;
-
       this.displaySub = true;
       this.subHowl.stop();
       this.subHowl.play();
