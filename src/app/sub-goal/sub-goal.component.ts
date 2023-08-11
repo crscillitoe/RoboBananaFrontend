@@ -27,7 +27,7 @@ export class SubGoalComponent implements OnInit {
   tier3: number = 0;
 
   total: number = 1000;
-  goal: number = 1500;
+  goal: number = 2000;
 
   displaySub: boolean = false;
   subMessage: string = "THANK YOU WOOHOOJIN FOR THE T3 I REALLY APPRECIATE IT DUDE GOOD LOOKS NICE JOB YOU'RE A KING";

@@ -20,7 +20,6 @@ app-chess {
 }
 
 app-chat {
-
     position:absolute;
     bottom: 228px;
     left: 0px;
@@ -40,7 +39,7 @@ app-prediction-render {
     left: 0px;
     width: 542px;
     height: 154px;
-    z-index: 50;
+    z-index: 1002;
 }
 
 app-vod-review {
@@ -59,6 +58,7 @@ app-sub-goal {
     position: absolute;
     bottom: 0px;
     right: 0px;
+    z-index: 1002;
 }
 
 img#footer {
@@ -71,4 +71,5 @@ img#left {
     position: absolute;
     bottom: 0px;
     left: 0px;
+    z-index: 1001;
 }
