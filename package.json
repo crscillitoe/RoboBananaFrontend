@@ -20,12 +20,14 @@
     "@angular/platform-browser-dynamic": "^16.1.7",
     "@angular/router": "^16.1.7",
     "@types/howler": "^2.2.7",
+    "@types/voice-activity-detection": "^0.0.2",
     "chess.js": "^1.0.0-beta.6",
     "cm-chessboard-ts": "^5.2.23",
     "howler": "^2.2.3",
     "rxjs": "~7.5.0",
     "stockfish.js": "^10.0.2",
     "tslib": "^2.3.0",
+    "voice-activity-detection": "^0.0.5",
     "zone.js": "~0.13.1"
   },
   "devDependencies": {

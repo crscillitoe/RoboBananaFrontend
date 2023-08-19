@@ -1,0 +1,9 @@
+<div [@wiggle]="state">
+    <img class="banana"
+        [ngClass]="speaking ? 'hidden' : 'no-class'"
+        src="assets/banana/blanket/Cozy-2.png"/>
+
+    <img class="banana"
+        [ngClass]="!speaking ? 'hidden' : 'no-class'"
+        src="assets/banana/blanket/Cozy-3.png"/>
+</div>

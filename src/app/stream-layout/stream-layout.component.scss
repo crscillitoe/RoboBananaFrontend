@@ -3,6 +3,13 @@ div.outer-container {
     width: 1920px;
 }
 
+app-banana {
+    position: absolute;
+    bottom: 0px;
+    right: 550px;
+    z-index: 5000;
+}
+
 app-ads {
     position: absolute;
     top: 0px;
