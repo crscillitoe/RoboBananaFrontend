@@ -49,10 +49,6 @@ export class ChatComponent implements OnInit {
         return;
       }
 
-      if (data.displayName.length > 12) {
-        data.displayName = data.displayName.slice(0, 11);
-      }
-
       const emojiChatMessage = this.processEmoijs(data.content, data.emojis);
       const chatMessage = this.processMentions(emojiChatMessage, data.mentions);
 

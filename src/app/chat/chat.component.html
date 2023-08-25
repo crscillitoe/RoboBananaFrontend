@@ -3,10 +3,11 @@
         <ng-container *ngFor="let message of messages">
             <div class="message">
                 <div class="message-header" [style.color]="message.authorColor">
-                    {{message.displayName}}
+                    <span class="display-name">{{message.displayName}}</span>
 
                     <div class="vertical-center">
-                        <img class="rank-image" *ngIf="message.badgeURL !== ''" src="{{message.badgeURL}}" />
+                        <img *ngFor="let badgeUrl of message.badges; let i = index" class="rank-image"
+                            [class.badge-padding]="i === 0" src="{{badgeUrl}}" />
                     </div>
                 </div>
 
