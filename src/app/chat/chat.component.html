@@ -1,7 +1,7 @@
 <div class="chat-container">
     <div class="render-reverse-column">
         <ng-container *ngFor="let message of messages">
-            <div class="message">
+            <div class="message" [class.highlighted-message]="message.highlight === true">
                 <div class="message-header" [style.color]="message.authorColor">
                     <span class="display-name">{{message.displayName}}</span>
 

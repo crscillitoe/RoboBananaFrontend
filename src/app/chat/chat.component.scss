@@ -22,6 +22,19 @@
     color: inherit;
 }
 
+.highlighted-message {
+    background-color: adjust-color(#1F1F1F, $lightness: 5%);
+    border: #494949 thin solid;
+    border-radius: 4px;
+    box-shadow: 0 0 5px #494949;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.message.highlighted-message {
+    padding-top: 10px;
+}
+
 .sticker {
     width: 230px;
     padding-top: 5px;
@@ -52,6 +65,7 @@
     padding-left: 10px;
     padding-right: 20px;
     padding-top: 15px;
+    max-width: 85%;
 }
 
 .message-text {

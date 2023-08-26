@@ -32,6 +32,7 @@ export class ChatComponent implements OnInit {
 
   QUEUE_LENGTH: number = 25;
   messages: any[] = [];
+  vod_reviewee_id?: number;
 
   constructor(private botService: BotConnectorService) { }
 
@@ -49,8 +50,10 @@ export class ChatComponent implements OnInit {
         return;
       }
 
+
       const emojiChatMessage = this.processEmoijs(data.content, data.emojis);
       const chatMessage = this.processMentions(emojiChatMessage, data.mentions);
+      if (data.author_id === this.vod_reviewee_id) data.highlight = true;
 
       data.chatMessage = chatMessage;
 
@@ -60,6 +63,13 @@ export class ChatComponent implements OnInit {
       }
     });
 
+    this.botService.getStream("vod-reviews").subscribe(data => {
+      if (data.userid === -1) this.vod_reviewee_id = undefined;
+      if (data.userid !== -1) {
+        this.vod_reviewee_id = data.userid;
+        console.debug(`HIGHLIGHT MESSAGES FROM ${data.userid}`)
+      }
+    });
   }
 
   processEmoijs(messageContent: string, emojiContent: { [key: string]: string }[]): ChatMessage {
