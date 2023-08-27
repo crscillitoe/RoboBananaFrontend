@@ -89,9 +89,12 @@
 .message {
     padding-left: 10px;
     padding-right: 20px;
-    padding-top: 15px;
     max-width: 85%;
     position: relative;
+}
+
+.message>.message-header {
+    padding-top: 15px;
 }
 
 .message-text {
