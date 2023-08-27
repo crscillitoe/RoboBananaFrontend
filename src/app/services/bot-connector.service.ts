@@ -30,7 +30,7 @@ export class BotConnectorService {
           data = preProcessor(data);
         }
 
-        console.log(streamName, data);
+        console.debug(streamName, data);
         this.streams.get(streamName)!.next(data);
       });
     }
@@ -73,15 +73,28 @@ export class BotConnectorService {
         return data;
       },
 
-      // Set Badge URL
+      // Grab badges for user's roles prioritizing rank badges
       (data: any) => {
-        data["badgeURL"] = "";
+        data["badges"] = []
+        let rankBadgeUrl = "";
         for (let role of data.roles) {
           if (role.icon != null) {
-            data["badgeURL"] = role.icon;
-            break;
+            // Identify rank badge for a given user
+            const roleName: string = role.name;
+            const potentialRankName = roleName.split(" ")[0];
+            if (RankNames.has(potentialRankName)) {
+              rankBadgeUrl = role.icon;
+              continue;
+            }
+
+            // Only push non-rank badges to the badges list for now
+            data["badges"].push(role.icon);
           }
         }
+
+        // Prioritize rank badges above all other badges
+        if (rankBadgeUrl) data["badges"].unshift(rankBadgeUrl)
+        data["badges"] = data["badges"].slice(0, 3)
 
         return data;
       },
@@ -112,8 +125,10 @@ export class BotConnectorService {
   }
 }
 
+const RankNames = new Set(["Radiant", "Immortal", "Ascendant", "Diamond", "Platinum", "Gold", "Silver", "Bronze", "Iron"]);
+
 export const StreamNames = ["predictions", "subs", "subs-count",
-                                      "poll-answers", "polls", "cool",
-                                      "vod-reviews", "timer", "tamagachi", "chat-message", "chat-test-message", "chess"] as const;
+  "poll-answers", "polls", "cool",
+  "vod-reviews", "timer", "tamagachi", "chat-message", "chat-test-message", "chess"] as const;
 
 export type StreamName = typeof StreamNames[number];
