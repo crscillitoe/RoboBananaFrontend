@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    isolation: isolate;
 }
 
 .rank-image {
@@ -26,13 +27,37 @@
     background-color: adjust-color(#1F1F1F, $lightness: 5%);
     border: #494949 thin solid;
     border-radius: 4px;
-    box-shadow: 0 0 5px #494949;
     margin-top: 2px;
     margin-bottom: 2px;
 }
 
+.message.highlighted-message::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    box-shadow: 0 0 5px #494949;
+}
+
 .message.highlighted-message {
     padding-top: 10px;
+}
+
+.message.highlighted-message+.highlighted-message {
+    border-top: 0;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.message.highlighted-message:has(+.highlighted-message) {
+    border-bottom: 0;
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .sticker {
@@ -66,6 +91,7 @@
     padding-right: 20px;
     padding-top: 15px;
     max-width: 85%;
+    position: relative;
 }
 
 .message-text {
