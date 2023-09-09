@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Chess, Color, Move } from 'chess.js';
 import { BotConnectorService } from '../services/bot-connector.service';
 import { ChessBoardInstance, Chessboard, MARKER_TYPE } from 'cm-chessboard-ts';
@@ -12,13 +12,16 @@ export class ChessComponent implements OnInit {
   turnNumber: number = 0;
   naPlayer: string = "";
   euPlayer: string = "";
-  playing: boolean = false;
   naScore: number = 0;
   euScore: number = 0;
   chessBoard!: ChessBoardInstance;
   chess!: Chess;
   stockfish!: Worker;
   evaluation: number = 0.0;
+
+  @Input() makeMove!: EventEmitter<any>;
+  @Input() resetEvent!: EventEmitter<void>;
+  @Output() gameOver = new EventEmitter<string>();
 
   constructor(private botService: BotConnectorService) { }
 
@@ -30,19 +33,11 @@ export class ChessComponent implements OnInit {
     return "#FFE400";
   }
 
-  isTurn(parity: number ) {
+  isTurn(parity: number) {
     return (this.turnNumber + parity) % 2 === 0;
   }
 
-  getDisplay() {
-    if (this.playing) {
-      return "0";
-    }
-
-    return "-2000";
-  }
-
-  reset () {
+  reset() {
     this.turnNumber = 0;
     this.chess.reset();
     this.chessBoard.setPosition(this.chess.fen());
@@ -118,11 +113,8 @@ export class ChessComponent implements OnInit {
       "animationDuration": 300
     });
 
-    // this.testMoves(["e4", "e5", "Nf3", "Nc6",
-    //                       "Bc4", "Nf6", "Ng5", "d5",
-    //                       "Nxf7", "Kxf7", "exd5", "Nxd5", "Qf3+"]);
-
     this.chessBoard.setPosition(this.chess.fen());
+    this.resetEvent.subscribe(_ => this.reset());
 
     let naScore = localStorage.getItem("naScore");
     if (naScore) {
@@ -138,57 +130,40 @@ export class ChessComponent implements OnInit {
       localStorage.setItem("euScore", "0");
     }
 
-    this.botService.getStream("chess").subscribe(data => {
-      if (data.open === 1) {
-        this.playing = true;
-        this.reset();
+    this.makeMove.subscribe((event) => this.moveHandler(event));
+  }
 
-        if (data.naScore !== -1) {
-          this.naScore = data.naScore;
+  moveHandler(data: any) {
+    if ((this.turnNumber % 2 == 0 && !data.isNA) || (this.turnNumber % 2 == 1 && data.isNA)) {
+      try {
+        this.processMove(data.content);
+
+        if (data.isNA) {
+          this.naPlayer = data.displayName;
+        } else {
+          this.euPlayer = data.displayName;
         }
 
-        if (data.euScore !== -1) {
-          this.euScore = data.euScore;
-        }
-      } else {
-        this.playing = false;
-        this.reset();
-      }
-    });
-
-    this.botService.getStream("chat-message").subscribe(data => {
-      if (!this.playing) return;
-      if ((this.turnNumber % 2 == 0 && !data.isNA) || (this.turnNumber % 2 == 1 && data.isNA)) {
-        try {
-          this.processMove(data.content);
-
-          if (data.isNA) {
-            this.naPlayer = data.displayName;
+        if (this.chess.isCheckmate()) {
+          if (this.turnNumber % 2 == 0) {
+            this.naScore++;
+            localStorage.setItem("naScore", "" + this.naScore);
           } else {
-            this.euPlayer = data.displayName;
+            this.euScore++;
+            localStorage.setItem("euScore", "" + this.euScore);
           }
 
-          if (this.chess.isCheckmate()) {
-            if (this.turnNumber % 2 == 0) {
-              this.naScore++;
-              localStorage.setItem("naScore", "" + this.naScore);
-            } else {
-              this.euScore++;
-              localStorage.setItem("euScore", "" + this.euScore);
-            }
-
-            setTimeout(() => {
-              this.reset();
-            }, 5000);
-          } if (this.chess.isStalemate()) {
-            setTimeout(() => {
-              this.reset();
-            }, 5000);
-          }
-        } catch (e) {
+          setTimeout(() => {
+            this.reset();
+          }, 5000);
+        } if (this.chess.isStalemate()) {
+          setTimeout(() => {
+            this.reset();
+          }, 5000);
         }
+      } catch (e) {
       }
-    });
+    }
   }
 
 }

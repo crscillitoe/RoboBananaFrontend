@@ -24,6 +24,7 @@ import { ChatComponent } from './chat/chat.component';
 import { TalkingPngComponent } from './talking-png/talking-png.component';
 import { ChessComponent } from './chess/chess.component';
 import { BananaComponent } from './banana/banana.component';
+import { TwoPlayerGameComponent } from './two-player-game/two-player-game.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { BananaComponent } from './banana/banana.component';
     ChatComponent,
     TalkingPngComponent,
     ChessComponent,
-    BananaComponent
+    BananaComponent,
+    TwoPlayerGameComponent
   ],
   imports: [
     BrowserModule,

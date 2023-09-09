@@ -1,0 +1,3 @@
+<div [style.marginTop.px]="getDisplay()">
+    <app-chess [makeMove]="moveEmitter" [resetEvent]="resetEmitter" (gameOver)="handleGameOver($event)"></app-chess>
+</div>

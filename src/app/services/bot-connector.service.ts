@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { getBaseStreamURL } from '../utility';
+import { environment } from "src/environments/environment";
+
+const NA_DISCORD_ID = environment.naDiscordID;
 
 @Injectable({
   providedIn: 'root'
@@ -52,9 +55,8 @@ export class BotConnectorService {
       (data: any) => {
         data["isNA"] = false;
 
-        const NA = 1045126121928282122;
         for (let role of data.roles) {
-          if (role.id == NA) {
+          if (role.id == NA_DISCORD_ID) {
             data["isNA"] = true;
             break
           }
