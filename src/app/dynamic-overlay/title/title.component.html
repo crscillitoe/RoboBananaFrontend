@@ -1,0 +1,13 @@
+<ng-container *ngIf="title && !(title | convertWithFunction:titleIsImage); else imageBlock">
+    <div *ngIf="display && title" class="title" @slideInOutCenterScreen>
+        <div class="title-text-container">
+            <span *ngFor="let word of (title | convertWithFunction:splitTitle)" class="title-word">{{word}}</span>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #imageBlock>
+    <div *ngIf="display && title" class="title" @slideInOut>
+        <img class="title-image" [src]="title" />
+    </div>
+</ng-template>

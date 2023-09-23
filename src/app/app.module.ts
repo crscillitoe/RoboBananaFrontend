@@ -24,6 +24,16 @@ import { ChatComponent } from './chat/chat.component';
 import { TalkingPngComponent } from './talking-png/talking-png.component';
 import { ChessComponent } from './chess/chess.component';
 import { BananaComponent } from './banana/banana.component';
+import { DynamicOverlayComponent } from './dynamic-overlay/dynamic-overlay.component';
+import { ConvertWithFunctionPipe } from './convert-with-function.pipe';
+import { TitleComponent } from './dynamic-overlay/title/title.component';
+import { HeaderComponent } from './dynamic-overlay/header/header.component';
+import { TimerComponent } from './dynamic-overlay/timer/timer.component';
+import { SideBannerComponent } from './dynamic-overlay/side-banner/side-banner.component';
+import { ScrollingTextComponent } from './dynamic-overlay/scrolling-text/scrolling-text.component';
+import { BackgroundVideoComponent } from './dynamic-overlay/background-video/background-video.component';
+import { PrerollVideoComponent } from './dynamic-overlay/preroll-video/preroll-video.component';
+import { HideableComponent } from './dynamic-overlay/hideable/hideable.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +56,17 @@ import { BananaComponent } from './banana/banana.component';
     ChatComponent,
     TalkingPngComponent,
     ChessComponent,
-    BananaComponent
+    BananaComponent,
+    DynamicOverlayComponent,
+    ConvertWithFunctionPipe,
+    TitleComponent,
+    HeaderComponent,
+    TimerComponent,
+    SideBannerComponent,
+    ScrollingTextComponent,
+    BackgroundVideoComponent,
+    PrerollVideoComponent,
+    HideableComponent
   ],
   imports: [
     BrowserModule,

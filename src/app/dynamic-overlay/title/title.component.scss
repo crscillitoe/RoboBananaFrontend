@@ -1,0 +1,27 @@
+.title {
+    font-size: 128px;
+    text-align: center;
+}
+
+.title-image {
+    width: 600px;
+    height: 330px;
+    position: absolute;
+    left: 659px;
+    top: 364px;
+}
+
+.title-text-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title-word {
+    display: block;
+    font-family: "Unbounded";
+    font-weight: 900;
+    font-style: normal;
+    color: var(--color-shade-black, #000);
+}

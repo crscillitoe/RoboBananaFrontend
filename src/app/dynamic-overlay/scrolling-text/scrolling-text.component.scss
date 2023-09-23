@@ -1,0 +1,79 @@
+.scrolling-text {
+    color: var(--color-shade-black, #000);
+    text-align: center;
+    font-family: "IBM Plex Mono";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-right: 121px;
+    white-space: nowrap;
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.top>span:nth-child(odd) {
+    color: white;
+}
+
+.bottom>span:nth-child(even) {
+    color: white;
+}
+
+.top {
+    position: absolute;
+    top: 52px;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 52px;
+}
+
+.marquee {
+    display: inline-block;
+    animation: marquee 120s linear infinite;
+    transform: translate(100%, 0);
+}
+
+.marquee-backwards {
+    display: inline-block;
+    animation: marquee-backwards 120s linear infinite;
+    transform: translate(-100%, 0);
+}
+
+.marquee-1 {
+    animation-delay: -60s;
+}
+
+.marquee-2 {
+    animation-delay: 0s;
+}
+
+
+@keyframes marquee {
+    0% {
+        transform: translate(-100%, 0);
+    }
+
+    100% {
+        transform: translate(100%, 0);
+    }
+}
+
+@keyframes marquee-backwards {
+    0% {
+        transform: translate(100%, 0);
+    }
+
+    100% {
+        transform: translate(-100%, 0);
+    }
+}
