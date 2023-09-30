@@ -38,7 +38,7 @@ export class ChatComponent implements OnInit {
   constructor(private botService: BotConnectorService) { }
 
   ngOnInit(): void {
-    this.botService.getStream("chat-test-message").subscribe(data => {
+    this.botService.getStream("chat-message").subscribe(data => {
       if (this.regionCheck !== 0) {
         if (this.regionCheck === 1 && !data.isNA) return;
         if (this.regionCheck === 2 && data.isNA) return;
