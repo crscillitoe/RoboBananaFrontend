@@ -1,0 +1,19 @@
+<div class="dynamic-overlay-container">
+    <div [style.z-index]="1004" class="main-content-container">
+        <dynamic-overlay-scrolling-text direction="backwards" location="top"
+            [displayChange]="displayEmitter"></dynamic-overlay-scrolling-text>
+
+        <dynamic-overlay-side-banner [displayChange]="displayEmitter"></dynamic-overlay-side-banner>
+        <dynamic-overlay-header [displayChange]="displayEmitter"></dynamic-overlay-header>
+        <dynamic-overlay-title [displayChange]="displayEmitter"></dynamic-overlay-title>
+        <dynamic-overlay-timer [displayChange]="displayEmitter"></dynamic-overlay-timer>
+
+        <dynamic-overlay-scrolling-text direction="forwards" location="bottom"
+            [displayChange]="displayEmitter"></dynamic-overlay-scrolling-text>
+
+    </div>
+    <!-- This goes at the bottom because at the top it causes padding issues with the scrolling text -->
+    <dynamic-overlay-background-video [style.z-index]="1003"
+        [displayChange]="displayEmitter"></dynamic-overlay-background-video>
+</div>
+<dynamic-overlay-preroll-video (ended)="preRollEnded()"></dynamic-overlay-preroll-video>

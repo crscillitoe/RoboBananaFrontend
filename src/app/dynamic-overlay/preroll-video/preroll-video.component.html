@@ -1,0 +1,4 @@
+<div *ngIf="display" class="container" @slideInOut>
+    <video [muted]="false" [preload]="true" [loop]="false" [controls]="false" [src]="videoUrl" [autoplay]="true"
+        type="video/mp4" class="preroll-video" (ended)="onEnd()"></video>
+</div>

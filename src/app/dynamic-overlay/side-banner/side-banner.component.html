@@ -1,0 +1,10 @@
+<div *ngIf="display" @slideInOut>
+    <div *ngIf="icon || lineOne || lineTwo || lineThree" class="side-banner-container" @slideInOut>
+        <img class="side-banner-icon" [src]="icon">
+        <div class="side-banner-text">
+            <div class="side-banner-line-one">{{lineOne}}</div>
+            <div class="side-banner-line-two">{{lineTwo}}</div>
+            <div class="side-banner-line-three">{{lineThree}}</div>
+        </div>
+    </div>
+</div>

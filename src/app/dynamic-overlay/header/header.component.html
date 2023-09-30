@@ -1,0 +1,7 @@
+<div *ngIf="display" @slideInOut>
+    <div *ngIf="icon || left || right" class="header-container" @slideInOut>
+        <span class="header-left">{{left}}</span>
+        <img class="header-icon" [src]="icon">
+        <span class="header-right">{{right}}</span>
+    </div>
+</div>

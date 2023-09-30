@@ -1,0 +1,24 @@
+.side-banner-icon {
+    width: 60px;
+    height: 60px;
+    transform: rotate(-90deg);
+    position: absolute;
+    left: 61px;
+    top: 580px;
+}
+
+.side-banner-text {
+    font-family: "IBM Plex Mono";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: absolute;
+    top: 435px;
+    left: 58px;
+    transform: translate(-25%, 50%) rotate(-90deg);
+}
+
+.side-banner-line-two {
+    font-weight: 600;
+}

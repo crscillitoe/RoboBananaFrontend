@@ -1,0 +1,27 @@
+.timer-background {
+    background-image: url("https://cdn.discordapp.com/attachments/1128088351996653648/1154550460305379328/timerBackground.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 351px;
+    height: 103px;
+    position: absolute;
+    left: 810px;
+    bottom: 288px;
+}
+
+.timer {
+    position: absolute;
+    left: 839px;
+    bottom: 288px;
+    color: var(--color-shade-black, #000);
+    text-align: center;
+    font-family: "IBM Plex Mono";
+    font-size: 80px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: normal;
+}
+
+.timer-container {
+    height: 100vh;
+}

@@ -129,6 +129,6 @@ const RankNames = new Set(["Radiant", "Immortal", "Ascendant", "Diamond", "Plati
 
 export const StreamNames = ["predictions", "subs", "subs-count",
   "poll-answers", "polls", "cool",
-  "vod-reviews", "timer", "tamagachi", "chat-message", "chat-test-message", "chess"] as const;
+  "vod-reviews", "timer", "tamagachi", "chat-message", "chat-test-message", "chess", "dynamic-overlay"] as const;
 
 export type StreamName = typeof StreamNames[number];
