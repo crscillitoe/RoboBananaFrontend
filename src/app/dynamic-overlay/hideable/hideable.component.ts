@@ -34,6 +34,7 @@ export class HideableComponent implements OnInit {
   constructor() { }
   ngOnInit(): void {
     this.displayChange.subscribe((newDisplay) => {
+      console.log("CHANGING DISPLAY")
       this.display = newDisplay;
     });
   }
