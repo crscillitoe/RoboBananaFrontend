@@ -37,6 +37,16 @@ export class ChatComponent implements OnInit {
 
   constructor(private botService: BotConnectorService) { }
 
+  @Input() height?: string;
+  @Input() width?: string;
+  @Input() top?: string;
+  @Input() bottom?: string;
+  @Input() left?: string;
+  @Input() right?: string;
+  @Input() borderRadius?: string;
+  @Input() messagesMargin?: string;
+  @Input() backgroundColor?: string;
+
   ngOnInit(): void {
     this.botService.getStream("chat-message").subscribe(data => {
       if (this.regionCheck !== 0) {
@@ -47,7 +57,7 @@ export class ChatComponent implements OnInit {
         return;
       }
 
-      if (data.content.legnth === 0 && data.stickers.length === 0) {
+      if (data.content.length === 0 && data.stickers.length === 0) {
         return;
       }
 

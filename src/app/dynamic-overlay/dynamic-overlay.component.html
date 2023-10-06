@@ -7,6 +7,8 @@
         <dynamic-overlay-header [displayChange]="displayEmitter"></dynamic-overlay-header>
         <dynamic-overlay-title [displayChange]="displayEmitter"></dynamic-overlay-title>
         <dynamic-overlay-timer [displayChange]="displayEmitter"></dynamic-overlay-timer>
+        <dynamic-overlay-chat-wrapper [style.z-index]="1005"
+            [displayChange]="displayEmitter"></dynamic-overlay-chat-wrapper>
 
         <dynamic-overlay-scrolling-text direction="forwards" location="bottom"
             [displayChange]="displayEmitter"></dynamic-overlay-scrolling-text>

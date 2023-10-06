@@ -34,6 +34,7 @@ import { ScrollingTextComponent } from './dynamic-overlay/scrolling-text/scrolli
 import { BackgroundVideoComponent } from './dynamic-overlay/background-video/background-video.component';
 import { PrerollVideoComponent } from './dynamic-overlay/preroll-video/preroll-video.component';
 import { HideableComponent } from './dynamic-overlay/hideable/hideable.component';
+import { ChatWrapperComponent } from './dynamic-overlay/chat-wrapper/chat-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { HideableComponent } from './dynamic-overlay/hideable/hideable.component
     ScrollingTextComponent,
     BackgroundVideoComponent,
     PrerollVideoComponent,
-    HideableComponent
+    HideableComponent,
+    ChatWrapperComponent
   ],
   imports: [
     BrowserModule,
