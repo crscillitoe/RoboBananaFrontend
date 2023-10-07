@@ -52,6 +52,10 @@ const routes: Routes = [
     {
         path: "stream-layout",
         component: StreamLayoutComponent,
+    },
+    {
+        path: "chat",
+        component: ChatComponent
     }
 ];
 

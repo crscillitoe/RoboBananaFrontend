@@ -89,7 +89,7 @@
 .message {
     padding-left: 10px;
     padding-right: 20px;
-    max-width: 85%;
+    max-width: 95%;
     position: relative;
 }
 
@@ -100,7 +100,7 @@
 .message-text {
     color: var(--chat-msg);
     word-wrap: break-word;
-    max-width: 244px;
+    width: 100%;
 }
 
 .message-mention {
@@ -127,6 +127,7 @@ img.message-emoji.small {
 .message-chunk {
     display: inline-block;
     justify-content: baseline;
+    max-width: 95%;
 }
 
 .message-chunk.pad-left {
