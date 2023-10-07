@@ -10,6 +10,7 @@ import { TimerRenderComponent } from './timer-render/timer-render.component';
 import { OverlayBoxComponent } from './overlay-box/overlay-box.component';
 import { TestingComponent } from './testing/testing.component';
 import { StreamLayoutComponent } from './stream-layout/stream-layout.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
     {
@@ -47,6 +48,10 @@ const routes: Routes = [
     {
         path: "stream-layout",
         component: StreamLayoutComponent,
+    },
+    {
+        path: "chat",
+        component: ChatComponent
     }
 ];
 
