@@ -38,16 +38,16 @@ export class ChatComponent implements OnInit {
 
   constructor(private botService: BotConnectorService, private route: ActivatedRoute) { }
 
-  @Input() height?: string = "100%";
-  @Input() width?: string = "100%";
-  @Input() top?: string = "0px";
+  @Input() height?: string;
+  @Input() width?: string;
+  @Input() top?: string;
   @Input() bottom?: string;
-  @Input() left?: string = "0px";
+  @Input() left?: string;
   @Input() right?: string;
   @Input() borderRadius?: string;
   @Input() messagesMargin?: string;
   @Input() backgroundColor?: string;
-  @Input() position?: string = "absolute";
+  @Input() position?: string;
 
   ngOnInit(): void {
     this.botService.getStream("chat-message").subscribe(data => {
