@@ -63,16 +63,16 @@ export class ChatComponent implements OnInit {
     });
 
     this.route.queryParams.subscribe(params => {
-      this.height = params["height"];
-      this.width = params["width"];
-      this.top = params["top"];
-      this.bottom = params["bottom"];
-      this.left = params["left"];
-      this.right = params["right"];
-      this.borderRadius = params["borderRadius"];
-      this.messagesMargin = params["messagesMargin"];
-      this.backgroundColor = params["backgroundColor"];
-      this.position = params["position"];
+      this.height = params["height"] ?? this.height;
+      this.width = params["width"] ?? this.width;
+      this.top = params["top"] ?? this.top;
+      this.bottom = params["bottom"] ?? this.bottom;
+      this.left = params["left"] ?? this.left;
+      this.right = params["right"] ?? this.right;
+      this.borderRadius = params["borderRadius"] ?? this.borderRadius;
+      this.messagesMargin = params["messagesMargin"] ?? this.messagesMargin;
+      this.backgroundColor = params["backgroundColor"] ?? this.backgroundColor;
+      this.position = params["position"] ?? this.position;
     });
   }
 
