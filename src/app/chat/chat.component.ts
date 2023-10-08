@@ -32,7 +32,7 @@ export class ChatComponent implements OnInit {
   // 2 == NOT NA
   @Input() regionCheck: number = 0;
 
-  QUEUE_LENGTH: number = 25;
+  QUEUE_LENGTH: number = 30;
   messages: any[] = [];
   vod_reviewee_id?: number;
   previous_message_author_id: number = -1;
