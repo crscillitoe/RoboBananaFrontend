@@ -135,6 +135,10 @@ img.message-emoji.small {
 }
 
 .chat-container {
-    height: 100%;
     background-color: #1F1F1F;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    position: absolute;
 }

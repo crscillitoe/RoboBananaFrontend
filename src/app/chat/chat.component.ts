@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BotConnectorService } from '../services/bot-connector.service';
 import { ActivatedRoute } from '@angular/router';
+import { FieldAdapter } from '../dynamic-overlay/field-adapter';
 
 enum ChatChunkType {
   TEXT = 0,
@@ -38,16 +39,17 @@ export class ChatComponent implements OnInit {
 
   constructor(private botService: BotConnectorService, private route: ActivatedRoute) { }
 
-  @Input() height?: string;
-  @Input() width?: string;
-  @Input() top?: string;
+  @Input() height?: string | null;
+  @Input() width?: string | null;
+  @Input() top?: string | null;
   @Input() bottom?: string;
-  @Input() left?: string;
+  @Input() left?: string | null;
   @Input() right?: string;
   @Input() borderRadius?: string;
   @Input() messagesMargin?: string;
+  @Input() containerPadding?: string;
   @Input() backgroundColor?: string;
-  @Input() position?: string;
+  @Input() position?: string | null;
 
   ngOnInit(): void {
     this.botService.getStream("chat-message").subscribe(data => {
