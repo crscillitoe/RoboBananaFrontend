@@ -1,5 +1,5 @@
 <div class="chat-container"
-    [ngStyle]="{top, bottom, left, right, width, height, borderRadius, backgroundColor, position}">
+    [ngStyle]="{top, bottom, left, right, width, height, borderRadius, backgroundColor, position, containerPadding}">
     <div class="render-reverse-column" [style.margin]="messagesMargin">
         <ng-container *ngFor="let message of messages">
             <div class="message" [class.highlighted-message]="message.highlight === true">
