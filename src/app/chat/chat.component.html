@@ -3,12 +3,19 @@
     <div class="render-reverse-column" [style.margin]="messagesMargin">
         <ng-container *ngFor="let message of messages">
             <div class="message" [class.highlighted-message]="message.highlight === true">
-                <div *ngIf="message.renderHeader === true" class="message-header" [style.color]="message.authorColor">
-                    <span class="display-name">{{message.displayName}}</span>
+                <div *ngIf="message.renderHeader === true" class="message-header">
+                    <div class="name-and-badges" [style.color]="message.authorColor">
+                        <span class="display-name">{{message.displayName}}</span>
 
-                    <div class="vertical-center">
-                        <img *ngFor="let badgeUrl of message.badges; let i = index" class="rank-image"
-                            [class.badge-padding]="i === 0" src="{{badgeUrl}}" />
+                        <div class="vertical-center">
+                            <img *ngFor="let badgeUrl of message.badges; let i = index" class="rank-image"
+                                [class.badge-padding]="i === 0" src="{{badgeUrl}}" />
+                        </div>
+                    </div>
+
+
+                    <div *ngIf="message.platform === 'twitch'">
+                        <img class="platform-image" src="assets/twitch.png"/>
                     </div>
                 </div>
 

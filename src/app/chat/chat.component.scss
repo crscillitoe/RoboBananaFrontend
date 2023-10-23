@@ -6,6 +6,10 @@
     isolation: isolate;
 }
 
+.platform-image {
+    width: 20px;
+}
+
 .rank-image {
     width: 20px;
     padding-left: 3px;
@@ -70,6 +74,18 @@
 }
 
 .message-header {
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.name-and-badges {
     font-family: 'Montserrat';
     font-size: 18px;
     font-style: normal;
