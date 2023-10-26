@@ -26,6 +26,10 @@ const routes: Routes = [
         component: PollRenderComponent,
     },
     {
+        path: "chat",
+        component: ChatComponent,
+    },
+    {
         path: "subgoal",
         component: SubGoalComponent,
     },

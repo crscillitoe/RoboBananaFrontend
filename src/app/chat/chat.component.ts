@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { BotConnectorService } from '../services/bot-connector.service';
 import { ActivatedRoute } from '@angular/router';
 import { FieldAdapter } from '../dynamic-overlay/field-adapter';
+import { TwitchEmotesService } from '../services/twitch-emotes.service';
+import { ParseSourceFile } from '@angular/compiler';
 
 enum ChatChunkType {
   TEXT = 0,
@@ -37,7 +39,7 @@ export class ChatComponent implements OnInit {
   vod_reviewee_id?: number;
   previous_message_author_id: number = -1;
 
-  constructor(private botService: BotConnectorService, private route: ActivatedRoute) { }
+  constructor(private botService: BotConnectorService, private route: ActivatedRoute, private twitchEmotesService: TwitchEmotesService) { }
 
   @Input() height?: string | null;
   @Input() width?: string | null;
@@ -92,7 +94,7 @@ export class ChatComponent implements OnInit {
     }
 
 
-    const emojiChatMessage = this.processEmoijs(data.content, data.emojis);
+    const emojiChatMessage = this.processEmoijs(data.content, data.emojis, data.platform);
     const chatMessage = this.processMentions(emojiChatMessage, data.mentions);
     if (data.author_id === this.vod_reviewee_id) data.highlight = true;
     if (data.author_id !== this.previous_message_author_id) data.renderHeader = true;
@@ -106,11 +108,22 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  processEmoijs(messageContent: string, emojiContent: { [key: string]: string }[]): ChatMessage {
+  processEmoijs(messageContent: string, emojiContent: { [key: string]: string }[], platform: "twitch" | "discord"): ChatMessage {
     const chatChunks: ChatChunk[] = [];
     const emojiMap = new Map<string, string>();
 
     let updatedMessageContent = messageContent;
+
+    if (platform === "twitch") {
+      const tokens = messageContent.split(" ");
+      for (const token of tokens) {
+        if (token === '') continue;
+        if (!this.twitchEmotesService.isEmote(token)) continue;
+
+        // Can type def here because we data validated above.
+        emojiMap.set(token, this.twitchEmotesService.getURL(token) as string);
+      }
+    }
 
     emojiContent.forEach(emoji => {
       const emojiText = emoji["emoji_text"]

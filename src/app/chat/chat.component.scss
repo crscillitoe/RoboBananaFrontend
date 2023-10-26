@@ -6,6 +6,11 @@
     isolation: isolate;
 }
 
+.platform-image {
+    width: 20px;
+    padding-right: 10px;
+}
+
 .rank-image {
     width: 20px;
     padding-left: 3px;
@@ -21,6 +26,41 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     color: inherit;
+}
+
+.twitch-message {
+    background-color: adjust-color(#1a1a1c);
+    border-radius: 4px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.message.twitch-message::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.message.twitch-message>.message-header {
+    padding-top: 10px;
+}
+
+.message.twitch-message+.twitch-message {
+    border-top: 0;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.message.twitch-message:has(+.twitch-message) {
+    border-bottom: 0;
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .highlighted-message {
@@ -70,6 +110,18 @@
 }
 
 .message-header {
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.name-and-badges {
     font-family: 'Montserrat';
     font-size: 18px;
     font-style: normal;
