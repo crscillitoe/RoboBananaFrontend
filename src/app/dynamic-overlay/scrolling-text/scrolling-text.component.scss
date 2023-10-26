@@ -19,14 +19,6 @@
     overflow: hidden;
 }
 
-.top>span:nth-child(odd) {
-    color: white;
-}
-
-.bottom>span:nth-child(even) {
-    color: white;
-}
-
 .top {
     position: absolute;
     top: 52px;
@@ -40,13 +32,15 @@
 .marquee {
     display: inline-block;
     animation: marquee 120s linear infinite;
-    transform: translate(100%, 0);
+    transform: translate(-100%, 0);
+    width: max-content;
 }
 
 .marquee-backwards {
     display: inline-block;
     animation: marquee-backwards 120s linear infinite;
-    transform: translate(-100%, 0);
+    transform: translate(100%, 0);
+    width: max-content;
 }
 
 .marquee-1 {

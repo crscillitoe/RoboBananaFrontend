@@ -14,6 +14,7 @@ export class DynamicOverlayComponent implements OnInit {
 
   preRollEnded() {
     this.display = true;
+    this.displayEmitter.emit(true);
   }
 
   ngOnInit(): void {

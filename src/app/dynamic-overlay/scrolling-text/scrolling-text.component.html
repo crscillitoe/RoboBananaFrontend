@@ -1,8 +1,14 @@
 <div *ngIf="display && allText" class="container" @slideInOut>
     <div class="marquee-1 {{directionClass}} {{locationClass}}">
-        <span class="scrolling-text" *ngFor="let text of (allText | convertWithFunction:repeat)">{{text}}</span>
+        <span [style.color]="[idx, location, colors] | convertWithFunction:getColor" class="scrolling-text"
+            *ngFor="let text of (allText | convertWithFunction:repeat); let idx = index;">
+            {{text}}
+        </span>
     </div>
     <div class="marquee-2 {{directionClass}} {{locationClass}}">
-        <span class="scrolling-text" *ngFor="let text of (allText | convertWithFunction:repeat)">{{text}}</span>
+        <span [style.color]="[idx, location, colors] | convertWithFunction:getColor" class="scrolling-text"
+            *ngFor="let text of (allText | convertWithFunction:repeat); let idx = index;">
+            {{text}}
+        </span>
     </div>
 </div>

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { BotConnectorService } from 'src/app/services/bot-connector.service';
-import { FieldAdapter } from '../field-adapter';
+import { FieldAdapter, FieldType, MediaField } from '../field-adapter';
 import { HideableComponent } from '../hideable/hideable.component';
-import { animate, style, transition, trigger } from '@angular/animations';
 
 type TimerDirection = "inc" | "dec";
+interface TimerConfig {
+  duration?: number;
+  color?: string;
+}
 
 @Component({
   selector: 'dynamic-overlay-timer',
@@ -12,7 +15,12 @@ type TimerDirection = "inc" | "dec";
   styleUrls: ['./timer.component.scss'],
 })
 export class TimerComponent extends HideableComponent implements OnInit {
-  duration?: number;
+  timerBackground?: MediaField | null = {
+    source: "https://cdn.discordapp.com/attachments/1128088351996653648/1154550460305379328/timerBackground.png",
+    type: FieldType.MEDIA
+  };
+  timerConfig?: TimerConfig | null;
+
   formattedTimer: string = "";
   interval: NodeJS.Timer | undefined;
 
@@ -23,12 +31,13 @@ export class TimerComponent extends HideableComponent implements OnInit {
   override ngOnInit(): void {
     super.ngOnInit();
     this.botService.getStream("dynamic-overlay").subscribe(data => {
-      const oldDuration = this.duration;
-      this.duration = FieldAdapter.updateField(this.duration, data.timer);
+      this.timerBackground = FieldAdapter.updateField(this.timerBackground, data.timerBackground);
+      const oldDuration = this.timerConfig?.duration;
+      this.timerConfig = FieldAdapter.updateField(this.timerConfig, data.timer);
 
-      if (this.duration === oldDuration) return;
+      if (this.timerConfig?.duration === oldDuration) return;
       this.clearTimer();
-      if (this.duration) this.startTimer(this.duration, 'dec');
+      if (this.timerConfig?.duration) this.startTimer(this.timerConfig?.duration, 'dec');
     });
   }
 

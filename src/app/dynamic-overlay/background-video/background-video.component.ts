@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BotConnectorService } from 'src/app/services/bot-connector.service';
-import { FieldAdapter } from '../field-adapter';
+import { Field, FieldAdapter, MediaField } from '../field-adapter';
 import { HideableComponent } from '../hideable/hideable.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { HideableComponent } from '../hideable/hideable.component';
   styleUrls: ['./background-video.component.scss']
 })
 export class BackgroundVideoComponent extends HideableComponent implements OnInit {
-  videoUrl?: string;
+  videoField?: MediaField | null;
 
   constructor(private botService: BotConnectorService) {
     super();
@@ -18,7 +18,7 @@ export class BackgroundVideoComponent extends HideableComponent implements OnIni
   override ngOnInit(): void {
     super.ngOnInit();
     this.botService.getStream("dynamic-overlay").subscribe(data => {
-      this.videoUrl = FieldAdapter.updateField(this.videoUrl, data.backgroundVideo);
+      this.videoField = FieldAdapter.updateField(this.videoField, data.backgroundVideo);
     });
   }
 }

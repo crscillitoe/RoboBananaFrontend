@@ -17,6 +17,7 @@ export class ScrollingTextComponent extends HideableComponent implements OnInit 
   @Input() location!: Location;
   directionClass: string = "";
   locationClass: string = "";
+  colors: string[] = ["#000000", "#ffffff"];
 
   constructor(private botService: BotConnectorService) {
     super();
@@ -29,14 +30,22 @@ export class ScrollingTextComponent extends HideableComponent implements OnInit 
 
     this.botService.getStream("dynamic-overlay").subscribe(data => {
       this.allText = FieldAdapter.updateField(this.allText, data.scrollingText);
+      this.colors = FieldAdapter.updateField(this.colors, data.scrollingTextColors);
     });
   }
 
-  repeat(allText: string[], numReptitions: number = 5): string[] {
+  repeat(allText: string[], numReptitions: number = 4): string[] {
     let longerAllText: string[] = [];
     for (let i = 0; i < numReptitions; i++) {
       longerAllText = longerAllText.concat(allText ?? [])
     }
     return longerAllText;
+  }
+
+  getColor(input: [number, string, string[]]) {
+    const [index, location, colors] = input;
+    const colorIdx = index % colors.length;
+    if (location === "top") return colors[colorIdx];
+    return colors[colors.length - colorIdx - 1];
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BotConnectorService } from 'src/app/services/bot-connector.service';
-import { FieldAdapter } from '../field-adapter';
+import { FieldAdapter, MediaField, TextField } from '../field-adapter';
 import { HideableComponent } from '../hideable/hideable.component';
 
 @Component({
@@ -9,10 +9,10 @@ import { HideableComponent } from '../hideable/hideable.component';
   styleUrls: ['./side-banner.component.scss']
 })
 export class SideBannerComponent extends HideableComponent implements OnInit {
-  icon?: string;
-  lineOne?: string;
-  lineTwo?: string;
-  lineThree?: string;
+  icon?: MediaField | null;
+  lineOne?: TextField | null;
+  lineTwo?: TextField | null;
+  lineThree?: TextField | null;
 
   constructor(private botService: BotConnectorService) {
     super();

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BotConnectorService } from 'src/app/services/bot-connector.service';
-import { FieldAdapter } from '../field-adapter';
+import { FieldAdapter, MediaField } from '../field-adapter';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
@@ -21,13 +21,13 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class PrerollVideoComponent implements OnInit {
   display: boolean = true;
-  videoUrl?: string;
+  videoField?: MediaField | null;
   @Output() ended: EventEmitter<void> = new EventEmitter();
 
   constructor(private botService: BotConnectorService) { }
   ngOnInit(): void {
     this.botService.getStream("dynamic-overlay").subscribe(data => {
-      this.videoUrl = FieldAdapter.updateField(this.videoUrl, data.preRollVideo);
+      this.videoField = FieldAdapter.updateField(this.videoField, data.preRollVideo);
     });
   }
 
