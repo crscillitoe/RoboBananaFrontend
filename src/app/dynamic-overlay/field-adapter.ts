@@ -21,6 +21,14 @@ export class FieldAdapter {
         newValue?: T | null
     ): T | null | undefined {
         if (newValue === null) return null;
+
+        // Hacky color logic, brad's problem later.
+        if (currentValue != null && (currentValue as TextField).color != null && (currentValue as TextField).color != undefined && (currentValue as TextField).color != "") {
+            if ((newValue as TextField).color == null || (newValue as TextField).color == undefined || (newValue as TextField).color == "") {
+                (newValue as TextField).color = (currentValue as TextField).color;
+            }
+        }
+
         return newValue ?? currentValue;
     }
 
