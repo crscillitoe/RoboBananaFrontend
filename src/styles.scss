@@ -18,6 +18,7 @@ html {
 body {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 :root {
@@ -36,8 +37,8 @@ body {
 
 
 .marker-square {
-  fill: yellow !important;
-  opacity: 0.5 !important;
+    fill: yellow !important;
+    opacity: 0.5 !important;
 }
 
 // rect.black {

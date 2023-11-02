@@ -1,0 +1,29 @@
+.header-icon {
+    width: 113px;
+    height: 113px;
+    position: absolute;
+    top: 251px;
+    left: 903px;
+}
+
+.header-left,
+.header-right {
+    text-align: center;
+    font-family: "IBM Plex Mono";
+    font-weight: 500;
+    line-height: normal;
+    font-size: 48px;
+    color: var(--color-shade-black, #000);
+    position: absolute;
+    top: 302px;
+    width: 116px;
+    overflow: hidden;
+}
+
+.header-left {
+    left: 713px;
+}
+
+.header-right {
+    right: 713px;
+}

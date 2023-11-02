@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   streamURL: "",
-  naDiscordID: -1
+  naDiscordRoleID: 0
 };
 
 /*

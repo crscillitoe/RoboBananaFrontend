@@ -1,0 +1,26 @@
+.timer-background {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 351px;
+    height: 103px;
+    position: fixed;
+    left: 810px;
+    bottom: 288px;
+}
+
+.timer {
+    position: fixed;
+    left: 839px;
+    bottom: 288px;
+    color: var(--color-shade-black, #000);
+    text-align: center;
+    font-family: "IBM Plex Mono";
+    font-size: 80px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: normal;
+}
+
+.timer-container {
+    height: 100vh;
+}

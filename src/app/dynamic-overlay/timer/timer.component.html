@@ -1,0 +1,6 @@
+<div *ngIf="display" @slideInOut>
+    <div *ngIf="formattedTimer !== '' && timerConfig?.duration !== null" class="timer-container" @slideInOut>
+        <div style.backgroundImage="url({{timerBackground?.source}})" class="timer-background"></div>
+        <span [style.color]="timerConfig?.color" class="timer">{{formattedTimer}}</span>
+    </div>
+</div>

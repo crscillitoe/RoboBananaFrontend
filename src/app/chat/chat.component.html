@@ -1,13 +1,23 @@
-<div class="chat-container">
-    <div class="render-reverse-column">
+<div class="chat-container"
+    [ngStyle]="{top, bottom, left, right, width, height, borderRadius, backgroundColor, position, containerPadding}">
+    <div class="render-reverse-column" [style.margin]="messagesMargin">
         <ng-container *ngFor="let message of messages">
-            <div class="message" [class.highlighted-message]="message.highlight === true">
-                <div *ngIf="message.renderHeader === true" class="message-header" [style.color]="message.authorColor">
-                    <span class="display-name">{{message.displayName}}</span>
+            <div class="message" [class.highlighted-message]="message.highlight === true" [class.twitch-message]="message.platform === 'twitch'">
+                <div *ngIf="message.renderHeader === true" class="message-header">
+                    <div class="name-and-badges" [style.color]="message.authorColor">
+                        <span class="display-name">{{message.displayName}}
+                            <a *ngIf="message.platform === 'twitch'" style="color: white;">:</a>
+                        </span>
 
-                    <div class="vertical-center">
-                        <img *ngFor="let badgeUrl of message.badges; let i = index" class="rank-image"
-                            [class.badge-padding]="i === 0" src="{{badgeUrl}}" />
+                        <div class="vertical-center">
+                            <img *ngFor="let badgeUrl of message.badges; let i = index" class="rank-image"
+                                [class.badge-padding]="i === 0" src="{{badgeUrl}}" />
+                        </div>
+                    </div>
+
+
+                    <div *ngIf="message.platform === 'twitch'">
+                        <img class="platform-image" src="assets/twitch.png"/>
                     </div>
                 </div>
 

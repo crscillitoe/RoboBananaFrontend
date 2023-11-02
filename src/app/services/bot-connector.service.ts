@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { getBaseStreamURL } from '../utility';
-import { environment } from "src/environments/environment";
-
-const NA_DISCORD_ID = environment.naDiscordID;
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +53,7 @@ export class BotConnectorService {
       (data: any) => {
         data["isNA"] = false;
 
+        const NA = environment.naDiscordRoleID;
         for (let role of data.roles) {
           if (role.id == NA_DISCORD_ID) {
             data["isNA"] = true;
@@ -116,7 +115,6 @@ export class BotConnectorService {
     ]
 
     this.preProcessors.set("chat-message", chatProcessors);
-    this.preProcessors.set("chat-test-message", chatProcessors)
   }
 
   /**
@@ -131,6 +129,6 @@ const RankNames = new Set(["Radiant", "Immortal", "Ascendant", "Diamond", "Plati
 
 export const StreamNames = ["predictions", "subs", "subs-count",
   "poll-answers", "polls", "cool",
-  "vod-reviews", "timer", "tamagachi", "chat-message", "chat-test-message", "chess"] as const;
+  "vod-reviews", "timer", "tamagachi", "chat-message", "chess", "dynamic-overlay"] as const;
 
 export type StreamName = typeof StreamNames[number];

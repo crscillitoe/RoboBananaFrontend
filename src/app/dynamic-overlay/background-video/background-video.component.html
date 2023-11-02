@@ -1,0 +1,8 @@
+<div *ngIf="display" @slideInOut>
+    <video *ngIf="videoField?.source; let source" [muted]="true" [preload]="true" [loop]="true" [controls]="false"
+        [src]="source" [autoplay]="true" type="video/mp4" class="video" @slideInOut>
+    </video>
+</div>
+<video *ngIf="videoField?.source; let source" [muted]="true" preload="auto" [autoplay]="true" [controls]="false"
+    [src]="source" type="video/mp4" class="video" hidden>
+</video>

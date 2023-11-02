@@ -1,0 +1,15 @@
+<ng-container *ngIf="textTitle">
+    <div *ngIf="display" class="title" @slideInOutCenterScreen>
+        <div class="title-text-container">
+            <span [style.color]="textTitle.color"
+                *ngFor="let word of (textTitle.value | convertWithFunction:splitTitle)"
+                class="title-word">{{word}}</span>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="imageTitle">
+    <div *ngIf="display" class="title" @slideInOut>
+        <img class="title-image" [src]="imageTitle.source" />
+    </div>
+</ng-container>
