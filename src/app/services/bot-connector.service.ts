@@ -55,7 +55,7 @@ export class BotConnectorService {
 
         const NA = environment.naDiscordRoleID;
         for (let role of data.roles) {
-          if (role.id == NA_DISCORD_ID) {
+          if (role.id == environment.naDiscordRoleID) {
             data["isNA"] = true;
             break
           }

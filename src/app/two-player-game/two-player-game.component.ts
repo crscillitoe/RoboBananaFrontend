@@ -35,7 +35,7 @@ export class TwoPlayerGameComponent implements OnInit {
       }
     });
 
-    this.botService.getStream("chat-test-message").subscribe(data => {
+    this.botService.getStream("chat-message").subscribe(data => {
       this.moveEmitter.emit(data);
     })
   }
