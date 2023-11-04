@@ -114,15 +114,13 @@ export class ChatComponent implements OnInit {
 
     let updatedMessageContent = messageContent;
 
-    if (platform === "twitch") {
-      const tokens = messageContent.split(" ");
-      for (const token of tokens) {
-        if (token === '') continue;
-        if (!this.twitchEmotesService.isEmote(token)) continue;
+    const tokens = messageContent.split(" ");
+    for (const token of tokens) {
+      if (token === '') continue;
+      if (!this.twitchEmotesService.isEmote(token)) continue;
 
-        // Can type def here because we data validated above.
-        emojiMap.set(token, this.twitchEmotesService.getURL(token) as string);
-      }
+      // Can type def here because we data validated above.
+      emojiMap.set(token, this.twitchEmotesService.getURL(token) as string);
     }
 
     emojiContent.forEach(emoji => {
