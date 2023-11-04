@@ -1,28 +1,41 @@
 .bar {
   display: flex;
   justify-content: flex-start;
-  flex-direction: column-reverse;
+  flex-direction: column;
   width: 8px;
   height: 776px;
   background-color: var(--slate);
 }
 
-.sheesh {
-  margin-top: -10px;
-  margin-left: -18px;
-  width: 35px;
-  transform: rotate(-20deg);
+.blank {
+  background-color: var(--slate) !important;
+}
+
+.joel {
+  margin-top: -55px;
+  margin-left: -30px;
+  width: 70px;
+}
+
+.invisible {
+  display: none;
+}
+
+.hose {
+  margin-top: -20px;
+  margin-left: -45px;
+  width: 90px;
 }
 
 .fill-bar {
   height: 50%;
 }
 
-.cool-bar {
-  background-color: var(--accent);
+.joel-bar {
+  background-color: var(--blue-dodger);
   transition: height 0.2s ease-in-out;
 }
 
-.uncool-bar {
-  background-color: var(--slate);
+.hose-bar {
+  background-color: var(--accent);
 }

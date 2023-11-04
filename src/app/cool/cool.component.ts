@@ -11,7 +11,7 @@ import { BotConnectorService } from '../services/bot-connector.service';
   styleUrls: ['./cool.component.scss']
 })
 export class CoolComponent implements OnInit {
-  cool: number = 10;
+  cool: number = 50;
 
   thresholds: number = 100;
   @ViewChild(CoolIconDirective, { static: true }) coolIconHost!: CoolIconDirective;
@@ -31,24 +31,20 @@ export class CoolComponent implements OnInit {
   constructor(private botService: BotConnectorService) { }
 
   ngOnInit(): void {
-    const updateCool = () => {
-      if (this.cool > 10) {
-        this.cool--;
-      }
-    }
+    this.botService.getStream("chat-message").subscribe(data => {
+      if (data.content.length > 200) return;
 
-    setInterval(updateCool, 20000);
+      const tokens = data.content.split(" ");
+      for (const token of tokens) {
+        if (token === "Joel") {
+          this.cool++;
+          break;
+        }
 
-    this.botService.getStream("cool").subscribe(data => {
-      let cool = data.cool;
-      this.cool += cool;
-
-      if (this.cool > 100) {
-        this.cool = 100;
-      }
-
-      if (this.cool < 0) {
-        this.cool = 0;
+        if (token === "Hose") {
+          this.cool--;
+          break;
+        }
       }
     });
   }
