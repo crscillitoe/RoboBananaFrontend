@@ -36,12 +36,12 @@ export class CoolComponent implements OnInit {
 
       const tokens = data.content.split(" ");
       for (const token of tokens) {
-        if (token === "Joel") {
+        if (token === "Joel" || token === "<a:Joel:1170523859087269968>") {
           this.cool++;
           break;
         }
 
-        if (token === "Hose") {
+        if (token === "Hose" || token === "<a:Hose:1170505369043353610>") {
           this.cool--;
           break;
         }
