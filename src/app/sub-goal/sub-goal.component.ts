@@ -3,6 +3,7 @@ import { getBaseStreamURL } from '../utility';
 import { Howl } from 'howler';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { BotConnectorService } from '../services/bot-connector.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-sub-goal',
@@ -34,7 +35,7 @@ export class SubGoalComponent implements OnInit {
   subHowl: Howl;
   lastTimeout: NodeJS.Timeout | undefined;
 
-  constructor(private botService: BotConnectorService) {
+  constructor(private botService: BotConnectorService, public themeService: ThemeService) {
     this.subHowl = new Howl({
       src: ["assets/ChossBoss.wav"],
       autoplay: false,
