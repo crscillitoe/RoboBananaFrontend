@@ -12,8 +12,8 @@ import { BotConnectorService } from '../services/bot-connector.service';
 })
 export class CoolComponent implements OnInit {
   cool: number = 50;
-
   thresholds: number = 100;
+
   @ViewChild(CoolIconDirective, { static: true }) coolIconHost!: CoolIconDirective;
 
   calculateWidth() {
