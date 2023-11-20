@@ -14,6 +14,36 @@ export class CoolComponent implements OnInit {
   cool: number = 50;
   thresholds: number = 100;
 
+  type: string = "sheesh";
+
+  barTypes: any = {
+    "sheesh": {
+      cool: {
+        tokens: ["hoojSheesh", "<:hoojSheesh:1076744568818647103>"],
+        color: "#FFC700",
+        image: "assets/hoojsheesh.png"
+      },
+      uncool: {
+        tokens: ["hoojStare", "<:hoojStare:1087887812923232266>"],
+        color: "#262626"
+      },
+      swap: false
+    },
+    "joel": {
+      cool: {
+        tokens: ["Joel", "<a:Joel:1170523859087269968>"],
+        color: "#FFC700",
+        image: "assets/Joel.webp"
+      },
+      uncool: {
+        tokens: ["Hose", "<a:Hose:1170505369043353610>"],
+        color: "#24AFFE",
+        image: "assets/Hose.webp"
+      },
+      swap: true
+    }
+  }
+
   @ViewChild(CoolIconDirective, { static: true }) coolIconHost!: CoolIconDirective;
 
   calculateWidth() {
@@ -28,20 +58,33 @@ export class CoolComponent implements OnInit {
     return 100 - this.calculateWidth();
   }
 
+  getBarType() {
+    return this.barTypes[this.type];
+  }
+
   constructor(private botService: BotConnectorService) { }
 
   ngOnInit(): void {
+    this.botService.getStream("streamdeck").subscribe(data => {
+      if (data.type === "meter") {
+        this.type = data.value;
+      }
+    });
+
     this.botService.getStream("chat-message").subscribe(data => {
       if (data.content.length > 200) return;
 
       const tokens = data.content.split(" ");
+      const coolTokens: string[] = (this.barTypes[this.type] as any).cool.tokens;
+      const uncoolTokens: string[] = (this.barTypes[this.type] as any).uncool.tokens;
+
       for (const token of tokens) {
-        if (token === "Joel" || token === "<a:Joel:1170523859087269968>") {
+        if (coolTokens.includes(token)) {
           this.cool++;
           break;
         }
 
-        if (token === "Hose" || token === "<a:Hose:1170505369043353610>") {
+        if (uncoolTokens.includes(token)) {
           this.cool--;
           break;
         }

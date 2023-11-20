@@ -1,11 +1,24 @@
 <div>
-  <div class="bar">
-      <div class="joel-bar" [style.height.%]="calculateWidth()" [class.blank]="cool <= 50">
-      </div>
+  <ng-container *ngIf="getBarType().swap">
+    <div class="bar">
+        <div class="joel-bar" [style.height.%]="calculateWidth()" [class.blank]="cool <= 50">
+        </div>
 
-      <div class="hose-bar" [style.height.%]="calculateRemainder()" [class.blank]="cool > 50">
-        <img class="joel" src="assets/Joel.webp" [class.invisible]="cool <= 50">
-        <img class="hose" src="assets/Hose.webp" [class.invisible]="cool > 50">
-      </div>
-  </div>
+        <div class="hose-bar" [style.height.%]="calculateRemainder()" [class.blank]="cool > 50">
+            <img class="joel" src="{{getBarType().cool.image}}" [class.invisible]="cool <= 50">
+            <img class="hose" src="{{getBarType().uncool.image}}" [class.invisible]="cool > 50">
+        </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!getBarType().swap">
+    <div class="bar">
+        <div class="joel-bar blank" [style.height.%]="calculateRemainder()">
+        </div>
+
+        <div class="hose-bar" [style.height.%]="calculateWidth()">
+            <img class="sheesh" src="{{getBarType().cool.image}}">
+        </div>
+    </div>
+  </ng-container>
 </div>
