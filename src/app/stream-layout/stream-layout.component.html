@@ -8,6 +8,13 @@
     <app-prediction-render></app-prediction-render>
     <app-vod-review style="background-image: url('assets/TextBox_Container.png');"></app-vod-review>
     <app-sub-goal></app-sub-goal>
-    <img id="footer" src="{{themeService.getMiddleImage()}}" />
+    <ng-container *ngIf="themeService.getMiddleImage().split('.')[1] === 'mp4'">
+        <video id="footer" loop autoplay>
+            <source src="{{themeService.getMiddleImage()}}" type="video/mp4">
+        </video>
+    </ng-container>
+    <ng-container *ngIf="themeService.getMiddleImage().split('.')[1] !== 'mp4'">
+        <img id="footer" src="{{themeService.getMiddleImage()}}" />
+    </ng-container>
     <img id="left" src="{{themeService.getLeftImage()}}" />
 </div>

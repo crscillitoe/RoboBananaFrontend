@@ -14,7 +14,7 @@ export class ThemeService {
       "bottom-right": "assets/right.png"
     },
     "christmas": {
-      "footer": "assets/themes/christmas/footer.png",
+      "footer": "assets/themes/christmas/footer.mp4",
       "bottom-left": "assets/themes/christmas/left.png",
       "bottom-right": "assets/themes/christmas/right.png"
     }
