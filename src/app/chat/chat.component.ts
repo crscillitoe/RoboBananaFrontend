@@ -58,6 +58,21 @@ export class ChatComponent implements OnInit {
       this.processChatStream(data);
     });
 
+    this.botService.getStream("subs").subscribe(data => {
+      let message = {
+        "content": data.message,
+        "displayName": "SYSTEM",
+        "roles": [{"colorR": 255, "colorG": 255, "colorB": 255, "icon": null, "id": 1, "name": "@SYSTEM"}],
+        "stickers": [],
+        "emojis": [],
+        "mentions": [],
+        "author_id": 1,
+        "platform": "discord"
+      };
+
+      this.processChatStream(message);
+    });
+
     this.botService.getStream("vod-reviews").subscribe(data => {
       if (data.userid === -1) this.vod_reviewee_id = undefined;
       if (data.userid !== -1) {
