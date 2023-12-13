@@ -4,6 +4,7 @@ import { Howl } from 'howler';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { BotConnectorService } from '../services/bot-connector.service';
 import { ThemeService } from '../services/theme.service';
+import { SystemMessageService } from '../services/system-message.service';
 
 @Component({
   selector: 'app-sub-goal',
@@ -35,7 +36,7 @@ export class SubGoalComponent implements OnInit {
   subHowl: Howl;
   lastTimeout: NodeJS.Timeout | undefined;
 
-  constructor(private botService: BotConnectorService, public themeService: ThemeService) {
+  constructor(private systemMessageService: SystemMessageService, private botService: BotConnectorService, public themeService: ThemeService) {
     this.subHowl = new Howl({
       src: ["assets/ChossBoss.wav"],
       autoplay: false,
@@ -52,6 +53,8 @@ export class SubGoalComponent implements OnInit {
       if (this.lastTimeout) {
         clearTimeout(this.lastTimeout);
       }
+
+      this.systemMessageService.sendMessage(data.message);
 
       this.subMessage = data.message;
       let timeout = 5000;

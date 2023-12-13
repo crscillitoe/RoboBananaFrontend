@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FieldAdapter } from '../dynamic-overlay/field-adapter';
 import { TwitchEmotesService } from '../services/twitch-emotes.service';
 import { ParseSourceFile } from '@angular/compiler';
+import { SystemMessageService } from '../services/system-message.service';
 
 enum ChatChunkType {
   TEXT = 0,
@@ -39,7 +40,7 @@ export class ChatComponent implements OnInit {
   vod_reviewee_id?: number;
   previous_message_author_id: number = -1;
 
-  constructor(private botService: BotConnectorService, private route: ActivatedRoute, private twitchEmotesService: TwitchEmotesService) { }
+  constructor(private botService: BotConnectorService, private route: ActivatedRoute, private twitchEmotesService: TwitchEmotesService, private systemMessageService: SystemMessageService) { }
 
   @Input() height?: string | null;
   @Input() width?: string | null;
@@ -58,21 +59,9 @@ export class ChatComponent implements OnInit {
       this.processChatStream(data);
     });
 
-    this.botService.getStream("subs").subscribe(data => {
-      let message = {
-        "content": data.message,
-        "displayName": "SYSTEM",
-        "authorColor": "rgb(255, 228, 0)",
-        "roles": [{"colorR": 255, "colorG": 255, "colorB": 255, "icon": null, "id": 1, "name": "@SYSTEM"}],
-        "stickers": [],
-        "emojis": [],
-        "mentions": [],
-        "author_id": 1,
-        "platform": "discord"
-      };
-
-      this.processChatStream(message);
-    });
+    this.systemMessageService.getSystemMessageStream().subscribe(data => {
+      this.processChatStream(data);
+    })
 
     this.botService.getStream("vod-reviews").subscribe(data => {
       if (data.userid === -1) this.vod_reviewee_id = undefined;
