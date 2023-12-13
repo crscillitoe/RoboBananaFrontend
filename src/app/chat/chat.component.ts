@@ -62,6 +62,7 @@ export class ChatComponent implements OnInit {
       let message = {
         "content": data.message,
         "displayName": "SYSTEM",
+        "authorColor": "rgb(255, 228, 0)",
         "roles": [{"colorR": 255, "colorG": 255, "colorB": 255, "icon": null, "id": 1, "name": "@SYSTEM"}],
         "stickers": [],
         "emojis": [],
