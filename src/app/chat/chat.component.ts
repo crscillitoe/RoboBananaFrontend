@@ -61,7 +61,13 @@ export class ChatComponent implements OnInit {
 
     this.systemMessageService.getSystemMessageStream().subscribe(data => {
       this.processChatStream(data);
-    })
+    });
+
+    // Goes in chat component because the sub-goal component
+    // isn't loaded in on the chat only view
+    this.botService.getStream("subs").subscribe(data => {
+      this.systemMessageService.sendMessage(data.message);
+    });
 
     this.botService.getStream("vod-reviews").subscribe(data => {
       if (data.userid === -1) this.vod_reviewee_id = undefined;
