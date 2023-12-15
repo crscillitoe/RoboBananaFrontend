@@ -54,8 +54,6 @@ export class SubGoalComponent implements OnInit {
         clearTimeout(this.lastTimeout);
       }
 
-      this.systemMessageService.sendMessage(data.message);
-
       this.subMessage = data.message;
       let timeout = 5000;
 
