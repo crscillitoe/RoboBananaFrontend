@@ -32,6 +32,22 @@ app-cool {
     left: 266px;
 }
 
+app-poll-render {
+    // center on middle of screen no matter what, regardless of size
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // z-index: 1002;
+
+    // centered on the middle of the screen, but biased 154px up
+    position: absolute;
+    top: calc(50% - 77px);
+    left: calc(50% + 137px);
+    transform: translate(-50%, -50%);
+    z-index: 1002;
+}
+
 app-prediction-render {
     position: absolute;
     bottom: 0px;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getBaseStreamURL } from '../utility';
+import { BotConnectorService } from '../services/bot-connector.service';
 
 @Component({
   selector: 'app-poll-render',
@@ -8,7 +9,7 @@ import { getBaseStreamURL } from '../utility';
 })
 export class PollRenderComponent implements OnInit {
   title: string = "Who's the best valorant gamer?";
-  options: string[] = ["JeyG", "Dopai", "", ""];
+  options: string[] = ["JeyG", "Dopai", "Woohoojin", "Penflash"];
   timeLeft: number = 0;
 
   predictionTimer: string = "1:00"
@@ -19,7 +20,7 @@ export class PollRenderComponent implements OnInit {
   whoVoted: Set<number> = new Set<number>();
   votes: Map<number, Set<number>> = new Map<number, Set<number>>();
 
-  constructor() { }
+  constructor(private botService: BotConnectorService) { }
 
   getBarWidth(barID: number) {
     if (this.totalVotes === 0) {
@@ -55,27 +56,8 @@ export class PollRenderComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetStuff();
-    const streamURL = getBaseStreamURL();
-    const newPollURL = streamURL + "?channel=polls"
-    const newPollAnswerURL = streamURL + "?channel=poll-answers"
 
-    const newPollSource = new EventSource(newPollURL);
-    const newPollAnswerSource = new EventSource(newPollAnswerURL);
-
-    newPollSource.addEventListener('publish', (event) => {
-      /*
-        {
-          "title": "This is a sample poll",
-          "options": [
-              "Sample text",
-              "123",
-              "another option",
-              "these are options"
-          ]
-        }
-       */
-      let data = JSON.parse(event.data);
-
+    this.botService.getStream("polls").subscribe(data => {
       clearInterval(this.timerInterval);
       this.title = data.title;
       this.options = data.options;
@@ -83,38 +65,14 @@ export class PollRenderComponent implements OnInit {
       this.resetStuff();
       this.startTimer();
       console.log(data);
-    }, false);
-
-    newPollAnswerSource.addEventListener('publish', (event) => {
-      /*
-        {
-           "userID": 12938123,
-           "optionNumber": 1,
-           "userRoleIDs": [123, 823, 231, 293]
-        }
-       */
-      let data = JSON.parse(event.data);
-      console.log(data);
-      this.processVote(data.userID, data.optionNumber);
-    }, false);
-
-
-
-
-    // ----------------------------------------------------
-    // ERRORS AND INITIAL CONNECTIONS
-    newPollSource.addEventListener('open', (e) => {
-      console.log("The connection has been established.");
     });
-    newPollAnswerSource.addEventListener('open', (e) => {
-      console.log("The connection has been established.");
+
+    this.botService.getStream("chat-message").subscribe(data => {
+      // if they typed 1, vote for 1, 2 for 2, etc.
+      if (data.content === "1" || data.content === "2" || data.content === "3" || data.content === "4") {
+        this.processVote(data.author_id, parseInt(data.content));
+      }
     });
-    newPollSource.addEventListener('error', function (event) {
-      console.log(event)
-    }, false);
-    newPollAnswerSource.addEventListener('error', function (event) {
-      console.log(event)
-    }, false);
   }
 
   private startTimer() {

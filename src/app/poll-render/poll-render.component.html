@@ -1,40 +1,39 @@
 <ng-container *ngIf="timeLeft > 0">
-    <div class="outer-box">
-        <div class="timer">
+        <!-- <div class="timer">
             <div class="time-display">
                 {{predictionTimer}}
             </div>
-        </div>
+        </div> -->
+    <div class="outer-box">
 
         <div class="title">
             {{title}}
         </div>
 
-        <div class="poll-options">
-            <ng-container *ngFor="let option of options; let i=index">
-                <div class="option-bars" *ngIf="option !== ''">
-                    <div class="option-description">
-                        <div class="option-number">
-                            /hooj vote {{i + 1}}
-                        </div>
-                        <div class="option-text">
-                            {{option}}
-                        </div>
-
-                    </div>
-                    <div class="option-progress">
-                        <div class="progress-percent">
-                            {{getBarWidth(i + 1)}}%
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" [style.width.%]="getBarWidth(i+1)">
-
+        <div class="centered">
+            <div class="poll-options">
+                <ng-container *ngFor="let option of options; let i=index">
+                    <div class="option-bars" *ngIf="option !== ''">
+                        <div class="option-description">
+                            <div class="option-number">
+                                {{i + 1}} - {{option}}
                             </div>
-                        </div>
 
+                        </div>
+                        <div class="option-progress">
+                            <div class="progress-percent">
+                                {{getBarWidth(i + 1)}}%
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" [style.width.%]="getBarWidth(i+1)">
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-            </ng-container>
+                </ng-container>
+            </div>
         </div>
 
         <div class="voter">
