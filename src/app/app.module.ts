@@ -35,6 +35,7 @@ import { BackgroundVideoComponent } from './dynamic-overlay/background-video/bac
 import { PrerollVideoComponent } from './dynamic-overlay/preroll-video/preroll-video.component';
 import { HideableComponent } from './dynamic-overlay/hideable/hideable.component';
 import { ChatWrapperComponent } from './dynamic-overlay/chat-wrapper/chat-wrapper.component';
+import { ConnectFourComponent } from './checkers/connect-four.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ChatWrapperComponent } from './dynamic-overlay/chat-wrapper/chat-wrappe
     BackgroundVideoComponent,
     PrerollVideoComponent,
     HideableComponent,
-    ChatWrapperComponent
+    ChatWrapperComponent,
+    ConnectFourComponent
   ],
   imports: [
     BrowserModule,

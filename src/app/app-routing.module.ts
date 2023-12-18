@@ -7,10 +7,10 @@ import { SubGoalComponent } from './sub-goal/sub-goal.component';
 import { SubRenderComponent } from './sub-render/sub-render.component';
 import { VodReviewComponent } from './vod-review/vod-review.component';
 import { TimerRenderComponent } from './timer-render/timer-render.component';
-import { OverlayBoxComponent } from './overlay-box/overlay-box.component';
 import { TestingComponent } from './testing/testing.component';
 import { StreamLayoutComponent } from './stream-layout/stream-layout.component';
 import { ChatComponent } from './chat/chat.component';
+import { ConnectFourComponent } from './checkers/connect-four.component';
 
 const routes: Routes = [
     {
@@ -56,6 +56,10 @@ const routes: Routes = [
     {
         path: "chat",
         component: ChatComponent
+    },
+    {
+        path: "connect-four",
+        component: ConnectFourComponent
     }
 ];
 

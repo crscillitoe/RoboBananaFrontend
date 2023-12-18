@@ -12,7 +12,7 @@ export class ChessComponent implements OnInit {
   turnNumber: number = 0;
   naPlayer: string = "";
   euPlayer: string = "";
-  playing: boolean = false;
+  playing: boolean = true;
   naScore: number = 0;
   euScore: number = 0;
   chessBoard!: ChessBoardInstance;
