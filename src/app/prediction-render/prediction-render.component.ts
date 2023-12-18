@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PredictionSummary } from '../types/predictionSummary';
 import { getBaseStreamURL } from '../utility';
 import { BotConnectorService } from '../services/bot-connector.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-prediction-render',
@@ -28,7 +29,7 @@ export class PredictionRenderComponent implements OnInit {
   endTime: Date = new Date();
   timerInterval: NodeJS.Timer | undefined;
 
-  constructor(private botService: BotConnectorService) { }
+  constructor(private botService: BotConnectorService, public themeService: ThemeService) { }
 
   ngOnInit(): void {
     this.botService.getStream("predictions").subscribe(data => {

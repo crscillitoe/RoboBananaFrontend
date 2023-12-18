@@ -13,17 +13,28 @@
     </app-overlay-title>
   <div class="odds-and-timer">
     <div class="raffle-odds believe">
-      <div class="option-text believe-text">
-        <b class="believe-percentage">
+      <div class="option-text believe-text"
+        [style.background-color]="themeService.getSubGoalLeftBackground()"
+        [style.border-color]="themeService.getSubGoalLeftBackground()"
+      >
+        <b class="believe-percentage"
+        [style.color]="themeService.getSubGoalLeftText()"
+        >
           {{believeChoiceText}}
         </b>
       </div>
-      <div class="option-odds odds-believe">
+      <div class="option-odds odds-believe"
+        [style.border-color]="themeService.getSubGoalLeftBackground()"
+      >
         <div class="option-odds-text">
-          <b class="yellow-text">{{believePayoutMultiplier}}x</b>
+          <b class="yellow-text"
+            [style.color]="themeService.getPredictionText()"
+          >{{believePayoutMultiplier}}x</b>
         </div>
         <div class="option-odds-text">
-          <b class="yellow-text">{{truncateNumber(believeTotalPoints)}}</b>
+          <b class="yellow-text"
+            [style.color]="themeService.getPredictionText()"
+          >{{truncateNumber(believeTotalPoints)}}</b>
         </div>
       </div>
     </div>
@@ -31,16 +42,27 @@
     <div></div>
 
     <div class="raffle-odds doubt">
-      <div class="option-odds odds-doubt">
+      <div class="option-odds odds-doubt"
+        [style.border-color]="themeService.getSubGoalRightBackground()"
+      >
         <div class="option-odds-text">
-          <b class="yellow-text">{{doubtPayoutMultiplier}}x</b>
+          <b class="yellow-text"
+            [style.color]="themeService.getPredictionText()"
+          >{{doubtPayoutMultiplier}}x</b>
         </div>
         <div class="option-odds-text">
-          <b class="yellow-text">{{truncateNumber(doubtTotalPoints)}}</b>
+          <b class="yellow-text"
+            [style.color]="themeService.getPredictionText()"
+          >{{truncateNumber(doubtTotalPoints)}}</b>
         </div>
       </div>
-      <div class="option-text doubt-text">
-        <b class="doubt-percentage">
+      <div class="option-text doubt-text"
+        [style.background-color]="themeService.getSubGoalRightBackground()"
+        [style.border-color]="themeService.getSubGoalRightBackground()"
+      >
+        <b class="doubt-percentage"
+          [style.color]="themeService.getSubGoalRightText()"
+        >
           {{doubtChoiceText}}
         </b>
       </div>
@@ -48,13 +70,23 @@
   </div>
 
   <div class="vote-bar">
-    <div class="percentage believe-bar" [style.width]="'' + believePercentage + '%'">
-      <b class="believe-percentage" *ngIf="believePercentage > 0">
+    <div class="percentage believe-bar"
+      [style.width]="'' + believePercentage + '%'"
+      [style.background-color]="themeService.getSubGoalLeftBackground()"
+      >
+      <b class="believe-percentage" *ngIf="believePercentage > 0"
+        [style.color]="themeService.getSubGoalLeftText()"
+        >
         {{believePercentage}}%
       </b>
     </div>
-    <div class="percentage doubt-bar" [style.width]="'' + doubtPercentage + '%'">
-      <b class="doubt-percentage" *ngIf="doubtPercentage > 0">
+    <div class="percentage doubt-bar"
+      [style.width]="'' + doubtPercentage + '%'"
+      [style.background-color]="themeService.getSubGoalRightBackground()"
+    >
+      <b class="doubt-percentage" *ngIf="doubtPercentage > 0"
+        [style.color]="themeService.getSubGoalRightText()"
+        >
         {{doubtPercentage}}%
       </b>
     </div>

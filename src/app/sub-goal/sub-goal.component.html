@@ -6,12 +6,20 @@
 
     <div class="vote-bar">
       <img class="discord-logo" src="assets/discord.svg">
-      <div class="percentage believe-bar" [style.width]="'' + getPercentage() + '%'">
-        <div class="multiply">
+      <div class="percentage believe-bar"
+       [style.width]="'' + getPercentage() + '%'"
+       [style.background-color]="themeService.getSubGoalLeftBackground()"
+       >
+        <div class="multiply"
+          [style.color]="themeService.getSubGoalLeftText()"
+        >
           SUBSCRIBERS
         </div>
       </div>
-      <div class="percentage doubt-bar" [style.width]="'' + (100 - getPercentage()) + '%'">
+      <div class="percentage doubt-bar"
+        [style.width]="'' + (100 - getPercentage()) + '%'"
+        [style.background-color]="themeService.getSubGoalRightBackground()"
+        >
       </div>
     </div>
 
@@ -25,8 +33,14 @@
           <div>
           </div>
           <div class="white">
-            <div class="total">{{total}}</div>
-            <div class="goal">{{goal}}</div>
+            <div class="total"
+              [style.color]="themeService.getSubGoalLeftText()"
+              [style.background-color]="themeService.getSubGoalLeftBackground()"
+              >{{total}}</div>
+            <div class="goal"
+              [style.color]="themeService.getSubGoalRightText()"
+              [style.background-color]="themeService.getSubGoalRightBackground()"
+            >{{goal}}</div>
           </div>
         </b>
       </div>

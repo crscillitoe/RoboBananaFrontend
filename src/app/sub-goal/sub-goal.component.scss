@@ -208,9 +208,7 @@
 }
 
 .total {
-  color: #FFD201;
   display: inline-block;
-  color: #000;
   text-align: right;
   font-variant-numeric: lining-nums tabular-nums;
   /* Label 2 - Bold */
@@ -220,7 +218,6 @@
   font-weight: 900;
   line-height: normal;
   text-transform: uppercase;
-  background-color: var(--light);
   padding: 3px 4px;
   box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.20);
   border-radius: 4px 0px 0px 4px;
@@ -240,8 +237,6 @@
   font-weight: 900;
   line-height: normal;
   text-transform: uppercase;
-  background-color: var(--dark);
-  color: var(--light);
   box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.20);
   border-radius: 0px 4px 4px 0px;
 }

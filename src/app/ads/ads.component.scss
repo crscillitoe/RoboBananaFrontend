@@ -1,0 +1,13 @@
+.layer1 {
+    z-index: 1;
+}
+
+.layer2 {
+    z-index: 2;
+}
+
+.layer1, .layer2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

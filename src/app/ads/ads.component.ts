@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-ads',
@@ -11,7 +12,7 @@ export class AdsComponent implements OnInit {
   ads: string[] = ["chat", "discord", "goodMorning", "inhouses", "playbooks", "primeSub", "reviews", "subscribe", "thankYou", "vods"];
   ad: string = this.ads[0];
 
-  constructor() { }
+  constructor(public themeService: ThemeService) { }
 
   ngOnInit(): void {
     const nextAd = () => {
