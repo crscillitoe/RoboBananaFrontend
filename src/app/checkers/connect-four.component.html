@@ -1,0 +1,31 @@
+<div class="full-board">
+    <div class="header">
+        <div *ngIf="win === undefined; else winTemplate">
+            <span class="name">{{playerOne.name}}</span> <span class="name">vs.</span> <span class="name">{{playerTwo.name}}</span>
+        </div>
+        <ng-template #winTemplate>
+            <span *ngIf="win === 'red'">{{playerOne.name}} wins!</span>
+            <span *ngIf="win === 'yellow'">{{playerTwo.name}} wins!</span>
+        </ng-template>
+    </div>
+    <div class="content">
+        <div class="board-display">
+            <div id="board-bg"></div>
+            <div *ngFor="let _ of [].constructor(6); let row=index">
+                <div *ngFor="let _ of [].constructor(7); let col=index">
+                    <span class="space-markers"
+                        [style.top]="row | convertWithFunction:getTop"
+                        [style.left]="col | convertWithFunction:getLeft"
+                    ></span>
+                </div>
+            </div>
+            <span *ngFor="let piece of pieces"
+                class="piece"
+                [style.top]="piece.row | convertWithFunction:getTop"
+                [style.left]="piece.column | convertWithFunction:getLeft"
+                [style.transform]="piece.falling | convertWithFunction:getTransform"
+                [style.backgroundColor]="piece.color"
+            ></span>
+        </div>
+    </div>
+</div>
