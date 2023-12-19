@@ -10,7 +10,7 @@ import { TimerRenderComponent } from './timer-render/timer-render.component';
 import { TestingComponent } from './testing/testing.component';
 import { StreamLayoutComponent } from './stream-layout/stream-layout.component';
 import { ChatComponent } from './chat/chat.component';
-import { ConnectFourComponent } from './checkers/connect-four.component';
+import { ConnectFourComponent } from './connect-four/connect-four.component';
 
 const routes: Routes = [
     {
