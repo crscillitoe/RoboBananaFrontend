@@ -15,11 +15,12 @@
     height: 81px;
     width: 758px;
     font-family: 'Montserrat';
-    font-size: 65px;
+    font-size: 48px;
     font-style: normal;
     text-align: center;
     font-weight: 700;
     line-height: normal;
+    vertical-align: middle;
 }
 
 .header-dark {
@@ -115,9 +116,48 @@
 }
 
 .name {
+    height: 100%;
     display: inline-block;
-    max-width: 4.5em;
+    max-width: 10ch;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    vertical-align: middle;
+}
+
+.playerOne {
+    color: red;
+}
+
+.playerOneTurn {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.playerTwo {
+    color: blue;
+}
+
+.playerTwoTurn {
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.spacer {
+    padding: 0px 10px;
+}
+
+.turn-indicator {
+    text-transform: uppercase;
+    color: white;
+    font-size: 48px;
+    margin-top: 10px;
+    height: 50px;
+    text-align: center;
 }

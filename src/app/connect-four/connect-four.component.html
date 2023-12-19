@@ -1,12 +1,17 @@
 <div class="full-board">
     <div class="header">
-        <div *ngIf="win === undefined; else winTemplate">
-            <span class="name">{{playerOne.name}}</span> <span class="name">vs.</span> <span class="name">{{playerTwo.name}}</span>
+        <div *ngIf="win === undefined && acceptingChallenges">
+            CHALLENGES OPEN
         </div>
-        <ng-template #winTemplate>
+        <div *ngIf="win === undefined && !acceptingChallenges">
+            <span class="name playerOne" [class.playerOneTurn]="turn === 'red'">{{playerOne.name}}</span>
+            <span class="name spacer">//</span>
+            <span class="name playerTwo" [class.playerTwoTurn]="turn ==='yellow'">{{playerTwo.name}}</span>
+        </div>
+        <div *ngIf="win !== undefined">
             <span *ngIf="win === 'red'">{{playerOne.name}} wins!</span>
             <span *ngIf="win === 'yellow'">{{playerTwo.name}} wins!</span>
-        </ng-template>
+        </div>
     </div>
     <div class="content">
         <div class="board-display">

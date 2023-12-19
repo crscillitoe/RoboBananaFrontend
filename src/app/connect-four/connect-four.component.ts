@@ -36,6 +36,7 @@ export class ConnectFourComponent implements OnInit {
   pieces: Piece[] = []
   turn: Color = "red";
   win: Color | undefined;
+  acceptingChallenges = false;
 
   constructor(private botService: BotConnectorService) { }
 
@@ -46,14 +47,24 @@ export class ConnectFourComponent implements OnInit {
         const color = data.player_id === this.playerOne.id ? "red" : "yellow";
         this.move(color, data.row, data.column);
         if (data.win === true) this.win = color;
+        this.turn = color === "yellow" ? "red" : "yellow";
+      }
+      else if (data.action === "accepting_challenges") {
+        this.acceptingChallenges = true;        
+        this.resetBoard();
       }
     })
   }
 
-  newGame(playerOne: Player, playerTwo: Player) {
+  resetBoard() {
     this.win = undefined;
     this.pieces = [];
     this.turn = "red";
+  }
+
+  newGame(playerOne: Player, playerTwo: Player) {
+    this.acceptingChallenges = false;
+    this.resetBoard();
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
   }
