@@ -64,6 +64,23 @@ export class BotConnectorService {
         return data;
       },
 
+      // Detect T3 Subscriber
+      (data: any) => {
+        data["isT3"] = false;
+
+        const T3 = environment.t3DiscordRoleID;
+        const GIFTED_T3 = environment.giftedT3DiscordRoleID;
+
+        for (let role of data.roles) {
+          if (role.id == T3 || role.id == GIFTED_T3) {
+            data["isT3"] = true;
+            break
+          }
+        }
+
+        return data;
+      },
+
       // Set Sticker URL
       (data: any) => {
         data["stickerURL"] = "";

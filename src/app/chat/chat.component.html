@@ -5,7 +5,7 @@
             <div class="message" [class.highlighted-message]="message.highlight === true" [class.twitch-message]="message.platform === 'twitch'">
                 <div *ngIf="message.renderHeader === true" class="message-header">
                     <div class="name-and-badges" [style.color]="message.authorColor">
-                        <span class="display-name">{{message.displayName}}
+                        <span class="display-name" [class.t3-glow]="message.isT3">{{message.displayName}}
                             <a *ngIf="message.platform === 'twitch'" style="color: white;">:</a>
                         </span>
 
