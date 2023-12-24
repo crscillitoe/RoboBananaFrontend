@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import { BotConnectorService } from '../services/bot-connector.service';
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-team-logo',
@@ -7,16 +8,20 @@ import { BotConnectorService } from '../services/bot-connector.service';
   styleUrls: ['./team-logo.component.scss']
 })
 export class TeamLogoComponent implements OnInit {
-  constructor(private botService: BotConnectorService) {}
 
-  team1name: string = "";
-  team2name: string = "";
+  team1name = "";
+  team2name = "";
 
-  team1logo: string = "";
-  team2logo: string = "";
+  team1logo = "";
+  team2logo = "";
+
+  private readonly _botService = inject(BotConnectorService);
+  private readonly _destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.botService.getStream('streamdeck').subscribe(data => {
+    this._botService.getStream('streamdeck').pipe(
+      takeUntilDestroyed(this._destroyRef)
+    ).subscribe(data => {
       if (data.type === "logo") {
         this.team1name = data.team1name;
         this.team2name = data.team2name;

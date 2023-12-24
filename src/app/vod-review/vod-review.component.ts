@@ -2,7 +2,7 @@ import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {BotConnectorService} from '../services/bot-connector.service';
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {COLORS} from "./utility";
+import {COLORS} from "./vod-review.entities";
 
 @Component({
   selector: 'app-vod-review',

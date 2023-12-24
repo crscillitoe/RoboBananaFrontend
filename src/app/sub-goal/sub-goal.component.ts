@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { getBaseStreamURL } from '../utility';
-import { Howl } from 'howler';
-import { animate, style, transition, trigger } from '@angular/animations';
-import { BotConnectorService } from '../services/bot-connector.service';
-import { ThemeService } from '../services/theme.service';
-import { SystemMessageService } from '../services/system-message.service';
+import {Component, inject, OnInit} from '@angular/core';
+import {Howl} from 'howler';
+import {animate, style, transition, trigger} from '@angular/animations';
+import {BotConnectorService} from '../services/bot-connector.service';
+import {ThemeService} from '../services/theme.service';
 
 @Component({
   selector: 'app-sub-goal',
@@ -13,8 +11,8 @@ import { SystemMessageService } from '../services/system-message.service';
   animations: [
     trigger('slideUp', [
       transition(':enter', [
-          style({'padding-top': '154px'}),
-          animate('1s ease-out', style({'padding-top': '0px'}))
+        style({'padding-top': '154px'}),
+        animate('1s ease-out', style({'padding-top': '0px'}))
       ]),
 
       transition(':leave',
@@ -31,24 +29,25 @@ export class SubGoalComponent implements OnInit {
   total: number = 1000;
   goal: number = 2000;
 
-  displaySub: boolean = false;
-  subMessage: string = "THANK YOU WOOHOOJIN FOR THE T3 I REALLY APPRECIATE IT DUDE GOOD LOOKS NICE JOB YOU'RE A KING";
-  subHowl: Howl;
+  displaySub = false;
+  subMessage = "THANK YOU WOOHOOJIN FOR THE T3 I REALLY APPRECIATE IT DUDE GOOD LOOKS NICE JOB YOU'RE A KING";
+  subHowl!: Howl;
   lastTimeout: NodeJS.Timeout | undefined;
 
-  constructor(private systemMessageService: SystemMessageService, private botService: BotConnectorService, public themeService: ThemeService) {
-    this.subHowl = new Howl({
-      src: ["assets/ChossBoss.wav"],
-      autoplay: false,
-      loop: false
-    });
-  }
+  botService = inject(BotConnectorService);
+  themeService = inject(ThemeService);
 
   getPercentage() {
     return (this.total / this.goal) * 100;
   }
 
   ngOnInit(): void {
+    this.subHowl = new Howl({
+      src: ["assets/ChossBoss.wav"],
+      autoplay: false,
+      loop: false
+    });
+
     this.botService.getStream("subs").subscribe(data => {
       if (this.lastTimeout) {
         clearTimeout(this.lastTimeout);

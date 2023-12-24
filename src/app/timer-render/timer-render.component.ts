@@ -1,29 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { getBaseStreamURL } from '../utility';
 
-
-type TimerDirection = "inc" | "dec";
+export type TimerDirection = "inc" | "dec";
 
 @Component({
   selector: 'app-timer-render',
   templateUrl: './timer-render.component.html',
   styleUrls: ['./timer-render.component.scss']
 })
+
 export class TimerRenderComponent implements OnInit {
-
-  predictionTimer: string = "00:00"
+  predictionTimer = "00:00"
   timerInterval: NodeJS.Timer | undefined;
-
-  constructor() { }
 
   ngOnInit(): void {
     const streamURL = getBaseStreamURL() + "?channel=timer"
-    var source = new EventSource(streamURL);
+    let source = new EventSource(streamURL);
+
     source.addEventListener('open', (e) => {
       console.log("The connection has been established.");
     });
+
     source.addEventListener('publish', (event) => {
-      var data = JSON.parse(event.data);
+      let data = JSON.parse(event.data);
       console.log(data);
       clearInterval(this.timerInterval);
       this.startTimer(data.time, data.direction);
@@ -77,11 +76,10 @@ export class TimerRenderComponent implements OnInit {
       decrementTimer();
       this.timerInterval = setInterval(decrementTimer, 1000);
     }
-    else { // timer counts up
+    else {
       timer = 0;
       incrementTimer();
       this.timerInterval = setInterval(incrementTimer, 1000);
     }
-
   }
 }

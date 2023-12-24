@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
-import { getBaseStreamURL } from '../utility';
-import { environment } from 'src/environments/environment';
+import {Injectable} from '@angular/core';
+import {ReplaySubject} from 'rxjs';
+import {getBaseStreamURL} from '../utility';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'

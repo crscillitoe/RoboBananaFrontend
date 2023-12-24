@@ -1,11 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {BotConnectorService} from '../services/bot-connector.service';
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {map, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-poll-render',
   templateUrl: './poll-render.component.html',
   styleUrls: ['./poll-render.component.scss']
 })
+
 export class PollRenderComponent implements OnInit {
   title = "Who's the best valorant gamer?";
   options = ["JeyG", "Dopai", "Woohoojin", "Penflash"];
@@ -16,8 +19,8 @@ export class PollRenderComponent implements OnInit {
   whoVoted: Set<number> = new Set<number>();
   votes: Map<number, Set<number>> = new Map<number, Set<number>>();
 
-  constructor(private botService: BotConnectorService) {
-  }
+  private readonly _botService = inject(BotConnectorService);
+  private readonly _destroyRef = inject(DestroyRef);
 
   getBarWidth(barID: number) {
     if (this.totalVotes === 0) {
@@ -54,28 +57,29 @@ export class PollRenderComponent implements OnInit {
   ngOnInit(): void {
     this.resetStuff();
 
-    this.botService.getStream("polls").subscribe(data => {
-      clearInterval(this.timerInterval);
-      this.title = data.title;
-      this.options = data.options;
-      this.timeLeft = 60;
-      this.resetStuff();
-      this.startTimer();
-      console.log(data);
-    });
+    this._botService.getStream('polls').pipe(
+      switchMap((data) => {
 
-    this.botService.getStream("chat-message").subscribe(data => {
-      // if they typed 1, vote for 1, 2 for 2, etc.
-      if (data.content === "1" || data.content === "2" || data.content === "3" || data.content === "4") {
-        this.processVote(data.author_id, parseInt(data.content));
-      }
-    });
+        this.title = data.title;
+        this.options = data.options;
+        this.timeLeft = 60;
+        this.resetStuff();
+        this.startTimer();
+
+        return this._botService.getStream('chat-message').pipe(
+          map((data) => {
+            if (data.content.includes(["1", "2", "3", "4"])) {
+              this.processVote(data.author_id, parseInt(data.content));
+            }
+          })
+        )
+      })
+    ).subscribe();
   }
 
   private startTimer() {
     const now = new Date();
     const later = now.getTime() + 60000;
-
 
     let timer = Math.round((later - now.getTime()) / 1000);
 
