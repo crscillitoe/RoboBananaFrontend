@@ -36,6 +36,8 @@ import { PrerollVideoComponent } from './dynamic-overlay/preroll-video/preroll-v
 import { HideableComponent } from './dynamic-overlay/hideable/hideable.component';
 import { ChatWrapperComponent } from './dynamic-overlay/chat-wrapper/chat-wrapper.component';
 import { ConnectFourComponent } from './connect-four/connect-four.component';
+import { TeamLogoComponent } from './team-logo/team-logo.component';
+import { AnimationComponent } from './animation/animation.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { ConnectFourComponent } from './connect-four/connect-four.component';
     PrerollVideoComponent,
     HideableComponent,
     ChatWrapperComponent,
-    ConnectFourComponent
+    ConnectFourComponent,
+    TeamLogoComponent,
+    AnimationComponent
   ],
   imports: [
     BrowserModule,

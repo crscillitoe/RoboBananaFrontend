@@ -1,0 +1,19 @@
+<ng-container *ngIf="team1name !== '' && team2name !== ''">
+    <div class="team-logo-container">
+        <div class="team-container">
+            <img *ngIf="team1logo !== ''" class="team-logo" src="{{team1logo}}" />
+
+            <div class="team-name">
+                {{team1name}}
+            </div>
+        </div>
+
+        <div class="team-container">
+            <img *ngIf="team2logo !== ''" class="team-logo" src="{{team2logo}}" />
+
+            <div class="team-name">
+                {{team2name}}
+            </div>
+        </div>
+    </div>
+</ng-container>

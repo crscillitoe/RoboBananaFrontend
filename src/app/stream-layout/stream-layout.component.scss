@@ -3,11 +3,28 @@ div.outer-container {
     width: 1920px;
 }
 
+app-animation {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1920px;
+    height: 1080px;
+    z-index: 5000;
+}
+
 app-banana {
     position: absolute;
     bottom: 0px;
     right: 550px;
     z-index: 5000;
+}
+
+app-team-logo {
+    position: absolute;
+    top: 81px;
+    left: 870px;
+    width: 456px;
+    z-index: 100;
 }
 
 app-ads {
