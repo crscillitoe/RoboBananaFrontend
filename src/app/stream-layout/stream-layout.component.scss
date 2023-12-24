@@ -6,9 +6,10 @@ div.outer-container {
 app-animation {
     position: absolute;
     top: 0px;
-    left: 0px;
+    // Centered on capture card, not the screen
+    left: 273px;
     width: 1920px;
-    height: 1080px;
+    height: 927px;
     z-index: 5000;
 }
 
