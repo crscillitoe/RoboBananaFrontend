@@ -58,6 +58,7 @@ export class PollRenderComponent implements OnInit {
     this.resetStuff();
 
     this._botService.getStream('polls').pipe(
+      takeUntilDestroyed(this._destroyRef),
       switchMap((data) => {
 
         this.title = data.title;

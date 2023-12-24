@@ -2,6 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {PredictionSummary} from '../types/predictionSummary';
 import {BotConnectorService} from '../services/bot-connector.service';
 import {ThemeService} from '../services/theme.service';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-prediction-render',
