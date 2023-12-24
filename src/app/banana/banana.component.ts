@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import * as vad from 'voice-activity-detection';
 
 
@@ -24,12 +24,12 @@ export class BananaComponent implements OnInit {
    *
    *  https://obsproject.com/forum/threads/browser-source-doesnt-allow-microphone-consent-dialogs.80260/
    */
-  speaking: boolean = false;
+  speaking = false;
   timeout: NodeJS.Timeout = setTimeout(() => {});
+  quiet = 0;
+  state = 'idle';
 
-  quiet: number = 0;
-
-  state: string = 'idle';
+  private _cdr = inject(ChangeDetectorRef);
   ngOnInit() {
     const debounce = (func: Function, delay: number) => {
       let debounceTimer: NodeJS.Timeout;
@@ -62,21 +62,18 @@ export class BananaComponent implements OnInit {
           if (val > 0.1) {
             this.speaking = true;
             this.state = 'talk';
-            this.cdr.detectChanges();
             this.quiet = 0;
           } else {
             this.quiet++;
             if (this.quiet > 3) {
               this.speaking = false;
               this.state = 'idle';
-              this.cdr.detectChanges();
             }
           }
+          this._cdr.detectChanges();
         },
       });
     });
 
   }
-
-  constructor(private cdr: ChangeDetectorRef) {}
 }

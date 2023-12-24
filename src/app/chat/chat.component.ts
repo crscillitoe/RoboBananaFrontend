@@ -1,27 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { BotConnectorService } from '../services/bot-connector.service';
-import { ActivatedRoute } from '@angular/router';
-import { FieldAdapter } from '../dynamic-overlay/field-adapter';
-import { TwitchEmotesService } from '../services/twitch-emotes.service';
-import { ParseSourceFile } from '@angular/compiler';
-import { SystemMessageService } from '../services/system-message.service';
-
-enum ChatChunkType {
-  TEXT = 0,
-  IMG = 1,
-  MENTION = 2,
-}
-
-interface ChatChunk {
-  type: ChatChunkType;
-  content: string;
-}
-
-interface ChatMessage {
-  chunks: ChatChunk[];
-  textChunkCount: number;
-  imgChunkCount: number;
-}
+import {Component, Input, OnInit} from '@angular/core';
+import {BotConnectorService} from '../services/bot-connector.service';
+import {ActivatedRoute} from '@angular/router';
+import {TwitchEmotesService} from '../services/twitch-emotes.service';
+import {SystemMessageService} from '../services/system-message.service';
+import {ChatChunk, ChatChunkType, ChatMessage} from "./chat.entities";
 
 @Component({
   selector: 'app-chat',
@@ -40,7 +22,8 @@ export class ChatComponent implements OnInit {
   vod_reviewee_id?: number;
   previous_message_author_id: number = -1;
 
-  constructor(private botService: BotConnectorService, private route: ActivatedRoute, private twitchEmotesService: TwitchEmotesService, private systemMessageService: SystemMessageService) { }
+  constructor(private botService: BotConnectorService, private route: ActivatedRoute, private twitchEmotesService: TwitchEmotesService, private systemMessageService: SystemMessageService) {
+  }
 
   @Input() height?: string | null;
   @Input() width?: string | null;
@@ -119,7 +102,9 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  processEmoijs(messageContent: string, emojiContent: { [key: string]: string }[], platform: "twitch" | "discord"): ChatMessage {
+  processEmoijs(messageContent: string, emojiContent: {
+    [key: string]: string
+  }[], platform: "twitch" | "discord"): ChatMessage {
     const chatChunks: ChatChunk[] = [];
     const emojiMap = new Map<string, string>();
 
@@ -249,5 +234,4 @@ export class ChatComponent implements OnInit {
   public get ChatChunkType() {
     return ChatChunkType;
   }
-
 }

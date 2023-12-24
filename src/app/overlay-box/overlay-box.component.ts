@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class OverlayBoxComponent implements OnInit {
 
-  @Input() imageName: string = "";
+  @Input() imageName = "";
 
   constructor() { }
 

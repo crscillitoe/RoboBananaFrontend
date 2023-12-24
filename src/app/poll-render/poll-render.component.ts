@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { getBaseStreamURL } from '../utility';
-import { BotConnectorService } from '../services/bot-connector.service';
+import {Component, OnInit} from '@angular/core';
+import {BotConnectorService} from '../services/bot-connector.service';
 
 @Component({
   selector: 'app-poll-render',
@@ -8,19 +7,17 @@ import { BotConnectorService } from '../services/bot-connector.service';
   styleUrls: ['./poll-render.component.scss']
 })
 export class PollRenderComponent implements OnInit {
-  title: string = "Who's the best valorant gamer?";
-  options: string[] = ["JeyG", "Dopai", "Woohoojin", "Penflash"];
-  timeLeft: number = 0;
-
-  predictionTimer: string = "1:00"
-  totalVotes: number = 0;
-
+  title = "Who's the best valorant gamer?";
+  options = ["JeyG", "Dopai", "Woohoojin", "Penflash"];
+  timeLeft = 0;
+  predictionTimer = "1:00"
+  totalVotes = 0;
   timerInterval: NodeJS.Timer | undefined;
-
   whoVoted: Set<number> = new Set<number>();
   votes: Map<number, Set<number>> = new Map<number, Set<number>>();
 
-  constructor(private botService: BotConnectorService) { }
+  constructor(private botService: BotConnectorService) {
+  }
 
   getBarWidth(barID: number) {
     if (this.totalVotes === 0) {

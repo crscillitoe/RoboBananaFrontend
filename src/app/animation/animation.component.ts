@@ -7,8 +7,8 @@ import { BotConnectorService } from '../services/bot-connector.service';
   styleUrls: ['./animation.component.scss']
 })
 export class AnimationComponent implements OnInit {
-  display: boolean = false;
-  source: string = "";
+  display = false;
+  source = "";
 
   constructor(private botService: BotConnectorService) { }
 

@@ -1,22 +1,24 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-cool-icon',
   templateUrl: './cool-icon.component.html',
   styleUrls: ['./cool-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoolIconComponent implements OnInit, AfterViewInit {
 
+  @Input()
+  iconName = '';
+
+  @ViewChild('iconImage')
+  iconImage!: ElementRef;
+
+  imageAsset = '';
   HALF_BAR_WIDTH = 433 / 2;
   HALF_ICON_WIDTH = 10;
   MAX_SKEW_X = 200;
   MAX_SKEW_Y = 20;
-  @Input() iconName = '';
-  public imageAsset = '';
-
-  @ViewChild('iconImage') iconImage!: ElementRef;
-
-  constructor() { }
 
   ngOnInit(): void {
     if (this.iconName === '') return;
