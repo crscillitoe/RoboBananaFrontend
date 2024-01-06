@@ -19,6 +19,8 @@ export class AiChatInteractorComponent implements OnInit {
 
   pendingMessages: string[] = [];
 
+  hiddenTalking: boolean = false;
+
   talkingImg: string = "";
   waitingImg: string = "";
 
@@ -37,7 +39,12 @@ export class AiChatInteractorComponent implements OnInit {
   }
 
   chatLoop() {
-    if (this.pendingMessages.length > 0 && !this.isTalking && this.enabled) {
+    if (this.pendingMessages.length > 0 && !this.isTalking && this.enabled && !this.hiddenTalking) {
+      this.hiddenTalking = true;
+      setTimeout(() => {
+        this.hiddenTalking = false;
+      }, 15000);
+
       // Pick random message
       const randomMessage = this.pendingMessages[Math.floor(Math.random() * this.pendingMessages.length)];
       this.pendingMessages = [];
@@ -106,6 +113,7 @@ export class AiChatInteractorComponent implements OnInit {
               // when the audio ends, set talking to false
               this.audio.onended = () => {
                 this.isTalking = false;
+                this.hiddenTalking = false;
               }
             },
             error: (error) => {
