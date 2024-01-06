@@ -9,7 +9,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./ai-chat-interactor.component.scss']
 })
 export class AiChatInteractorComponent implements OnInit {
-  CONSTANT_PROMPTS = [];
+  SYSTEM_PROMPTS = [];
+  USER_PROMPTS = [];
 
   OPEN_AI_KEY: string = "";
   ELEVENLABS_KEY: string = "";
@@ -40,10 +41,16 @@ export class AiChatInteractorComponent implements OnInit {
       this.http.post("https://api.openai.com/v1/chat/completions", {
         model: "gpt-3.5-turbo",
         messages: [
-          ...this.CONSTANT_PROMPTS.map((prompt) => {
+          ...this.SYSTEM_PROMPTS.map((prompt) => {
             return {
               content: prompt,
               role: "system"
+            }
+          }),
+          ...this.USER_PROMPTS.map((prompt) => {
+            return {
+              content: prompt,
+              role: "user"
             }
           }),
           {
@@ -136,7 +143,8 @@ export class AiChatInteractorComponent implements OnInit {
         this.name = data.value.name;
         this.requireMentionToReply = data.value.require_mention_to_reply;
 
-        this.CONSTANT_PROMPTS = data.value.prompts;
+        this.SYSTEM_PROMPTS = data.value.system_prompts;
+        this.USER_PROMPTS = data.value.user_prompts;
       }
     });
 
