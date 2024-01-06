@@ -40,10 +40,8 @@ export class AiChatInteractorComponent implements OnInit {
 
   chatLoop() {
     if (this.pendingMessages.length > 0 && !this.isTalking && this.enabled && !this.hiddenTalking) {
+      // Flag to future calls that we are currently processing a message. This will prevent multiple messages from being sent at once
       this.hiddenTalking = true;
-      setTimeout(() => {
-        this.hiddenTalking = false;
-      }, 60000);
 
       // Pick random message
       const randomMessage = this.pendingMessages[Math.floor(Math.random() * this.pendingMessages.length)];
@@ -117,10 +115,16 @@ export class AiChatInteractorComponent implements OnInit {
               }
             },
             error: (error) => {
-              console.error('Error:', error);
+              this.isTalking = false;
+              this.hiddenTalking = false;
             }
           });
-      });
+      },
+      (error: any) => {
+          this.isTalking = false;
+          this.hiddenTalking = false;
+        }
+      );
 
     }
 
