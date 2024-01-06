@@ -38,6 +38,7 @@ import { ChatWrapperComponent } from './dynamic-overlay/chat-wrapper/chat-wrappe
 import { ConnectFourComponent } from './connect-four/connect-four.component';
 import { TeamLogoComponent } from './team-logo/team-logo.component';
 import { AnimationComponent } from './animation/animation.component';
+import { AiChatInteractorComponent } from './ai-chat-interactor/ai-chat-interactor.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { AnimationComponent } from './animation/animation.component';
     ChatWrapperComponent,
     ConnectFourComponent,
     TeamLogoComponent,
-    AnimationComponent
+    AnimationComponent,
+    AiChatInteractorComponent
   ],
   imports: [
     BrowserModule,

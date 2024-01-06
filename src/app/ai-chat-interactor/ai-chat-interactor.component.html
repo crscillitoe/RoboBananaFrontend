@@ -1,0 +1,9 @@
+<ng-container *ngIf="enabled">
+    <ng-container *ngIf="isTalking">
+        <img class="ai" [src]="talkingImg" />
+    </ng-container>
+
+    <ng-container *ngIf="!isTalking">
+        <img class="ai" [src]="waitingImg" />
+    </ng-container>
+</ng-container>

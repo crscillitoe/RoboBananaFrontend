@@ -3,6 +3,15 @@ div.outer-container {
     width: 1920px;
 }
 
+app-ai-chat-interactor {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1920px;
+    height: 1080px;
+    z-index: 5001;
+}
+
 app-animation {
     position: absolute;
     top: 0px;
