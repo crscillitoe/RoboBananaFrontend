@@ -50,7 +50,8 @@ export class AiChatInteractorComponent implements OnInit {
             content: randomMessage,
             role: "user"
           }
-        ]
+        ],
+        max_tokens: 100
       }, {
         headers: {
           "Authorization": `Bearer ${this.OPEN_AI_KEY}`
