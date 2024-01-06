@@ -15,10 +15,14 @@ export class AiChatInteractorComponent implements OnInit {
   OPEN_AI_KEY: string = "";
   ELEVENLABS_KEY: string = "";
 
+  VOICE_ID: string = "";
+
   pendingMessages: string[] = [];
 
   talkingImg: string = "";
   waitingImg: string = "";
+
+  style: number = 0;
 
   name: string = "";
   requireMentionToReply: boolean = true;
@@ -68,7 +72,7 @@ export class AiChatInteractorComponent implements OnInit {
         const tts = randomMessage + " ... " + repsonse;
 
         // Now we call elevenlabs
-        const ttsURL = `https://api.elevenlabs.io/v1/text-to-speech/knrPHWnBmmDHMoiMeP3l`;
+        const ttsURL = `https://api.elevenlabs.io/v1/text-to-speech/${this.VOICE_ID}`;
 
         const headers = {
           accept: 'audio/mpeg',
@@ -76,13 +80,15 @@ export class AiChatInteractorComponent implements OnInit {
           'xi-api-key': this.ELEVENLABS_KEY,
         };
 
+        const model = this.style === 0 ? "eleven_turbo_v2" : "eleven_multilingual_v2";
+
         const request = {
           "text": tts,
-          "model_id": "eleven_turbo_v2",
+          "model_id": model,
           "voice_settings": { //defaults specific to voiceId
             "stability": 0.5,
             "similarity_boost": 0.75,
-            "style": 0,
+            "style": this.style,
             "use_speaker_boost": true
           }
         };
@@ -109,6 +115,9 @@ export class AiChatInteractorComponent implements OnInit {
       });
 
     }
+
+    // Just in case, let's avoid memory leaks
+    if (this.pendingMessages.length > 100) this.pendingMessages = [];
 
     setTimeout(() => {
       this.chatLoop();
@@ -137,12 +146,17 @@ export class AiChatInteractorComponent implements OnInit {
         this.enabled = data.value.enabled;
         if (!this.enabled) return;
 
+        this.pendingMessages = [];
+
         this.talkingImg = data.value.talking_image;
         this.waitingImg = data.value.waiting_image;
+
+        this.style = data.value.style;
 
         this.name = data.value.name;
         this.requireMentionToReply = data.value.require_mention_to_reply;
 
+        this.VOICE_ID = data.value.voice_id;
         this.SYSTEM_PROMPTS = data.value.system_prompts;
         this.USER_PROMPTS = data.value.user_prompts;
       }
@@ -150,6 +164,9 @@ export class AiChatInteractorComponent implements OnInit {
 
     this.botService.getStream("chat-message").subscribe((data) => {
       const message = data.content;
+
+      // Return early if bot is not enabled
+      if (!this.enabled) return;
 
       // Return early if message doesnt contain our name and we require mention to reply
       if (this.requireMentionToReply && !message.toLowerCase().includes(this.name.toLowerCase())) return;
