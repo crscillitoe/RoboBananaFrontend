@@ -93,15 +93,15 @@ export class ChatComponent implements OnInit {
         if (!data.enabled) {
           this.splitChat = false;
 
-          const team1Messages: any[] = this.messageContainers[0].messages.slice(0, 10);
-          const team2Messages: any[] = this.messageContainers[1].messages.slice(0, 10);
+          // const team1Messages: any[] = this.messageContainers[0].messages.slice(0, 10);
+          // const team2Messages: any[] = this.messageContainers[1].messages.slice(0, 10);
 
-          // Combine the two arrays into one
-          const bothTeamMessages: any[] = team1Messages.map((item, index) => [item, team2Messages[index]]).flat();
+          // // Combine the two arrays into one
+          // const bothTeamMessages: any[] = team1Messages.map((item, index) => [item, team2Messages[index]]).flat();
 
           this.messageContainers = [
             {
-              messages: bothTeamMessages,
+              messages: [],
             },
           ];
 

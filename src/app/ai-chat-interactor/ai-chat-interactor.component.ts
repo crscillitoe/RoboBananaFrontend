@@ -3,6 +3,7 @@ import { BotConnectorService } from '../services/bot-connector.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ChatProcessorService } from '../services/chat-processor.service';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 interface PendingMessage {
   message: string;
@@ -14,7 +15,19 @@ interface PendingMessage {
 @Component({
   selector: 'app-ai-chat-interactor',
   templateUrl: './ai-chat-interactor.component.html',
-  styleUrls: ['./ai-chat-interactor.component.scss']
+  styleUrls: ['./ai-chat-interactor.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+          style({'opacity': '0%'}),
+          animate('1s ease-out', style({'opacity': '100%'}))
+      ]),
+
+      transition(':leave',
+        animate('1s ease-out', style({'opacity': '0%'}))
+      )
+    ])
+  ]
 })
 export class AiChatInteractorComponent implements OnInit {
   SYSTEM_PROMPTS = [];
@@ -136,6 +149,7 @@ export class AiChatInteractorComponent implements OnInit {
               const url = URL.createObjectURL(blob);
               this.audio.src = url;
               this.audio.play();
+
               this.isTalking = true;
               this.currentMessage = randomMessage.processedMessage;
 

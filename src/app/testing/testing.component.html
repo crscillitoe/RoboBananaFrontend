@@ -1,4 +1,19 @@
-<app-sub-goal style="position: absolute; top:584px; left: 50px;">
-</app-sub-goal>
+<app-stream-layout></app-stream-layout>
 
-<app-prediction-render style="position: absolute; top:500px; left: 500px;"></app-prediction-render>
+<div class="test-controls">
+    <div class="horizontal">
+        <textarea width="500" height="500" [(ngModel)]="userInputJson"></textarea>
+        <div class="button-controls">
+            <button (click)="sendEvent()">Send Event</button>
+        </div>
+    </div>
+
+</div>
+
+<div class="other-buttons">
+    <button (click)="startPrediction()">Start Prediction</button>
+    <button (click)="endPrediction()">End Prediction</button>
+    <button (click)="startPoll()">Start Poll</button>
+    <button (click)="endPoll()">End Poll</button>
+    <button (click)="sendSubscription()">Send Test Subscription</button>
+</div>

@@ -8,6 +8,6 @@
     </ng-container>
 
     <ng-container *ngIf="currentMessage != null">
-        <app-chat-message class="ai-message" [message]="currentMessage"></app-chat-message>
+        <app-chat-message [@fadeIn] class="ai-message" [message]="currentMessage"></app-chat-message>
     </ng-container>
 </ng-container>

@@ -141,6 +141,13 @@ export class BotConnectorService {
   getStream(name: StreamName): ReplaySubject<any> {
     return this.streams.get(name)!;
   }
+
+  /**
+   * Sends data to the given eventstream.
+   */
+  sendToStream(name: StreamName, data: any) {
+    this.streams.get(name)!.next(data);
+  }
 }
 
 const RankNames = new Set(["Radiant", "Immortal", "Ascendant", "Diamond", "Platinum", "Gold", "Silver", "Bronze", "Iron"]);

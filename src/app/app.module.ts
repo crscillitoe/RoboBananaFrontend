@@ -40,6 +40,7 @@ import { TeamLogoComponent } from './team-logo/team-logo.component';
 import { AnimationComponent } from './animation/animation.component';
 import { AiChatInteractorComponent } from './ai-chat-interactor/ai-chat-interactor.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule
   ],
   exports: [

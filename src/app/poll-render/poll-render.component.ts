@@ -58,6 +58,12 @@ export class PollRenderComponent implements OnInit {
     this.resetStuff();
 
     this.botService.getStream("polls").subscribe(data => {
+      if (data.enabled === false) {
+        this.timeLeft = 0;
+        clearInterval(this.timerInterval);
+        return;
+      }
+
       clearInterval(this.timerInterval);
       this.title = data.title;
       this.options = data.options;
