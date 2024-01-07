@@ -87,7 +87,7 @@ export class AiChatInteractorComponent implements OnInit {
       }
 
       this.http.post("https://api.openai.com/v1/chat/completions", {
-        model: "gpt-3.5-turbo",
+        model: "gpt-4-1106-preview",
         messages: [
           ...this.SYSTEM_PROMPTS.map((prompt) => {
             return {
