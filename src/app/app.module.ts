@@ -39,6 +39,7 @@ import { ConnectFourComponent } from './connect-four/connect-four.component';
 import { TeamLogoComponent } from './team-logo/team-logo.component';
 import { AnimationComponent } from './animation/animation.component';
 import { AiChatInteractorComponent } from './ai-chat-interactor/ai-chat-interactor.component';
+import { ChatMessageComponent } from './chat-message/chat-message.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { AiChatInteractorComponent } from './ai-chat-interactor/ai-chat-interact
     ConnectFourComponent,
     TeamLogoComponent,
     AnimationComponent,
-    AiChatInteractorComponent
+    AiChatInteractorComponent,
+    ChatMessageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,205 @@
+.render-reverse-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    isolation: isolate;
+    overflow-y: hidden;
+}
+
+.platform-image {
+    width: 20px;
+    padding-right: 10px;
+}
+
+.rank-image {
+    width: 20px;
+    padding-left: 3px;
+}
+
+.t3-glow {
+    // bold
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+}
+
+.badge-padding {
+    padding-left: 10px;
+}
+
+.display-name {
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: inherit;
+}
+
+.twitch-message {
+    background-color: adjust-color(#1a1a1c);
+    border-radius: 4px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.message.twitch-message::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.message.twitch-message>.message-header {
+    padding-top: 10px;
+}
+
+.message.twitch-message+.twitch-message {
+    border-top: 0;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.message.twitch-message:has(+.twitch-message) {
+    border-bottom: 0;
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.highlighted-message {
+    background-color: adjust-color(#1F1F1F, $lightness: 5%);
+    border: #494949 thin solid;
+    border-radius: 4px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.message.highlighted-message::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    box-shadow: 0 0 5px #494949;
+}
+
+.message.highlighted-message>.message-header {
+    padding-top: 10px;
+}
+
+.message.highlighted-message+.highlighted-message {
+    border-top: 0;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.message.highlighted-message:has(+.highlighted-message) {
+    border-bottom: 0;
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.sticker {
+    width: 230px;
+    padding-top: 5px;
+}
+
+.message-content {
+    padding-bottom: 5px;
+}
+
+.message-header {
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.name-and-badges {
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    display: flex;
+    width: 100%;
+}
+
+.vertical-center {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.message {
+    padding-left: 10px;
+    padding-right: 20px;
+    max-width: 95%;
+    position: relative;
+    text-shadow: 0px 0px 5px black;
+}
+
+.message>.message-header {
+    padding-top: 15px;
+}
+
+.message-text {
+    color: var(--chat-msg);
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.message-mention {
+    background-color: rgb(61, 63, 102);
+    padding: 0 2px;
+    border-radius: 3px;
+    font-weight: 900;
+    word-spacing: -0.1em;
+}
+
+img.message-emoji {
+    vertical-align: bottom;
+}
+
+img.message-emoji:not(.small) {
+    width: 70px;
+}
+
+img.message-emoji.small {
+    height: 18px;
+    display: inline;
+}
+
+.message-chunk {
+    display: inline-block;
+    justify-content: baseline;
+    max-width: 95%;
+}
+
+.message-chunk.pad-left {
+    margin-left: 0.3em;
+}
+
+.chat-container {
+    background-color: #1F1F1F;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}

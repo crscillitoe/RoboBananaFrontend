@@ -1,9 +1,13 @@
-<ng-container *ngIf="enabled">
+<ng-container *ngIf="enabled || testing">
     <ng-container *ngIf="isTalking">
         <img class="ai" [src]="talkingImg" />
     </ng-container>
 
     <ng-container *ngIf="!isTalking">
         <img class="ai" [src]="waitingImg" />
+    </ng-container>
+
+    <ng-container *ngIf="currentMessage != null">
+        <app-chat-message class="ai-message" [message]="currentMessage"></app-chat-message>
     </ng-container>
 </ng-container>

@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { BotConnectorService } from '../services/bot-connector.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ChatProcessorService } from '../services/chat-processor.service';
+
+interface PendingMessage {
+  message: string;
+
+  // Used to render full message data on screen
+  processedMessage: any;
+}
 
 @Component({
   selector: 'app-ai-chat-interactor',
@@ -17,7 +25,7 @@ export class AiChatInteractorComponent implements OnInit {
 
   VOICE_ID: string = "";
 
-  pendingMessages: string[] = [];
+  pendingMessages: PendingMessage[] = [];
 
   hiddenTalking: boolean = false;
 
@@ -29,6 +37,8 @@ export class AiChatInteractorComponent implements OnInit {
   name: string = "";
   requireMentionToReply: boolean = true;
 
+  testing: boolean = false;
+
   enabled: boolean = false;
   isTalking: boolean = false;
 
@@ -36,21 +46,32 @@ export class AiChatInteractorComponent implements OnInit {
   repeatChatterMessage: boolean = true;
   exposeChatterRank: boolean = false;
 
+  currentMessage: any = null;
+
   public audio: HTMLAudioElement;
 
 
-  constructor(private botService: BotConnectorService, private route: ActivatedRoute, private http: HttpClient) {
+  constructor(private chatProcessingService: ChatProcessorService, private botService: BotConnectorService, private route: ActivatedRoute, private http: HttpClient) {
     this.audio = new Audio();
   }
 
   chatLoop() {
-    if (this.pendingMessages.length > 0 && !this.isTalking && this.enabled && !this.hiddenTalking) {
+    if (this.pendingMessages.length > 0 && (this.testing || (!this.isTalking && this.enabled && !this.hiddenTalking))) {
       // Flag to future calls that we are currently processing a message. This will prevent multiple messages from being sent at once
       this.hiddenTalking = true;
 
       // Pick random message
       const randomMessage = this.pendingMessages[Math.floor(Math.random() * this.pendingMessages.length)];
       this.pendingMessages = [];
+
+      if (this.testing) {
+        this.currentMessage = randomMessage.processedMessage;
+        setTimeout(() => {
+          this.chatLoop();
+        }, 1000);
+
+        return;
+      }
 
       this.http.post("https://api.openai.com/v1/chat/completions", {
         model: "gpt-3.5-turbo",
@@ -68,7 +89,7 @@ export class AiChatInteractorComponent implements OnInit {
             }
           }),
           {
-            content: randomMessage,
+            content: randomMessage.message,
             role: "user"
           }
         ],
@@ -81,7 +102,7 @@ export class AiChatInteractorComponent implements OnInit {
         const response = data.choices[0].message.content;
 
         let tts: string = response;
-        const removeDelimiter = randomMessage.split(" ::: ")[1];
+        const removeDelimiter = randomMessage.message.split(" ::: ")[1];
 
         if (this.repeatChatterMessage) tts = removeDelimiter + "..." + response;
 
@@ -116,11 +137,13 @@ export class AiChatInteractorComponent implements OnInit {
               this.audio.src = url;
               this.audio.play();
               this.isTalking = true;
+              this.currentMessage = randomMessage.processedMessage;
 
               // when the audio ends, set talking to false
               this.audio.onended = () => {
                 this.isTalking = false;
                 this.hiddenTalking = false;
+                this.currentMessage = null;
               }
             },
             error: (error) => {
@@ -190,6 +213,15 @@ export class AiChatInteractorComponent implements OnInit {
     this.botService.getStream("chat-message").subscribe((data) => {
       let messageToBot = "";
       const message = data.content;
+      const processed = this.chatProcessingService.processChat(data, -1, -1, 0);
+
+      // Just slap this bad boy on there
+      if (this.testing) {
+        this.pendingMessages.push({
+          message: message,
+          processedMessage: processed
+        });
+      }
 
 
       // Return early if bot is not enabled
@@ -219,7 +251,10 @@ export class AiChatInteractorComponent implements OnInit {
       messageToBot += " ::: ";
 
       messageToBot += message;
-      this.pendingMessages.push(messageToBot);
+      this.pendingMessages.push({
+        message: messageToBot,
+        processedMessage: processed
+      });
     });
   }
 }

@@ -1,0 +1,38 @@
+<div class="message" [class.highlighted-message]="message.highlight === true" [class.twitch-message]="message.platform === 'twitch'">
+    <div *ngIf="message.renderHeader === true" class="message-header">
+        <div class="name-and-badges" [style.color]="message.authorColor">
+            <span class="display-name" [class.t3-glow]="message.isT3">{{message.displayName}}
+                <a *ngIf="message.platform === 'twitch'" style="color: white;">:</a>
+            </span>
+
+            <div class="vertical-center">
+                <img *ngFor="let badgeUrl of message.badges; let i = index" class="rank-image"
+                    [class.badge-padding]="i === 0" src="{{badgeUrl}}" />
+            </div>
+        </div>
+
+
+        <div *ngIf="message.platform === 'twitch'">
+            <img class="platform-image" src="assets/twitch.png"/>
+        </div>
+    </div>
+
+    <div class="message-content">
+        <div class="message-chunk" *ngFor="let chunk of message.chatMessage.chunks; let i = index"
+            [class.pad-left]="i !== 0">
+            <ng-container *ngIf="chunk.type === ChatChunkType.IMG">
+                <img [class.small]="message.chatMessage.textChunkCount > 0 || message.chatMessage.imgChunkCount > 3"
+                    class="message-emoji" src="{{chunk.content}}" />
+            </ng-container>
+            <ng-container *ngIf="chunk.type === ChatChunkType.TEXT">
+                <div class="message-text">{{chunk.content}}</div>
+            </ng-container>
+            <ng-container *ngIf="chunk.type === ChatChunkType.MENTION">
+                <div class="message-text message-mention">{{chunk.content}}</div>
+            </ng-container>
+        </div>
+        <ng-container *ngIf="message.stickerURL != ''">
+            <img class="sticker" src="{{message.stickerURL}}" />
+        </ng-container>
+    </div>
+</div>
