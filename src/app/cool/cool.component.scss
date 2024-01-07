@@ -11,6 +11,12 @@
   background-color: var(--slate) !important;
 }
 
+.team-logo {
+  margin-top: -20px;
+  margin-left: -20px;
+  width: 50px;
+}
+
 .joel {
   margin-top: -55px;
   margin-left: -30px;
@@ -44,4 +50,5 @@
 
 .hose-bar {
   background-color: var(--accent);
+  transition: height 0.2s ease-in-out;
 }

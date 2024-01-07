@@ -1,9 +1,9 @@
 .render-reverse-column {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     isolation: isolate;
+    overflow-y: hidden;
 }
 
 .platform-image {
@@ -149,6 +149,7 @@
     padding-right: 20px;
     max-width: 95%;
     position: relative;
+    text-shadow: 0px 0px 5px black;
 }
 
 .message>.message-header {
@@ -199,4 +200,6 @@ img.message-emoji.small {
     height: 100vh;
     left: 0px;
     position: absolute;
+    display: flex;
+    flex-direction: column;
 }

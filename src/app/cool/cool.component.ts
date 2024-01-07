@@ -69,12 +69,38 @@ export class CoolComponent implements OnInit {
       if (data.type === "meter") {
         this.type = data.value;
       }
+
+      if (data.type === "tvt") {
+        if (!data.enabled) {
+          this.type = "sheesh";
+          return;
+        }
+
+        this.barTypes["tvt"] = {
+          cool: {
+            tokens: data.team1tokens,
+            color: data.team1barColor,
+            image: data.team1logo
+          },
+          uncool: {
+            tokens: data.team2tokens,
+            color: data.team2barColor,
+            image: data.team2logo
+          },
+          swap: true
+        }
+
+        console.log(this.barTypes);
+
+        this.type = "tvt";
+      }
     });
 
     this.botService.getStream("chat-message").subscribe(data => {
       if (data.content.length > 200) return;
+      const message: string = data.content;
 
-      const tokens = data.content.split(" ");
+      const tokens = message.toUpperCase().split(" ");
       const coolTokens: string[] = (this.barTypes[this.type] as any).cool.tokens;
       const uncoolTokens: string[] = (this.barTypes[this.type] as any).uncool.tokens;
 

@@ -1,12 +1,19 @@
 <div>
   <ng-container *ngIf="getBarType().swap">
     <div class="bar">
-        <div class="joel-bar" [style.height.%]="calculateWidth()" [class.blank]="cool <= 50">
+        <div class="joel-bar"
+          [style.backgroundColor]="getBarType().cool.color"
+          [style.height.%]="calculateWidth()"
+        >
+
         </div>
 
-        <div class="hose-bar" [style.height.%]="calculateRemainder()" [class.blank]="cool > 50">
-            <img class="joel" src="{{getBarType().cool.image}}" [class.invisible]="cool <= 50">
-            <img class="hose" src="{{getBarType().uncool.image}}" [class.invisible]="cool > 50">
+        <div class="hose-bar"
+          [style.backgroundColor]="getBarType().uncool.color"
+          [style.height.%]="calculateRemainder()"
+        >
+            <img class="team-logo" src="{{getBarType().cool.image}}" [class.invisible]="cool <= 50">
+            <img class="team-logo" src="{{getBarType().uncool.image}}" [class.invisible]="cool > 50">
         </div>
     </div>
   </ng-container>

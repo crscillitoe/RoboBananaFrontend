@@ -29,6 +29,7 @@ interface ChatMessage {
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
+  @Input() mainChatOverlay: boolean = false;
 
   // 0 == All
   // 1 == NA
@@ -36,7 +37,16 @@ export class ChatComponent implements OnInit {
   @Input() regionCheck: number = 0;
 
   QUEUE_LENGTH: number = 30;
-  messages: any[] = [];
+
+  splitChat: boolean = false;
+
+  messageContainers: MessageContainer[] = [
+    {
+      messages: [],
+    }
+  ];
+
+  // messages: any[] = [];
   vod_reviewee_id?: number;
   previous_message_author_id: number = -1;
 
@@ -55,6 +65,8 @@ export class ChatComponent implements OnInit {
   @Input() position?: string | null;
 
   ngOnInit(): void {
+    if (this.mainChatOverlay) this.listenForWatchParty();
+
     this.botService.getStream("chat-message").subscribe(data => {
       this.processChatStream(data);
     });
@@ -91,6 +103,49 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  listenForWatchParty() {
+    this.botService.getStream("streamdeck").subscribe(data => {
+      if (data.type === "tvt") {
+        if (!data.enabled) {
+          this.splitChat = false;
+
+          const team1Messages: any[] = this.messageContainers[0].messages.slice(0, 10);
+          const team2Messages: any[] = this.messageContainers[1].messages.slice(0, 10);
+
+          // Combine the two arrays into one
+          const bothTeamMessages: any[] = team1Messages.map((item, index) => [item, team2Messages[index]]).flat();
+
+          this.messageContainers = [
+            {
+              messages: bothTeamMessages,
+            },
+          ];
+
+          return;
+        }
+
+        this.splitChat = true;
+
+        this.messageContainers = [
+          {
+            messages: [],
+            teamName: data.team1name,
+            teamLogo: data.team1logo,
+            backgroundColor: data.team1background,
+            barColor: data.team1barColor,
+          },
+          {
+            messages: [],
+            teamName: data.team2name,
+            teamLogo: data.team2logo,
+            backgroundColor: data.team2background,
+            barColor: data.team2barColor,
+          }
+        ];
+      }
+    });
+  }
+
   processChatStream(data: any) {
     if (this.regionCheck !== 0) {
       if (this.regionCheck === 1 && !data.isNA) return;
@@ -113,9 +168,25 @@ export class ChatComponent implements OnInit {
 
     data.chatMessage = chatMessage;
 
-    this.messages.push(data);
-    if (this.messages.length > this.QUEUE_LENGTH) {
-      this.messages.shift();
+    if (this.splitChat) {
+      for (let i = 0; i < this.messageContainers.length; i++) {
+        const name: string = data.displayName;
+        if (name.startsWith('' + this.messageContainers[i].teamName! + ' ')) {
+          // Remove team name from display name
+          data.displayName = name.substring(this.messageContainers[i].teamName!.length + 1);
+
+          this.messageContainers[i].messages.push(data);
+          if (this.messageContainers[i].messages.length > this.QUEUE_LENGTH) {
+            this.messageContainers[i].messages.shift();
+          }
+          return;
+        }
+      }
+    } else {
+      this.messageContainers[0].messages.push(data);
+      if (this.messageContainers[0].messages.length > this.QUEUE_LENGTH) {
+        this.messageContainers[0].messages.shift();
+      }
     }
   }
 
@@ -250,4 +321,12 @@ export class ChatComponent implements OnInit {
     return ChatChunkType;
   }
 
+}
+
+export type MessageContainer = {
+  messages: any[];
+  backgroundColor?: string;
+  teamName?: string;
+  teamLogo?: string;
+  barColor?: string;
 }
