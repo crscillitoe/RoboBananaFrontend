@@ -68,6 +68,7 @@ export class ChatComponent implements OnInit {
     if (this.mainChatOverlay) this.listenForWatchParty();
 
     this.botService.getStream("chat-message").subscribe(data => {
+      console.log(data);
       this.processChatStream(data);
     });
 

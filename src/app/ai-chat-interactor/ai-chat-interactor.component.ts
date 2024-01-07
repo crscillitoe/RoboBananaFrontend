@@ -31,6 +31,11 @@ export class AiChatInteractorComponent implements OnInit {
 
   enabled: boolean = false;
   isTalking: boolean = false;
+
+  exposeChatterName: boolean = false;
+  repeatChatterMessage: boolean = true;
+  exposeChatterRank: boolean = false;
+
   public audio: HTMLAudioElement;
 
 
@@ -73,8 +78,12 @@ export class AiChatInteractorComponent implements OnInit {
           "Authorization": `Bearer ${this.OPEN_AI_KEY}`
         }
       }).subscribe((data: any) => {
-        const repsonse = data.choices[0].message.content;
-        const tts = randomMessage + " ... " + repsonse;
+        const response = data.choices[0].message.content;
+
+        let tts: string = response;
+        const removeDelimiter = randomMessage.split(" ::: ")[1];
+
+        if (this.repeatChatterMessage) tts = removeDelimiter + "..." + response;
 
         // Now we call elevenlabs
         const ttsURL = `https://api.elevenlabs.io/v1/text-to-speech/${this.VOICE_ID}`;
@@ -163,6 +172,10 @@ export class AiChatInteractorComponent implements OnInit {
         this.talkingImg = data.value.talking_image;
         this.waitingImg = data.value.waiting_image;
 
+        this.repeatChatterMessage = data.value.repeat_chatter_message;
+        this.exposeChatterName = data.value.expose_chatter_name;
+        this.exposeChatterRank = data.value.expose_chatter_rank;
+
         this.style = data.value.style;
 
         this.name = data.value.name;
@@ -175,15 +188,38 @@ export class AiChatInteractorComponent implements OnInit {
     });
 
     this.botService.getStream("chat-message").subscribe((data) => {
+      let messageToBot = "";
       const message = data.content;
+
 
       // Return early if bot is not enabled
       if (!this.enabled) return;
 
+      // Chatter being annoying, trying to break delimiter parsing
+      if (message.includes(":::")) return;
+
+      // No emojis.
+      if (message.includes("<")) return;
+
       // Return early if message doesnt contain our name and we require mention to reply
       if (this.requireMentionToReply && !message.toLowerCase().includes(this.name.toLowerCase())) return;
 
-      this.pendingMessages.push(message);
+      if (this.exposeChatterName) {
+        if (data.displayName.includes(":::")) return;
+        messageToBot += "Name - " + data.displayName;
+      }
+
+      if (this.exposeChatterRank) {
+        if (data["rankName"] == undefined) return;
+
+        messageToBot += ", Rank - " + data["rankName"];
+      }
+
+      // Delimiter we will yoink out before reading message back.
+      messageToBot += " ::: ";
+
+      messageToBot += message;
+      this.pendingMessages.push(messageToBot);
     });
   }
 }

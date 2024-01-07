@@ -101,6 +101,7 @@ export class BotConnectorService {
             const roleName: string = role.name;
             const potentialRankName = roleName.split(" ")[0];
             if (RankNames.has(potentialRankName)) {
+              data["rankName"] = roleName;
               rankBadgeUrl = role.icon;
               continue;
             }
