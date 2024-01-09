@@ -1,4 +1,4 @@
-<div class="outer-container">
+<div *ngIf="enabled" class="outer-container">
     <app-chess></app-chess>
     <app-dynamic-overlay></app-dynamic-overlay>
     <!--<app-banana></app-banana>-->
@@ -21,4 +21,9 @@
         <img id="footer" src="{{themeService.getMiddleImage()}}" />
     </ng-container>
     <img id="left" src="{{themeService.getLeftImage()}}" />
+</div>
+
+<div class="disabled" *ngIf="!enabled">
+    OVERLAY DISABLED<br/>
+    NAME: {{getName()}}
 </div>

@@ -185,16 +185,6 @@ export class AiChatInteractorComponent implements OnInit {
   ngOnInit(): void {
     this.chatLoop();
 
-    this.route.queryParams.subscribe((params) => {
-      // print keys of params
-      for (const key in params) {
-        if (Object.prototype.hasOwnProperty.call(params, key)) {
-          const element = params[key];
-          localStorage.setItem(key, element);
-        }
-      }
-    });
-
     this.OPEN_AI_KEY = localStorage.getItem("OpenAIKey") ?? "";
     this.ELEVENLABS_KEY = localStorage.getItem("ElevenLabsKey") ?? "";
 

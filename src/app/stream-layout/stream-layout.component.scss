@@ -3,6 +3,12 @@ div.outer-container {
     width: 1920px;
 }
 
+.disabled {
+    font-size: 50px;
+    color: #ffe400;
+    text-align: center;
+}
+
 app-ai-chat-interactor {
     position: absolute;
     top: 0px;
