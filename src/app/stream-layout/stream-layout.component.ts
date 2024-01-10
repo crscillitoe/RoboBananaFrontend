@@ -28,6 +28,10 @@ export class StreamLayoutComponent implements OnInit {
       if (data.type === "enable") {
         if (data.name === localStorage.getItem("name")) {
           this.enabled = data.value;
+
+          if (!this.enabled) {
+            window.location.reload();
+          }
         }
       }
     });
