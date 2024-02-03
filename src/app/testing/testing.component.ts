@@ -13,12 +13,24 @@ export class TestingComponent implements OnInit {
   pollRunning: boolean = false;
 
 
-  constructor(private botConnectorService: BotConnectorService) { }
+  constructor(private botConnectorService: BotConnectorService) {
+    let name = localStorage.getItem("name");
+    if (name === null) {
+      localStorage.setItem("name", "default");
+      name = "default";
+    }
+
+    this.botConnectorService.sendToStream("streamdeck", {
+      "type": "enable",
+      "name": name,
+      "value": true
+    });
+  }
 
 
 
   sendEvent() {
-    this.botConnectorService.sendToStream("streamdeck", JSON.parse(this.userInputJson));
+   this.botConnectorService.sendToStream("streamdeck", JSON.parse(this.userInputJson));
   }
 
   startPrediction() {
