@@ -1,14 +1,18 @@
-<iframe class="stream"
-    src="https://player.twitch.tv/?channel=woohoojin&parent=new-overlay.woohooj.in"
-    height="1080"
-    width="1920"
-    >
-</iframe>
+<div id="viewer">
+    <iframe id="stream"
+        src="https://player.twitch.tv/?channel=woohoojin&parent=new-overlay.woohooj.in"
+        height="450"
+        width="800"
+        allowfullscreen
+        >
 
-<div class="chat-box">
-    <input [(ngModel)]="message"
-            (keydown.enter)="sendMessage()"
-            type="text"
-            class="chat-input"
-            placeholder="Type Here">
+    </iframe>
+
+    <div (click)="fullscreen()" class="chat-box">
+        <input [(ngModel)]="message"
+                (keydown.enter)="sendMessage()"
+                type="text"
+                class="chat-input"
+                placeholder="Type Here">
+    </div>
 </div>

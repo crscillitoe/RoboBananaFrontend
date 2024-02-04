@@ -1,14 +1,16 @@
 .chat-box {
     background-color: #1F1F1F;
-    width: 275px;
-    height: 74px;
+    width: 14.3vw;
+    height: 6.8vh;
     z-index: 5000;
     position: absolute;
-    top: 852px;
+    top: 78.8%;
     left: 0px;
 
     display: flex;
     justify-content: center;
+
+    pointer-events: auto;
 }
 
 .chat-input {
@@ -21,9 +23,21 @@
     font-weight: 700;
 }
 
-.stream {
+#viewer {
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+#stream {
     z-index: 100;
     position: absolute;
     top: 0;
     left: 0;
+    width: 100vw;
+    height: 100vh;
+    border: 0;
 }

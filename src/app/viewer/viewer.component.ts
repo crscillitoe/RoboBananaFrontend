@@ -12,6 +12,10 @@ export class ViewerComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private discord: DiscordService) {}
 
+  fullscreen() {
+    document.getElementById("viewer")?.requestFullscreen();
+  }
+
   ngOnInit(): void {
     this.route.fragment.subscribe(fragment => {
       const params = new URLSearchParams(fragment!);
@@ -23,6 +27,7 @@ export class ViewerComponent implements OnInit {
 
       this.discord.setAccessToken(accessToken!);
     });
+
   }
 
   sendMessage() {
