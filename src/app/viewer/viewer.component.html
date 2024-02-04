@@ -8,6 +8,14 @@
 
     </iframe>
 
+    <app-chat [mainChatOverlay]="true"
+        width="13.9vw"
+        height="71.9vh"
+        left="0px"
+        bottom="21.1vh"
+        position="absolute">
+    </app-chat>
+
     <div (click)="fullscreen()" class="chat-box">
         <input [(ngModel)]="message"
                 (keydown.enter)="sendMessage()"

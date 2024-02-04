@@ -32,6 +32,16 @@
     height: 100vh;
 }
 
+app-chat {
+    z-index: 1001;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    pointer-events: none;
+}
+
 #stream {
     z-index: 100;
     position: absolute;

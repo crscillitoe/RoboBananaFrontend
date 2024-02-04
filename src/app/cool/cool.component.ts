@@ -19,7 +19,7 @@ export class CoolComponent implements OnInit {
   barTypes: any = {
     "sheesh": {
       cool: {
-        tokens: ["hoojSheesh", "<:hoojSheesh:1076744568818647103>"],
+        tokens: ["hoojSheesh", "<:hoojSheesh:1076744568818647103>", "SHEESH"],
         color: "#FFC700",
         image: "assets/hoojsheesh.png"
       },
