@@ -1,17 +1,48 @@
 .chat-box {
-    background-color: #1F1F1F;
+    background-color: #5f5f52;
     width: 14.3vw;
     height: 6.8vh;
     z-index: 5000;
     position: absolute;
     top: 78.8%;
-    left: 0px;
+    left: -13.3vw;
 
     display: flex;
     justify-content: center;
 
+    transition: left 0.5s;
+
     pointer-events: auto;
 }
+
+#controls {
+    position: absolute;
+    bottom: -9vh;
+    height: 10vh;
+    width: 20vw;
+    left: 40vw;
+
+    z-index: 50000;
+
+    transition: bottom 0.5s;
+
+    display: flex;
+    justify-content: center;
+
+    background-color: #5f5f52;
+}
+
+.control-button {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+#controls:hover {
+    bottom: 0;
+}
+
 
 .chat-input {
     margin-top: 20px;
@@ -21,6 +52,10 @@
 
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
+}
+
+.chat-box:hover {
+    left: 0px;
 }
 
 #viewer {

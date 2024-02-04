@@ -1,12 +1,29 @@
 <div id="viewer">
     <iframe id="stream"
-        src="https://player.twitch.tv/?channel=woohoojin&parent=new-overlay.woohooj.in"
+        [src]="streamSource"
         height="450"
         width="800"
         allowfullscreen
         >
 
     </iframe>
+
+    <div id="controls">
+        <button class="control-button"
+            (click)="fullscreen()">
+            FULLSCREEN
+        </button>
+
+        <button class="control-button"
+            (click)="switchStream('underpeel')">
+            UNDERPEEL
+        </button>
+
+        <button class="control-button"
+            (click)="switchStream('woohoojin')">
+            WOOHOOJIN
+        </button>
+    </div>
 
     <!-- <app-chat [mainChatOverlay]="true"
         width="13.9vw"
@@ -16,7 +33,7 @@
         position="absolute">
     </app-chat> -->
 
-    <div (click)="fullscreen()" class="chat-box">
+    <div class="chat-box">
         <input [(ngModel)]="message"
                 (keydown.enter)="sendMessage()"
                 type="text"
