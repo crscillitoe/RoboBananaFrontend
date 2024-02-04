@@ -41,6 +41,7 @@ import { AnimationComponent } from './animation/animation.component';
 import { AiChatInteractorComponent } from './ai-chat-interactor/ai-chat-interactor.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { FormsModule } from '@angular/forms';
+import { ViewerComponent } from './viewer/viewer.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { FormsModule } from '@angular/forms';
     TeamLogoComponent,
     AnimationComponent,
     AiChatInteractorComponent,
-    ChatMessageComponent
+    ChatMessageComponent,
+    ViewerComponent
   ],
   imports: [
     BrowserModule,

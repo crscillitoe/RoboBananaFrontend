@@ -1,0 +1,29 @@
+.chat-box {
+    background-color: #1F1F1F;
+    width: 275px;
+    height: 74px;
+    z-index: 5000;
+    position: absolute;
+    top: 852px;
+    left: 0px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.chat-input {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #28292A;
+    color: #818488;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.stream {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
