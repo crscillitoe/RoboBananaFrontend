@@ -67,8 +67,12 @@ export class SpotifyComponent implements OnInit {
       if (nowPlaying.item.type == "track") {
         const item = nowPlaying.item as Track; // Needed because TS complains that we might be working with a "Episode" otherwise
 
-        const albumArt = item.album.images.pop(); // Getting the last image from this array will give us the 64x64 version, perfect for our overlay
-        this.albumCoverURL = albumArt ? albumArt.url : "assets/hoojsheesh.png"; // Assume self-composed for local files, which will return no album art
+        if (item.is_local) { // If the file is local, assume self-composed - display a (for now placeholder) hoojSheesh
+          this.albumCoverURL = "assets/hoojsheesh.png";
+        } else {
+          const albumArt = item.album.images.pop(); // Getting the last image from this array will give us the 64x64 version, perfect for our overlay
+          this.albumCoverURL = albumArt ? albumArt.url : "";
+        }
 
         this.songArtist = item.artists[0].name;
         this.songTitle = item.name;
