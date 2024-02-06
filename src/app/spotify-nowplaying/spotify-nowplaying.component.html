@@ -1,0 +1,21 @@
+<div class="spotify-animation" [@slideUp] *ngIf="!complete">
+    <div style="background-image: url('assets/RankBackgrounds/player-vod-bg.png');">
+        <div class="song-display">
+            <div class="album-cover" *ngIf="albumCoverURL !== ''">
+                <img class="rank-image" [src]="albumCoverURL">
+            </div>
+
+            <div class="names">
+                <div class="song-name">
+                    {{songTitle}}
+                </div>
+                <div class="artist-name">
+                    {{songArtist}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="complete">
+</ng-container>

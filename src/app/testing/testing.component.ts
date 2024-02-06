@@ -79,6 +79,22 @@ export class TestingComponent implements OnInit {
     });
   }
 
+  spotifyLogin() {
+    this.botConnectorService.sendToStream("streamdeck", {
+      "type": "spotify",
+      "name": "login",
+      "value": true,
+    })
+  }
+
+  spotifyLogoff() {
+    this.botConnectorService.sendToStream("streamdeck", {
+      "type": "spotify",
+      "name": "logoff",
+      "value": true,
+    })
+  }
+
   ngOnInit(): void {
     this.sendFakeMessageOnTimer();
   }
