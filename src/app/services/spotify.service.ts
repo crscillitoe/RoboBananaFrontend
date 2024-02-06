@@ -11,7 +11,7 @@ export class SpotifyService {
   isAuthenticated: boolean = false;
 
   constructor() {
-    this.sdk = SpotifyApi.prototype;
+    this.sdk = SpotifyApi.withUserAuthorization(environment.spotifyClientID, environment.spotifyRedirectURL, ["user-read-currently-playing"]);
     if (this.sdk.getAccessToken !== null) { // If we have an access token already, don't go through login flow again
       this.isAuthenticated == true;
     }
@@ -25,7 +25,6 @@ export class SpotifyService {
   }
 
   async login() {
-    this.sdk = SpotifyApi.withUserAuthorization(environment.spotifyClientID, environment.spotifyRedirectURL, ["user-read-currently-playing"]);
     const { authenticated } = await this.sdk.authenticate();
 
     if (!authenticated) {
