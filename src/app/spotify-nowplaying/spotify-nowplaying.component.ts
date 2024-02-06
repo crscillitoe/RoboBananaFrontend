@@ -28,8 +28,8 @@ export class SpotifyComponent implements OnInit {
   constructor(private botService: BotConnectorService, private spotifyService: SpotifyService) {
   }
 
-  complete: boolean = true;
-  active: boolean = false;
+  complete: boolean = true; // Whether or not to show the Overlay
+  active: boolean = false; // Whether or not to continue the loop
   albumCoverURL: string = "";
   songTitle: string = "";
   songArtist: string = "";
@@ -41,16 +41,16 @@ export class SpotifyComponent implements OnInit {
           await this.spotifyService.login();
           this.active = true;
           this.nowPlayingLoop();
-        } else if (data.name === "logoff" && data.value == true) {
-          await this.spotifyService.logoff();
-          this.active = false;
+        } else if (data.name === "stop" && data.value == true) {
+          await this.spotifyService.stop();
           this.complete = true;
+          this.active = false;
         }
       }
     });
   }
 
-  async nowPlayingLoop() {
+  async nowPlayingLoop() { // Check for currently playing song every LOOP_INTERVAL millis
     if (this.active) {
       await this.loadNowPlaying();
       setTimeout(() => this.nowPlayingLoop(), LOOP_INTERVAL);
@@ -58,13 +58,14 @@ export class SpotifyComponent implements OnInit {
   }
 
   async loadNowPlaying() {
-    const nowPlaying: PlaybackState | "AuthError" = await this.spotifyService.getNowPlaying();
-    if (nowPlaying == "AuthError") {
+    const nowPlaying: PlaybackState | false = await this.spotifyService.getNowPlaying();
+    if (!nowPlaying) {
       this.complete = true;
+      this.active = false;
       return;
     } else {
       if (nowPlaying.item.type == "track") {
-        const item = nowPlaying.item as Track;
+        const item = nowPlaying.item as Track; // Needed because TS complains that we might be working with a "Episode" otherwise
 
         const albumArt = item.album.images.pop();
         this.albumCoverURL = albumArt ? albumArt.url : "assets/hoojsheesh.png"; // Assume self-composed for local files, which will return no album art

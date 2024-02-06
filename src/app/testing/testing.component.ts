@@ -87,10 +87,10 @@ export class TestingComponent implements OnInit {
     })
   }
 
-  spotifyLogoff() {
+  spotifyStop() {
     this.botConnectorService.sendToStream("streamdeck", {
       "type": "spotify",
-      "name": "logoff",
+      "name": "stop",
       "value": true,
     })
   }

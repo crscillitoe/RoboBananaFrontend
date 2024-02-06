@@ -12,7 +12,7 @@ export class SpotifyService {
 
   constructor() {
     this.sdk = SpotifyApi.prototype;
-    if (this.sdk.getAccessToken !== null) {
+    if (this.sdk.getAccessToken !== null) { // If we have an access token already, don't go through login flow again
       this.isAuthenticated == true;
     }
   }
@@ -21,7 +21,7 @@ export class SpotifyService {
     if (this.isAuthenticated) {
       return this.sdk.player.getCurrentlyPlayingTrack();
     }
-    return "AuthError";
+    return false;
   }
 
   async login() {
@@ -31,12 +31,12 @@ export class SpotifyService {
     if (!authenticated) {
       console.log("Error authenticating with Spotify");
     } else {
-      console.log("Spotify Auth Successful");
+      console.log("Spotify Auth successful");
       this.isAuthenticated = true;
     }
   }
 
-  async logoff() {
+  async stop() {
     this.isAuthenticated = false;
   }
 
