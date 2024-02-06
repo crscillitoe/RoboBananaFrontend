@@ -28,7 +28,7 @@ export class SpotifyComponent implements OnInit {
   constructor(private botService: BotConnectorService, private spotifyService: SpotifyService) {
   }
 
-  complete: boolean = true; // Whether or not to show the Overlay
+  playing: boolean = false; // Whether or not to show the Overlay
   active: boolean = false; // Whether or not to continue the loop
   albumCoverURL: string = "";
   songTitle: string = "";
@@ -43,7 +43,7 @@ export class SpotifyComponent implements OnInit {
           this.nowPlayingLoop();
         } else if (data.name === "stop" && data.value == true) {
           await this.spotifyService.stop();
-          this.complete = true;
+          this.playing = false;
           this.active = false;
         }
       }
@@ -60,7 +60,7 @@ export class SpotifyComponent implements OnInit {
   async loadNowPlaying() {
     const nowPlaying: PlaybackState | false = await this.spotifyService.getNowPlaying();
     if (!nowPlaying || !nowPlaying.is_playing) {
-      this.complete = true;
+      this.playing = false;
       return;
     } else {
       if (nowPlaying.item.type == "track") {
@@ -76,9 +76,9 @@ export class SpotifyComponent implements OnInit {
         this.songArtist = item.artists[0].name;
         this.songTitle = item.name;
 
-        this.complete = false;
+        this.playing = true;
       } else {
-        this.complete = true;
+        this.playing = false;
       }
     }
   }

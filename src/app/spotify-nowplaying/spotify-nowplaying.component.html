@@ -1,4 +1,4 @@
-<div class="spotify-animation" [@slideUp] *ngIf="!complete">
+<div class="spotify-animation" [@slideUp] *ngIf="playing">
     <div style="background-image: url('assets/RankBackgrounds/player-vod-bg.png');">
         <div class="song-display">
             <div class="album-cover" *ngIf="albumCoverURL !== ''">
@@ -17,5 +17,5 @@
     </div>
 </div>
 
-<ng-container *ngIf="complete">
+<ng-container *ngIf="!playing">
 </ng-container>
