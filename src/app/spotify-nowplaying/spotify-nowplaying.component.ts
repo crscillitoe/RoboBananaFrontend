@@ -59,9 +59,8 @@ export class SpotifyComponent implements OnInit {
 
   async loadNowPlaying() {
     const nowPlaying: PlaybackState | false = await this.spotifyService.getNowPlaying();
-    if (!nowPlaying) {
+    if (!nowPlaying || !nowPlaying.is_playing) {
       this.complete = true;
-      this.active = false;
       return;
     } else {
       if (nowPlaying.item.type == "track") {
