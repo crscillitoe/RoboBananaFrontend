@@ -4,7 +4,8 @@ import { SpotifyService } from '../services/spotify.service';
 import { BotConnectorService } from '../services/bot-connector.service';
 import { PlaybackState, Track } from '@spotify/web-api-ts-sdk';
 
-const LOOP_INTERVAL = 5 * 1000; // 5 seconds
+const SONG_UPDATE_LOOP_INTERVAL: number = 5 * 1000; // 5 seconds
+const PROGRESS_UPDATE_LOOP_INTERVAL: number = 1 * 1000; // 1 second
 
 @Component({
   selector: 'app-spotify',
@@ -63,14 +64,14 @@ export class SpotifyComponent implements OnInit {
   async nowPlayingLoop() {
     if (this.active) {
       await this.loadNowPlaying();
-      setTimeout(() => this.nowPlayingLoop(), LOOP_INTERVAL);
+      setTimeout(() => this.nowPlayingLoop(), SONG_UPDATE_LOOP_INTERVAL);
     }
   }
 
   async progressLoop() {
     if (this.active) {
       await this.updateProgress();
-      setTimeout(() => this.progressLoop(), 1000);
+      setTimeout(() => this.progressLoop(), PROGRESS_UPDATE_LOOP_INTERVAL);
     }
   }
 
