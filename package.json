@@ -8,9 +8,9 @@
     "dev": "ng serve --disable-host-check",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "format": "prettier --write \"./src/**/*.{css,html,js.json,ts,tsx}\"",
+    "format": "prettier --write \"./src/app/*.{css,html,js.json,ts,tsx}\" \"./src/environments/*.{css,html,js.json,ts,tsx}\"",
     "lint": "eslint \"./src/app/*.{js,ts,tsx}\" \"./src/environments/*.{js,ts,tsx}\"",
-    "codestyle-check": "prettier --check \"./src/**/*.{css,html,js.json,ts,tsx}\""
+    "codestyle-check": "prettier --check \"./src/app/*.{css,html,js.json,ts,tsx}\" \"./src/environments/*.{css,html,js.json,ts,tsx}\""
   },
   "private": true,
   "dependencies": {
