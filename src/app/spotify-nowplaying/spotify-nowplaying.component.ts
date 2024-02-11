@@ -56,7 +56,8 @@ export class SpotifyComponent implements OnInit {
     });
 
     this.botService.getStream("vod-reviews").subscribe(data => {
-      this.vodReviewActive = !data.complete;
+      // If there is an active VOD Review, don't render Spotify
+      this.vodReviewActive = data.complete ? false : true;
     });
   }
 
