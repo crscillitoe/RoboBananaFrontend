@@ -1,0 +1,54 @@
+.bar {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 8px;
+  height: 776px;
+  background-color: var(--slate);
+}
+
+.blank {
+  background-color: var(--slate) !important;
+}
+
+.team-logo {
+  margin-top: -20px;
+  margin-left: -20px;
+  width: 50px;
+}
+
+.joel {
+  margin-top: -55px;
+  margin-left: -30px;
+  width: 70px;
+}
+
+.invisible {
+  display: none;
+}
+
+.hose {
+  margin-top: -20px;
+  margin-left: -45px;
+  width: 90px;
+}
+
+.sheesh {
+  margin-top: -20px;
+  margin-left: -22px;
+  width: 45px;
+}
+
+.fill-bar {
+  height: 50%;
+}
+
+.joel-bar {
+  background-color: var(--blue-dodger);
+  transition: height 0.2s ease-in-out;
+}
+
+.hose-bar {
+  background-color: var(--accent);
+  transition: height 0.2s ease-in-out;
+}

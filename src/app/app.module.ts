@@ -42,6 +42,9 @@ import { AiChatInteractorComponent } from './ai-chat-interactor/ai-chat-interact
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { FormsModule } from '@angular/forms';
 import { ViewerComponent } from './viewer/viewer.component';
+import { EmotePopupsComponent } from './emote-popups/emote-popups.component';
+import { EmotePopupsDirective } from './emote-popups/emote-popups-directive';
+import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +84,10 @@ import { ViewerComponent } from './viewer/viewer.component';
     AnimationComponent,
     AiChatInteractorComponent,
     ChatMessageComponent,
-    ViewerComponent
+    ViewerComponent,
+    EmotePopupsComponent,
+    EmotePopupsDirective,
+    EmotePopupIconComponent
   ],
   imports: [
     BrowserModule,

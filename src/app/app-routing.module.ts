@@ -12,6 +12,7 @@ import { StreamLayoutComponent } from './stream-layout/stream-layout.component';
 import { ChatComponent } from './chat/chat.component';
 import { ConnectFourComponent } from './connect-four/connect-four.component';
 import { ViewerComponent } from './viewer/viewer.component';
+import { EmotePopupsComponent } from './emote-popups/emote-popups.component';
 
 const routes: Routes = [
     {
@@ -65,6 +66,10 @@ const routes: Routes = [
     {
         path: "viewer",
         component: ViewerComponent
+    },
+    {
+        path: "emote-popups",
+        component: EmotePopupsComponent
     }
 ];
 
