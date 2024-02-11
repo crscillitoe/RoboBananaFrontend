@@ -36,7 +36,7 @@
   /* H3 - Bold */
   text-align: left;
   font-family: 'Montserrat';
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 900;
   line-height: normal;
@@ -52,7 +52,7 @@
   font-variant-numeric: lining-nums tabular-nums;
   /* Label 1 */
   font-family: 'Montserrat';
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -65,4 +65,12 @@
   position: absolute;
   right: 10px;
   top: 5px;
+}
+
+.song-progress {
+  position: absolute;
+  width: 0%;
+  height: 5px;
+  background-color: #1BD760;
+  bottom: 0;
 }

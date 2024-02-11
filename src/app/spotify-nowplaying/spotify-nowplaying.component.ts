@@ -33,6 +33,9 @@ export class SpotifyComponent implements OnInit {
   albumCoverURL: string = "";
   songTitle: string = "";
   songArtist: string = "";
+  songDuration: number = 0;
+  songEndTime: number = 0;
+  songProgressPercent: string = "50%";
 
   ngOnInit(): void {
     this.botService.getStream("streamdeck").subscribe(async data => {
@@ -41,6 +44,7 @@ export class SpotifyComponent implements OnInit {
           await this.spotifyService.login();
           this.active = true;
           this.nowPlayingLoop();
+          this.progressLoop();
         } else if (data.name === "stop" && data.value == true) {
           await this.spotifyService.stop();
           this.playing = false;
@@ -50,10 +54,18 @@ export class SpotifyComponent implements OnInit {
     });
   }
 
-  async nowPlayingLoop() { // Check for currently playing song every LOOP_INTERVAL millis
+  // Check for currently playing song every LOOP_INTERVAL millis
+  async nowPlayingLoop() {
     if (this.active) {
       await this.loadNowPlaying();
       setTimeout(() => this.nowPlayingLoop(), LOOP_INTERVAL);
+    }
+  }
+
+  async progressLoop() {
+    if (this.active) {
+      await this.updateProgress();
+      setTimeout(() => this.progressLoop(), 1000);
     }
   }
 
@@ -64,23 +76,33 @@ export class SpotifyComponent implements OnInit {
       return;
     } else {
       if (nowPlaying.item.type == "track") {
-        const item = nowPlaying.item as Track; // Needed because TS complains that we might be working with a "Episode" otherwise
-
-        if (item.is_local) { // If the file is local, assume self-composed - display a (for now placeholder) hoojSheesh
+        // Needed because TS complains that we might be working with a "Episode" otherwise
+        const item = nowPlaying.item as Track;
+        // If the file is local, assume self-composed - display a (for now placeholder) hoojSheesh
+        if (item.is_local) {
           this.albumCoverURL = "assets/hoojsheesh.png";
         } else {
-          const albumArt = item.album.images.pop(); // Getting the last image from this array will give us the 64x64 version, perfect for our overlay
+          // Getting the last image from this array will give us the 64x64 version, perfect for our overlay
+          const albumArt = item.album.images.pop(); 
           this.albumCoverURL = albumArt ? albumArt.url : "";
         }
 
         this.songArtist = item.artists[0].name;
         this.songTitle = item.name;
+        this.songDuration = item.duration_ms;
+
+        this.songEndTime = Date.now() + (item.duration_ms - nowPlaying.progress_ms);
 
         this.playing = true;
       } else {
         this.playing = false;
       }
     }
+  }
+
+  async updateProgress() {
+    const progress = this.songEndTime - Date.now();
+    this.songProgressPercent = `${Math.floor(100 - ((progress / this.songDuration) * 100))}%`;
   }
 
 }

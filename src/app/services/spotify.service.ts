@@ -12,7 +12,8 @@ export class SpotifyService {
 
   constructor() {
     this.sdk = SpotifyApi.withUserAuthorization(environment.spotifyClientID, environment.spotifyRedirectURL, ["user-read-currently-playing"]);
-    if (this.sdk.getAccessToken !== null) { // If we have an access token already, don't go through login flow again
+    // If we have an access token already, don't go through login flow again
+    if (this.sdk.getAccessToken !== null) {
       this.isAuthenticated == true;
     }
   }
