@@ -21,12 +21,12 @@ export class EmotePopupsComponent implements OnInit {
 
       if (data.type === "happy-emotes") {
 
-        // Dynamically create icon component
         const viewContainerRef = this.emotePopupSpace.viewContainerRef;
+        // Dynamically create icon component
         for (let index = 0; index < data.value; index++) {
           const componentRef = viewContainerRef.createComponent<EmotePopupIconComponent>(EmotePopupIconComponent);
           componentRef.instance.iconName = "cool";
-          timer(3200).subscribe(() => {
+          timer(500).subscribe(() => {
             componentRef.destroy();
           })
         }
@@ -39,6 +39,13 @@ export class EmotePopupsComponent implements OnInit {
 
       if (data.content.length > 200) return;
       const message: string = data.content;
+
+      const viewContainerRef = this.emotePopupSpace.viewContainerRef;
+      const componentRef = viewContainerRef.createComponent<EmotePopupIconComponent>(EmotePopupIconComponent);
+      componentRef.instance.iconName = "cool";
+      timer(500).subscribe(() => {
+        componentRef.destroy();
+      })
 
       // const tokens = message.toUpperCase().split(" ");
       // const coolTokens: string[] = (this.barTypes[this.type] as any).cool.tokens;

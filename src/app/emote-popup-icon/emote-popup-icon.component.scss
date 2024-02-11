@@ -2,17 +2,18 @@ img {
     width: 40px;
     height: 40px;
     position: absolute;
+    top: 100%;
     left: var(--left-position-start);
-    top: var(--top-position-start);
-    animation-name: flyOut;
-    animation-duration: 1s;
+    animation-name: jump;
+    animation-duration: 0.5s;
     animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
 }
 
-@keyframes flyOut {
-    to {
-        top: var(--top-position-end);
-        left: var(--left-position-end);
-        opacity: 0;
+@keyframes jump {
+    50% {
+        top: var(--jump-height);
+        animation-timing-function: ease-in;
+        // opacity: 0;
     }
 }
