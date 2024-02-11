@@ -30,6 +30,7 @@ export class SpotifyComponent implements OnInit {
 
   playing: boolean = false; // Whether or not to show the Overlay
   active: boolean = false; // Whether or not to continue the loop
+  vodReviewActive: boolean = false;
   albumCoverURL: string = "";
   songTitle: string = "";
   songArtist: string = "";
@@ -52,6 +53,10 @@ export class SpotifyComponent implements OnInit {
         }
       }
     });
+
+    this.botService.getStream("vod-reviews").subscribe(data => {
+      this.vodReviewActive = !data.complete;
+    });
   }
 
   // Check for currently playing song every LOOP_INTERVAL millis
@@ -70,6 +75,11 @@ export class SpotifyComponent implements OnInit {
   }
 
   async loadNowPlaying() {
+    if (this.vodReviewActive) {
+      this.playing = false;
+      return;
+    }
+
     const nowPlaying: PlaybackState | false = await this.spotifyService.getNowPlaying();
     if (!nowPlaying || !nowPlaying.is_playing) {
       this.playing = false;
