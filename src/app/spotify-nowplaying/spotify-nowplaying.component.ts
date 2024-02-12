@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { trigger, style, transition, animate } from '@angular/animations';
 import { SpotifyService } from '../services/spotify.service';
 import { BotConnectorService } from '../services/bot-connector.service';
@@ -37,7 +37,13 @@ export class SpotifyComponent implements OnInit {
   songArtist: string = "";
   songDuration: number = 0;
   songEndTime: number = 0;
-  songProgressPercent: string = "50%";
+
+  songArtistFontSize = "14px";
+  songProgressPercent: string = "0%";
+  songNameElement: Element | null = null;
+  songNameContainerElement: Element | null = null;
+  // This variable is only needed because we can't yet fetch the above on the very first pass
+  elementsReady: boolean = false;
 
   ngOnInit(): void {
     this.botService.getStream("streamdeck").subscribe(async data => {
@@ -105,9 +111,13 @@ export class SpotifyComponent implements OnInit {
         }
 
         this.songArtist = item.artists[0].name;
-        this.songTitle = item.name;
-        this.songDuration = item.duration_ms;
+        if (this.songArtist == "") this.songArtist = "Woohoojin"; // Assume selfcomposed if no artist
+        this.setArtistDisplayProperties();
 
+        this.songTitle = item.name;
+        if (this.elementsReady) this.updateTextScroll();
+
+        this.songDuration = item.duration_ms;
         this.songEndTime = Date.now() + (item.duration_ms - nowPlaying.progress_ms);
 
         this.playing = true;
@@ -117,9 +127,45 @@ export class SpotifyComponent implements OnInit {
     }
   }
 
+  updateTextScroll() {
+    if (this.elementsReady == false) {
+      this.songNameContainerElement = document.querySelector("#spotify-songNameContainer")!;
+      this.songNameElement = document.querySelector("#spotify-songName")!;
+      this.elementsReady = true;
+    }
+
+    if (this.songNameContainerElement!.clientWidth < this.songNameElement!.clientWidth) {
+      this.songNameElement!.classList.add("animate");
+    } else {
+      this.songNameElement!.classList.remove("animate");
+    }
+
+  }
+
+  setArtistDisplayProperties() {
+    const artistLength = this.songArtist.length;
+    if (artistLength < 14) {
+      this.songArtistFontSize = "18px";
+    } else if (artistLength > 28) { // Anything longer then "StreamBeats by Harris Heller"
+      this.songArtist = this.songArtist.slice(0, 28) + "..";
+      this.songArtistFontSize = "14px";
+    } else {
+      this.songArtistFontSize = "14px";
+    }
+  }
+
   async updateProgress() {
+    if (!this.playing) return;
     const progress = this.songEndTime - Date.now();
-    this.songProgressPercent = `${Math.floor(100 - ((progress / this.songDuration) * 100))}%`;
+    let calc = Math.floor(100 - ((progress / this.songDuration) * 100));
+    // Clamp the width to within 0 and 100 to prevent the bar from over/underflowing
+    if (calc < 0) {
+      calc = 0;
+    } else if (calc > 100) {
+      calc = 100;
+     }
+    this.songProgressPercent = `${calc}%`;
+    this.updateTextScroll();
   }
 
 }
