@@ -42,6 +42,7 @@ import { AiChatInteractorComponent } from './ai-chat-interactor/ai-chat-interact
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { FormsModule } from '@angular/forms';
 import { ViewerComponent } from './viewer/viewer.component';
+import { SpotifyComponent } from './spotify-nowplaying/spotify-nowplaying.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { ViewerComponent } from './viewer/viewer.component';
     AnimationComponent,
     AiChatInteractorComponent,
     ChatMessageComponent,
-    ViewerComponent
+    ViewerComponent,
+    SpotifyComponent
   ],
   imports: [
     BrowserModule,

@@ -4,5 +4,7 @@ export const environment = {
   hostURL: "new-overlay.woohooj.in",
   naDiscordRoleID: 1045126121928282122,
   t3DiscordRoleID: 1036807951484203099,
-  giftedT3DiscordRoleID: 1045466382470484040
+  giftedT3DiscordRoleID: 1045466382470484040,
+  spotifyClientID: "FILL_ME",
+  spotifyRedirectURL: "BASE_OVERLAY_URL"
 };

@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+@keyframes up {
+  from {
+    padding-top: 74px;
+  }
+
+  to {
+    padding-top: 0px;
+  }
+}
+
+.song-display {
+  width: 274px;
+  height: 74px;
+  display: flex;
+  filter: drop-shadow(3px 3px 8px black);
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+}
+
+.names {
+  padding-top: 8px;
+  padding-right: 19px;
+  padding-left: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.artist-name {
+  color: #1BD760;
+  /* H3 - Bold */
+  text-align: left;
+  font-family: 'Montserrat';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
+  inline-size: 170px;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+.song-name {
+  color: var(--chat-msg);
+  text-align: left;
+  font-variant-numeric: lining-nums tabular-nums;
+  /* Label 1 */
+  font-family: 'Montserrat';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  inline-size: 170px;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+.album-cover {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.song-progress {
+  position: absolute;
+  width: 0%;
+  height: 5px;
+  background-color: #1BD760;
+  bottom: 0;
+}
