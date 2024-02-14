@@ -49,10 +49,12 @@ export class SpotifyComponent implements OnInit {
     this.botService.getStream("streamdeck").subscribe(async data => {
       if (data.type === "spotify") {
         if (data.name === "login" && data.value == true) {
-          await this.spotifyService.login();
-          this.active = true;
-          this.nowPlayingLoop();
-          this.progressLoop();
+          const success = await this.spotifyService.login();
+          if (success == true) {
+            this.active = true;
+            this.nowPlayingLoop();
+            this.progressLoop();
+          }
         } else if (data.name === "stop" && data.value == true) {
           await this.spotifyService.stop();
           this.playing = false;
@@ -93,7 +95,16 @@ export class SpotifyComponent implements OnInit {
       return;
     }
 
-    const nowPlaying: PlaybackState | false = await this.spotifyService.getNowPlaying();
+    let nowPlaying: false | PlaybackState = false;
+    try {
+      nowPlaying = await this.spotifyService.getNowPlaying();
+    } catch (e) {
+      console.log(e);
+      this.playing = false;
+      this.active = false;
+      return;
+    }
+
     if (!nowPlaying || !nowPlaying.is_playing) {
       this.playing = false;
       return;
