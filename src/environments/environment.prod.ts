@@ -5,6 +5,6 @@ export const environment = {
   naDiscordRoleID: 1045126121928282122,
   t3DiscordRoleID: 1036807951484203099,
   giftedT3DiscordRoleID: 1045466382470484040,
-  spotifyClientID: "FILL_ME",
-  spotifyRedirectURL: "BASE_OVERLAY_URL"
+  spotifyClientID: "468884dbfb994abc96a16a00a6ece770",
+  spotifyRedirectURL: "https://new-overlay.woohooj.in/stream-layout"
 };
