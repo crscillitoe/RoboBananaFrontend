@@ -5,6 +5,7 @@ import { BotConnectorService } from '../services/bot-connector.service';
 import { PlaybackState, Track } from '@spotify/web-api-ts-sdk';
 
 const SONG_UPDATE_LOOP_INTERVAL: number = 5 * 1000; // 5 seconds
+// Nested Timer Throttling limits us to 1 second anyways, anything lower won't work here.
 const PROGRESS_UPDATE_LOOP_INTERVAL: number = 1 * 1000; // 1 second
 
 @Component({
@@ -99,9 +100,8 @@ export class SpotifyComponent implements OnInit {
     try {
       nowPlaying = await this.spotifyService.getNowPlaying();
     } catch (e) {
+      // In case we get an error we should gracefully print it to the console for debugging for now
       console.log(e);
-      this.playing = false;
-      this.active = false;
       return;
     }
 
