@@ -9,8 +9,9 @@ export class EmotePopupIconComponent implements OnInit, AfterViewInit {
 
   @Input() iconName = '';
   public imageAsset = '';
+  public textAsset = '';
 
-  @ViewChild('iconImage') iconImage!: ElementRef;
+  @ViewChild('emoteContainer') emoteContainer!: ElementRef;
 
   constructor() { }
 
@@ -21,7 +22,30 @@ export class EmotePopupIconComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.iconImage.nativeElement.style.setProperty('--left-position-start', `${Math.random()*100}%`);
-    this.iconImage.nativeElement.style.setProperty('--jump-height', `${Math.random()*100}%`);
+    this.emoteContainer.nativeElement.style.setProperty('--left-position-start', `${this.getRandomPosition()}%`);
+    this.emoteContainer.nativeElement.style.setProperty('--jump-height', `${this.getRandomJumpHeight()}%`);
+  }
+
+  /**
+   * Position is outsourced to css with percental positioning
+   * This ensures that the emotes can fill up the entire container
+   * We just return an integer between 100 and 0
+   * It is advised that the container is one emote width smaller than the full widht available, so emotes dont get cut off
+   */
+  getRandomPosition(): number {
+    var x = Math.random() * 100;
+    return Math.round(x);
+  }
+
+  /**
+   * Jump height is outsourced to css with percental positioning
+   * This ensures that the emotes can fill up the entire container
+   * We just return an integer between 100 and 0
+   * A minimum jump height is enforced though, because otherwise there can be emotes that dont jump high enough
+   */
+  getRandomJumpHeight(): number {
+    var x = Math.random() * 100;
+    x = Math.min(x, 70); //70 is minimum jump height, otherwise it looks bad
+    return Math.round(x);
   }
 }
