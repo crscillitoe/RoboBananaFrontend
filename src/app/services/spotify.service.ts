@@ -30,9 +30,20 @@ export class SpotifyService {
 
     if (!authenticated) {
       console.log("Error authenticating with Spotify");
+      this.isAuthenticated = false;
+      return false;
     } else {
-      console.log("Spotify Auth successful");
-      this.isAuthenticated = true;
+
+      if ((await this.testAllowed()) == false) {
+        console.log("User is not allowed to auth with this app");
+        this.isAuthenticated = false;
+        return false;
+      } else {
+        console.log("Spotify Auth successful");
+        this.isAuthenticated = true;
+        return true;
+      }
+      
     }
   }
 
@@ -42,6 +53,15 @@ export class SpotifyService {
 
   getAuthStatus() {
     return this.isAuthenticated;
+  }
+
+  async testAllowed() {
+    try {
+      const profile = await this.sdk.currentUser.profile();
+    } catch {
+      return false;
+    }
+    return true;
   }
 
 }
