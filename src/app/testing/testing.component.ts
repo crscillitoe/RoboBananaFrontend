@@ -100,16 +100,14 @@ export class TestingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sendFakeMessageOnTimer();
+    // this.sendFakeMessageOnTimer();
   }
 
   toggleFakeMessages() {
     this.isSendingFakeMessages = !this.isSendingFakeMessages;
 
     if (this.isSendingFakeMessages) {
-      this.fakeMessageInterval = setInterval(() => {
-        this.botConnectorService.sendToStream("chat-message", this.createFakeMessage());
-      }, 500);
+      this.fakeMessageInterval = this.sendFakeMessageOnTimer();
     } else {
       clearInterval(this.fakeMessageInterval);
     }
@@ -117,9 +115,9 @@ export class TestingComponent implements OnInit {
 
   sendFakeMessageOnTimer() {
     // Every 500ms, send a fake message
-    // setInterval(() => {
-    //   this.botConnectorService.sendToStream("chat-message", this.createFakeMessage());
-    // }, 500);
+    return setInterval(() => {
+      this.botConnectorService.sendToStream("chat-message", this.createFakeMessage());
+    }, 500);
   }
 
   createFakeMessage() {
