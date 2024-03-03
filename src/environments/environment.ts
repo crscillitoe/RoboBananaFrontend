@@ -7,6 +7,7 @@ export const environment = {
   streamURL: "",
   hostURL: "",
   naDiscordRoleID: 0,
+  sixMonthDiscordRoleID: 0,
   t3DiscordRoleID: 0,
   giftedT3DiscordRoleID: 0,
   spotifyClientID: "0",
