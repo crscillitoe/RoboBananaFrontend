@@ -46,7 +46,7 @@ export class SpotifyComponent implements OnInit {
   // This variable is only needed because we can't yet fetch the above on the very first pass
   elementsReady: boolean = false;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.botService.getStream("streamdeck").subscribe(async data => {
       if (data.type === "spotify") {
         if (data.name === "login" && data.value == true) {
@@ -73,6 +73,16 @@ export class SpotifyComponent implements OnInit {
         this.vodReviewActive = true;
       }
     });
+
+    // Auto-enable on startup of the Overlay if we're authed
+    if (await this.spotifyService.getAccessTokenStatus()) {
+      const success = await this.spotifyService.login();
+      if (success == true) {
+        this.active = true;
+        this.nowPlayingLoop();
+        this.progressLoop();
+      }
+    }
   }
 
   // Check for currently playing song every LOOP_INTERVAL millis
