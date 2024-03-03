@@ -43,7 +43,7 @@ export class ChatProcessorService {
     if (data.is6Month) {
       // Check if data.content is a valid image URL
       // Using regex to check if the string is a valid URL
-      const urlRegex = /(https?:\/\/[^\s]+)/g;
+      const urlRegex = /^(https?:\/\/[^\s]+)$/;
       if (urlRegex.test(data.content)) {
         data.stickerURL = data.content;
         data.content = "";
