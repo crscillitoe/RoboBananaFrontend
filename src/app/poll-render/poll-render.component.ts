@@ -30,6 +30,10 @@ export class PollRenderComponent implements OnInit {
     return Math.round((this.votes.get(barID)!.size / this.totalVotes) * 100);
   }
 
+  getIndividualVoteCount(barID: number) {
+    return this.votes.get(barID)!.size;
+  }
+
   processVote(userID: number, voteID: number) {
     console.log(userID, voteID);
 

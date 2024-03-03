@@ -42,6 +42,7 @@ import { AiChatInteractorComponent } from './ai-chat-interactor/ai-chat-interact
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { FormsModule } from '@angular/forms';
 import { ViewerComponent } from './viewer/viewer.component';
+import { SpotifyComponent } from './spotify-nowplaying/spotify-nowplaying.component';
 import { EmotePopupsComponent } from './emote-popups/emote-popups.component';
 import { EmotePopupsDirective } from './emote-popups/emote-popups-directive';
 import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.component';
@@ -85,6 +86,7 @@ import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.com
     AiChatInteractorComponent,
     ChatMessageComponent,
     ViewerComponent,
+    SpotifyComponent,
     EmotePopupsComponent,
     EmotePopupsDirective,
     EmotePopupIconComponent

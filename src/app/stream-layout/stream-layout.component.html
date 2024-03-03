@@ -12,6 +12,7 @@
     <app-poll-render></app-poll-render>
     <app-vod-review style="background-image: url('assets/TextBox_Container.png');"></app-vod-review>
     <app-sub-goal></app-sub-goal>
+    <app-spotify></app-spotify>
     <ng-container *ngIf="themeService.getMiddleImage().split('.')[1] === 'mp4'">
         <video id="footer" loop autoplay>
             <source src="{{themeService.getMiddleImage()}}" type="video/mp4">

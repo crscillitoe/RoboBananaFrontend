@@ -24,6 +24,8 @@ html {
 
 .option-description {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .centered {
@@ -39,6 +41,22 @@ html {
     margin-top: 5px;
     display: flex;
     height: 24px;
+}
+
+.option-votecount {
+    font-family: 'Montserrat', sans-serif;
+    color: #F3F3F3;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    width: 8px;
 }
 
 .progress-bar {
@@ -162,4 +180,5 @@ html {
   justify-content: center;
   font-size: 12px;
   margin: 5px;
+  width: 60px;
 }

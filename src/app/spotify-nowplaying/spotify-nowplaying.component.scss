@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+@keyframes up {
+  from {
+    padding-top: 74px;
+  }
+
+  to {
+    padding-top: 0px;
+  }
+}
+
+.song-display {
+  width: 274px;
+  height: 74px;
+  display: flex;
+  filter: drop-shadow(3px 3px 8px black);
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+}
+
+.names {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+.song-name {
+  color: var(--chat-msg);
+  text-align: center;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-family: 'Montserrat';
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  inline-size: 170px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  height: 45%;
+  width: 68%;
+  top: 5px;
+  left: 5px;
+}
+
+.artist-name {
+  color: #1BD760;
+  text-align: center;
+  font-family: 'Montserrat';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  inline-size: 170px;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  position: absolute;
+  top: 45%;
+  left: 5px;
+  height: 45%;
+  width: 68%;
+}
+
+.album-cover {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.song-progress {
+  position: absolute;
+  width: 0%;
+  height: 5px;
+  background-color: #1BD760;
+  bottom: 0;
+}
+
+.song-name-text {
+  position: absolute;
+  width: auto;
+  font-family: 'Montserrat';
+  color: white;
+  min-width: 100%;
+  will-change: contents;
+}
+
+.artist-name-text {
+  font-family: 'Montserrat';
+  color: #1BD760;
+}
+
+.names .animate {
+  animation: rightleft 20s infinite linear;
+}
+
+@keyframes rightleft {
+  0%, 20% {
+    transform: translateX(0%);
+    left: 0%;
+  }
+  75%, 90% {
+    transform: translateX(-100%);
+    left: 100%;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    transform: translateX(0%);
+    left: 0%;
+    animation-timing-function: linear;
+  }
+}

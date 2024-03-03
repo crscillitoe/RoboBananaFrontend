@@ -49,6 +49,22 @@ export class BotConnectorService {
         return data;
       },
 
+      (data: any) => {
+        data["is6Month"] = false;
+
+        const SIX_MONTH = environment.sixMonthDiscordRoleID;
+        const TRUSTWORTHY = environment.trustworthyRoleID;
+        for (let role of data.roles) {
+          // Temporary check for 12mo sub until 6mo role propogates (This check can be removed on April 3rd, 2024)
+          if (role.id == SIX_MONTH || role.id == 1157847417874567199 || role.id == TRUSTWORTHY) {
+            data["is6Month"] = true;
+            break
+          }
+        }
+
+        return data;
+      },
+
       // Detect NA Role
       (data: any) => {
         data["isNA"] = false;

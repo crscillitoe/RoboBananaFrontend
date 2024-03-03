@@ -25,6 +25,7 @@ export class ChatProcessorService {
 
   constructor(private twitchEmotesService: TwitchEmotesService) { }
 
+
   processChat(data: any, vod_reviewee_id: number | undefined, previous_message_author_id: number, regionCheck: number): any {
     let modified = data;
     if (regionCheck !== 0) {
@@ -37,6 +38,16 @@ export class ChatProcessorService {
 
     if (data.content.length === 0 && data.stickers.length === 0) {
       return;
+    }
+
+    if (data.is6Month) {
+      // Check if data.content is a valid image URL
+      // Using regex to check if the string is a valid URL
+      const urlRegex = /^(https?:\/\/[^\s]+)$/;
+      if (urlRegex.test(data.content)) {
+        data.stickerURL = data.content;
+        data.content = "";
+      }
     }
 
 

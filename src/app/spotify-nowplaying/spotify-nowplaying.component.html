@@ -1,0 +1,22 @@
+<div class="spotify-animation" [@slideUp] *ngIf="playing">
+    <div style="background-image: url('assets/RankBackgrounds/player-vod-bg.png');">
+        <div class="song-display">
+            <div class="album-cover" *ngIf="albumCoverURL !== ''">
+                <img class="cover-image" [src]="albumCoverURL">
+            </div>
+            <div class="names">
+                <div class="song-name" id="spotify-songNameContainer">
+                    <div class="song-name-text" id="spotify-songName">{{songTitle}}</div>
+                </div>
+                <div class="artist-name" [ngStyle]="{ 'font-size': songArtistFontSize }">
+                    <div class="artist-name-text" id="spotify-artistName">{{songArtist}}</div>
+                </div>
+            </div>
+            <div class="song-progress" [ngStyle]="{ width: songProgressPercent }">
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="!playing">
+</ng-container>
