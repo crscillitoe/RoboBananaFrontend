@@ -11,6 +11,11 @@ export class EmotePopupIconComponent implements OnInit, AfterViewInit {
   public imageAsset = '';
   public textAsset = '';
 
+  //documentation for these values is in 'emote-popups.componen.ts', where they should be maintained
+  public duration: number = 1500;
+  public size: number = 40;
+  public direction: string = "up";
+
   @ViewChild('emoteContainer') emoteContainer!: ElementRef;
 
   constructor() { }
@@ -22,8 +27,13 @@ export class EmotePopupIconComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.emoteContainer.nativeElement.style.setProperty('--left-position-start', `${this.getRandomPosition()}%`);
-    this.emoteContainer.nativeElement.style.setProperty('--jump-height', `${this.getRandomJumpHeight()}%`);
+    let position = this.getRandomPosition();
+    let height = this.getRandomJumpHeight();
+    this.emoteContainer.nativeElement.classList.add(this.direction);
+    this.emoteContainer.nativeElement.style.setProperty('--position-start', `${position}%`);
+    this.emoteContainer.nativeElement.style.setProperty('--jump-height', `${height}%`);
+    this.emoteContainer.nativeElement.style.setProperty("--animation-duration", this.duration + "ms");
+    this.emoteContainer.nativeElement.style.setProperty("--emote-size", this.size + "px");
   }
 
   /**

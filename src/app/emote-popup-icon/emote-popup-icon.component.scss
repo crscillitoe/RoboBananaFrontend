@@ -1,12 +1,9 @@
 .jumpContainer {
-    width: 40px;
-    height: 40px;
+    width: var(--emote-size);
+    height: var(--emote-size);
     position: absolute;
     z-index: -1;
-    top: 100%;
-    left: var(--left-position-start);
-    animation-name: jump;
-    animation-duration: 3s;
+    animation-duration: var(--animation-duration);
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
 }
@@ -21,15 +18,55 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    font-size: 40px;
+    font-size: var(--emote-size);
     margin: 0 auto;
     text-align: center;
 }
 
-@keyframes jump {
+.up {
+    top: 100%;
+    left: var(--position-start);
+    animation-name: jumpUp;
+}
+@keyframes jumpUp {
     50% {
         top: var(--jump-height);
         animation-timing-function: ease-in;
-        // opacity: 0;
+    }
+}
+
+.down {
+    bottom: 100%;
+    left: var(--position-start);
+    animation-name: jumpDown;
+}
+@keyframes jumpDown {
+    50% {
+        bottom: var(--jump-height);
+        animation-timing-function: ease-in;
+    }
+}
+
+.left {
+    left: 100%;
+    top: var(--position-start);
+    animation-name: jumpLeft;
+}
+@keyframes jumpLeft {
+    50% {
+        left: var(--jump-height);
+        animation-timing-function: ease-in;
+    }
+}
+
+.right {
+    right: 100%;
+    top: var(--position-start);
+    animation-name: jumpRight;
+}
+@keyframes jumpRight {
+    50% {
+        right: var(--jump-height);
+        animation-timing-function: ease-in;
     }
 }
