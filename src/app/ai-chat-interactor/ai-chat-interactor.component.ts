@@ -16,6 +16,7 @@ interface PendingTTS {
   message: string;
   senderName: string;
   voiceID: string;
+  voiceName: string;
 }
 
 @Component({
@@ -218,7 +219,7 @@ export class AiChatInteractorComponent implements OnInit {
             this.audio.src = url;
             this.audio.play();
 
-            this.currentTTSMessage = tts;
+            this.currentTTSMessage = `${tts}\nVoice used: ${pendingMessage.voiceName}`;
 
             // when the audio ends, set talking to false
             this.audio.onended = () => {
@@ -275,7 +276,8 @@ export class AiChatInteractorComponent implements OnInit {
         this.pendingTTS.push({
           message: data.message,
           senderName: data.sender_nickname,
-          voiceID: data.voice_id
+          voiceID: data.voice_id,
+          voiceName: data.voice_name
         });
       }
     });
