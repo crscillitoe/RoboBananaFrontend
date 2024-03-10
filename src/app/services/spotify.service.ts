@@ -55,6 +55,11 @@ export class SpotifyService {
     return this.isAuthenticated;
   }
 
+  async getAccessTokenStatus() {
+    const token = await this.sdk.getAccessToken();
+    return token ? true : false;
+  }
+
   async testAllowed() {
     try {
       const profile = await this.sdk.currentUser.profile();
