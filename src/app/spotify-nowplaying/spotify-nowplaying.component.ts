@@ -59,6 +59,7 @@ export class SpotifyComponent implements OnInit {
         } else if (data.name === "stop" && data.value == true) {
           await this.spotifyService.stop();
           this.playing = false;
+          this.elementsReady = false;
           this.active = false;
         }
       }
@@ -70,6 +71,7 @@ export class SpotifyComponent implements OnInit {
         this.vodReviewActive = false;
       } else { // Else block rendering
         this.playing = false;
+        this.elementsReady = false;
         this.vodReviewActive = true;
       }
     });
@@ -103,6 +105,7 @@ export class SpotifyComponent implements OnInit {
   async loadNowPlaying() {
     if (this.vodReviewActive) {
       this.playing = false;
+      this.elementsReady = false;
       return;
     }
 
@@ -117,6 +120,7 @@ export class SpotifyComponent implements OnInit {
 
     if (!nowPlaying || !nowPlaying.is_playing) {
       this.playing = false;
+      this.elementsReady = false;
       return;
     } else {
       if (nowPlaying.item.type == "track") {
@@ -144,6 +148,7 @@ export class SpotifyComponent implements OnInit {
         this.playing = true;
       } else {
         this.playing = false;
+        this.elementsReady = false;
       }
     }
   }
