@@ -12,6 +12,12 @@ interface PendingMessage {
   processedMessage: any;
 }
 
+interface PendingTTS {
+  message: string;
+  senderName: string;
+  voiceID: string;
+}
+
 @Component({
   selector: 'app-ai-chat-interactor',
   templateUrl: './ai-chat-interactor.component.html',
@@ -19,12 +25,12 @@ interface PendingMessage {
   animations: [
     trigger('fadeIn', [
       transition(':enter', [
-          style({'opacity': '0%'}),
-          animate('1s ease-out', style({'opacity': '100%'}))
+        style({ 'opacity': '0%' }),
+        animate('1s ease-out', style({ 'opacity': '100%' }))
       ]),
 
       transition(':leave',
-        animate('1s ease-out', style({'opacity': '0%'}))
+        animate('1s ease-out', style({ 'opacity': '0%' }))
       )
     ])
   ]
@@ -60,6 +66,10 @@ export class AiChatInteractorComponent implements OnInit {
   exposeChatterRank: boolean = false;
 
   currentMessage: any = null;
+
+  currentTTSMessage: any = null;
+
+  pendingTTS: PendingTTS[] = [];
 
   public audio: HTMLAudioElement;
 
@@ -166,12 +176,62 @@ export class AiChatInteractorComponent implements OnInit {
             }
           });
       },
-      (error: any) => {
+        (error: any) => {
           this.isTalking = false;
           this.hiddenTalking = false;
         }
       );
 
+    } else if (this.pendingTTS.length > 0 && !this.isTalking) {
+      this.isTalking = true;
+      let pendingMessage: PendingTTS = this.pendingTTS.pop()!;
+      let tts: string = `${pendingMessage.senderName} says: ${pendingMessage.message}`;
+
+      // Now we call elevenlabs
+      const ttsURL = `https://api.elevenlabs.io/v1/text-to-speech/${pendingMessage.voiceID}`;
+
+      const headers = {
+        accept: 'audio/mpeg',
+        'content-type': 'application/json',
+        'xi-api-key': this.ELEVENLABS_KEY,
+      };
+
+      const model = "eleven_multilingual_v2";
+
+      const request = {
+        "text": tts,
+        "model_id": model,
+        "voice_settings": { //defaults specific to voiceId
+          "stability": 0.5,
+          "similarity_boost": 0.75,
+          "style": 1.0,
+          "use_speaker_boost": true
+        }
+      };
+
+      this.http
+        .post(ttsURL, request, { headers, responseType: 'arraybuffer' })
+        .subscribe({
+          next: (response: ArrayBuffer) => {
+            const blob = new Blob([response], { type: 'audio/mpeg' });
+            const url = URL.createObjectURL(blob);
+            this.audio.src = url;
+            this.audio.play();
+
+            this.currentTTSMessage = tts;
+
+            // when the audio ends, set talking to false
+            this.audio.onended = () => {
+              this.isTalking = false;
+              this.hiddenTalking = false;
+              this.currentTTSMessage = null;
+            }
+          },
+          error: (error) => {
+            this.isTalking = false;
+            this.hiddenTalking = false;
+          }
+        });
     }
 
     // Just in case, let's avoid memory leaks
@@ -211,6 +271,12 @@ export class AiChatInteractorComponent implements OnInit {
         this.VOICE_ID = data.value.voice_id;
         this.SYSTEM_PROMPTS = data.value.system_prompts;
         this.USER_PROMPTS = data.value.user_prompts;
+      } else if (data.type === "tts") {
+        this.pendingTTS.push({
+          message: data.message,
+          senderName: data.sender_nickname,
+          voiceID: data.voice_id
+        });
       }
     });
 

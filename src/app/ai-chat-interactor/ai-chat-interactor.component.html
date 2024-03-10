@@ -11,3 +11,9 @@
         <app-chat-message [@fadeIn] class="ai-message" [message]="currentMessage"></app-chat-message>
     </ng-container>
 </ng-container>
+
+<ng-container *ngIf="currentTTSMessage != null">
+    <div [@fadeIn] class="ai-message">
+        {{currentTTSMessage}}
+    </div>
+</ng-container>
