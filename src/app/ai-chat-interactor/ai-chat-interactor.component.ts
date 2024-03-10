@@ -202,9 +202,9 @@ export class AiChatInteractorComponent implements OnInit {
         "text": tts,
         "model_id": model,
         "voice_settings": { //defaults specific to voiceId
-          "stability": 0.5,
+          "stability": 1.0,
           "similarity_boost": 0.75,
-          "style": 1.0,
+          "style": 0.5,
           "use_speaker_boost": true
         }
       };
