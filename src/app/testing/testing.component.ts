@@ -12,6 +12,10 @@ export class TestingComponent implements OnInit {
 
   pollRunning: boolean = false;
 
+  isSendingFakeMessages: boolean = false;
+
+  fakeMessageInterval?: ReturnType<typeof setInterval>;
+
 
   constructor(private botConnectorService: BotConnectorService) {
     let name = localStorage.getItem("name");
@@ -96,12 +100,22 @@ export class TestingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sendFakeMessageOnTimer();
+    // this.sendFakeMessageOnTimer();
+  }
+
+  toggleFakeMessages() {
+    this.isSendingFakeMessages = !this.isSendingFakeMessages;
+
+    if (this.isSendingFakeMessages) {
+      this.fakeMessageInterval = this.sendFakeMessageOnTimer();
+    } else {
+      clearInterval(this.fakeMessageInterval);
+    }
   }
 
   sendFakeMessageOnTimer() {
     // Every 500ms, send a fake message
-    setInterval(() => {
+    return setInterval(() => {
       this.botConnectorService.sendToStream("chat-message", this.createFakeMessage());
     }, 500);
   }
