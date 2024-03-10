@@ -135,3 +135,35 @@ video#footer {
     left: 0px;
     z-index: 1001;
 }
+
+#bottomEdgeEmotePopupContainer {
+    position: absolute;
+    width: 1606px;  //beware overflow due to emote size
+    height: 20%;
+    left: 274px;
+    bottom: 154px;
+}
+
+#leftEdgeEmotePopupContainer {
+    position: absolute;
+    width: 30%;
+    height: 892px;
+    bottom: 194px;  //beware overflow due to emote size
+    left: 274px;
+}
+
+#topEdgeEmotePopupContainer {
+    position: absolute;
+    width: 1606px;  //beware overflow due to emote size
+    height: 20%;
+    top: 0px;  
+    left: 274px;
+}
+
+#rightEdgeEmotePopupContainer {
+    position: absolute;
+    width: 30%;
+    height: 892px;
+    bottom: 194px;  //beware overflow due to emote size
+    right: 0px;
+}

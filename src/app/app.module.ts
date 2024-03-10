@@ -43,6 +43,9 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { FormsModule } from '@angular/forms';
 import { ViewerComponent } from './viewer/viewer.component';
 import { SpotifyComponent } from './spotify-nowplaying/spotify-nowplaying.component';
+import { EmotePopupsComponent } from './emote-popups/emote-popups.component';
+import { EmotePopupsDirective } from './emote-popups/emote-popups-directive';
+import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +86,10 @@ import { SpotifyComponent } from './spotify-nowplaying/spotify-nowplaying.compon
     AiChatInteractorComponent,
     ChatMessageComponent,
     ViewerComponent,
-    SpotifyComponent
+    SpotifyComponent,
+    EmotePopupsComponent,
+    EmotePopupsDirective,
+    EmotePopupIconComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BotConnectorService } from '../services/bot-connector.service';
+import { EmotePopupsComponent } from "../emote-popups/emote-popups.component";
+
 
 @Component({
   selector: 'app-testing',
@@ -29,6 +31,9 @@ export class TestingComponent implements OnInit {
       "name": name,
       "value": true
     });
+
+    //make it so that fake messages each trigger one emote to display
+    EmotePopupsComponent.isTesting = true;
   }
 
 

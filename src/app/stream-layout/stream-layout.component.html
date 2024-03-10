@@ -22,6 +22,10 @@
         <img id="footer" src="{{themeService.getMiddleImage()}}" />
     </ng-container>
     <img id="left" src="{{themeService.getLeftImage()}}" />
+    <app-emote-popups id="bottomEdgeEmotePopupContainer" name="bottomEdge" direction="up"></app-emote-popups>
+    <app-emote-popups id="leftEdgeEmotePopupContainer" name="leftEdge" direction="right"></app-emote-popups>
+    <app-emote-popups id="topEdgeEmotePopupContainer" name="topEdge" direction="down"></app-emote-popups>
+    <app-emote-popups id="rightEdgeEmotePopupContainer" name="rightEdge" direction="left"></app-emote-popups>
 </div>
 
 <div class="disabled" *ngIf="!enabled">
