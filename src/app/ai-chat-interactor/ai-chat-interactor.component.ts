@@ -68,7 +68,7 @@ export class AiChatInteractorComponent implements OnInit {
 
   currentMessage: any = null;
 
-  currentTTSMessage: any = "";
+  currentTTSMessage: any = null;
   currentTTSVoice: any = "";
   currentTTSInvoker: any = "";
 
