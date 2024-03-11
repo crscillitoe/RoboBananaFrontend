@@ -137,28 +137,6 @@ html {
     border-top-left-radius: 15px;
 }
 
-.timer {
-  display: flex;
-  justify-content: center;
-}
-
-.time-display {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #FFD335;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 15px;
-  padding-left: 15px;
-  border-radius: 5px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 25px;
-  position: relative;
-  bottom: 20px;
-}
-
 .voter {
   display: flex;
   justify-content: center;
@@ -182,3 +160,12 @@ html {
   margin: 5px;
   width: 60px;
 }
+
+.time-left-bar {
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent);
+    bottom: 0;
+    transition: width 1000ms linear;
+    will-change: contents;
+  }

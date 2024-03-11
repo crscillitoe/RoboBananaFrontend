@@ -1,9 +1,4 @@
 <ng-container *ngIf="timeLeft > 0">
-        <!-- <div class="timer">
-            <div class="time-display">
-                {{predictionTimer}}
-            </div>
-        </div> -->
     <div class="outer-box">
 
         <div class="title">
@@ -36,6 +31,8 @@
                     </div>
                 </ng-container>
             </div>
+        </div>
+        <div class="time-left-bar" [ngStyle]="{ width: timeLeftPercent }">
         </div>
 
         <div class="voter">
