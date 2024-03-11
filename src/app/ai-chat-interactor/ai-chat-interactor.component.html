@@ -13,7 +13,9 @@
 </ng-container>
 
 <ng-container *ngIf="currentTTSMessage != null">
-    <div [@fadeIn] class="ai-message">
+    <div [@fadeIn] class="tts-message">
+        <div class="tts-invoker">{{currentTTSInvoker}} says:</div>
         {{currentTTSMessage}}
+        <div class="tts-voice">Voice used: {{currentTTSVoice}}</div>
     </div>
 </ng-container>

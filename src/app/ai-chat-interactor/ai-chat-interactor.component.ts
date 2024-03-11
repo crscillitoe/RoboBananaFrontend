@@ -68,7 +68,9 @@ export class AiChatInteractorComponent implements OnInit {
 
   currentMessage: any = null;
 
-  currentTTSMessage: any = null;
+  currentTTSMessage: any = "";
+  currentTTSVoice: any = "";
+  currentTTSInvoker: any = "";
 
   pendingTTS: PendingTTS[] = [];
 
@@ -219,7 +221,9 @@ export class AiChatInteractorComponent implements OnInit {
             this.audio.src = url;
             this.audio.play();
 
-            this.currentTTSMessage = `${tts}\nVoice used: ${pendingMessage.voiceName}`;
+            this.currentTTSMessage = pendingMessage.message;
+            this.currentTTSVoice = pendingMessage.voiceName;
+            this.currentTTSInvoker = pendingMessage.senderName;
 
             // when the audio ends, set talking to false
             this.audio.onended = () => {
