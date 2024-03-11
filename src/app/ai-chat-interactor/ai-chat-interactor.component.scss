@@ -21,3 +21,33 @@
     font-style: normal;
     font-weight: 700;
 }
+
+.tts-message {
+    position: absolute;
+    top: 935px;
+    left: 550px;
+    background-color: #1f1f1f;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.20);
+    border-radius: 5px;
+    max-width: 520px;
+    color: var(--chat-msg);
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.tts-voice {
+    color: var(--accent);
+    font-size: 14px;
+    font-style: italic;
+}
+
+.tts-invoker {
+    color: var(--accent);
+    font-size: 18px;
+}
