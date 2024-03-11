@@ -86,7 +86,7 @@ export class PollRenderComponent implements OnInit {
     });
   }
 
-  TIMER_DURATION_SECONDS = 10;
+  TIMER_DURATION_SECONDS = 60;
   private startTimer() {
     const now = new Date();
     const later = now.getTime() + (this.TIMER_DURATION_SECONDS * 1000);
