@@ -55,4 +55,8 @@ export class InhouseTrackerComponent implements OnInit {
     if (!this.activelyTracking) return;
     this.currentTrackId = null;
   }
+
+  numSequence(n: number): Array<number> { 
+    return Array(n); 
+  }
 }
