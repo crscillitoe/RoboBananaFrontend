@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+.trackerMain {
+    background-image: url('https://dnkl.gg/oOCLQ');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: block;
+}
+
+.teamContainer {
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    width: 20%;
+    height: 50%;
+}
+
+.teamLeftContainer {
+    @extend .teamContainer;
+}
+
+.teamRightContainer {
+    @extend .teamContainer;
+    left: auto;
+    right: 1%;
+}
+
+.playerDisplay {
+    position: absolute;
+    background-color: rgba(127, 255, 212, 0.247);
+    width: 100%;
+    height: 18%;
+}
+
+.playerLeftDisplay-0 {
+    @extend .playerDisplay;
+    top: 1%;
+}
+
+.playerLeftDisplay-1 {
+    @extend .playerDisplay;
+    top: 21%;
+}
+
+.playerLeftDisplay-2 {
+    @extend .playerDisplay;
+    top: 41%;
+}
+
+.playerLeftDisplay-3 {
+    @extend .playerDisplay;
+    top: 61%;
+}
+
+.playerLeftDisplay-4 {
+    @extend .playerDisplay;
+    top: 81%;
+}
+
+.playerRightDisplay {
+    position: absolute;
+    top: 2%;
+}

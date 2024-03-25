@@ -1,0 +1,23 @@
+<div class="inhouse-tracker" class="trackerMain" *ngIf="activelyTracking">
+
+    <!-- LEFT TEAM -->
+    <div class="teamLeftContainer" *ngIf="teamLeft.players.length >= 1">
+        <div class="playerContainer" *ngFor="let player of teamLeft.players">
+            <div class="playerLeftDisplay-{{player.position}}">
+                {{player.name}}
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT TEAM -->
+    <!-- <div class="teamRightContainer" *ngIf="teamRight.players.length >= 1">
+        <div class="playerContainer" *ngFor="let player of teamRight.players">
+            <div class="playerRightDisplay-{{idx}}">
+                {{player.name}}
+            </div>
+        </div>
+    </div> -->
+</div>
+
+<ng-container *ngIf="!activelyTracking">
+</ng-container>
