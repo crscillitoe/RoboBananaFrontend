@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BotConnectorService } from '../services/bot-connector.service';
 import { InhouseTrackerService } from '../services/inhouse-tracker.service';
 import { getBaseStreamURL } from '../utility';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 enum Colors {
   ATTACKER_REG = "rgba(232, 130, 125, 0.75)",
@@ -14,7 +15,18 @@ enum Colors {
   selector: 'app-inhouse-tracker',
   templateUrl: './inhouse-tracker.component.html',
   styleUrls: ['./inhouse-tracker.component.scss'],
-  animations: []
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ 'opacity': '0' }),
+        animate('0.5s', style({ 'opacity': '1' }))
+      ]),
+
+      transition(':leave',
+        animate('0.5s', style({ 'opacity': '0' }))
+      )
+    ])
+  ]
 })
 export class InhouseTrackerComponent implements OnInit {
 
@@ -76,7 +88,7 @@ export class InhouseTrackerComponent implements OnInit {
     this.currentTrackId = null;
   }
 
-  numSequence(n: number): Array<number> { 
-    return Array(n); 
+  numSequence(n: number): Array<number> {
+    return Array(n);
   }
 }

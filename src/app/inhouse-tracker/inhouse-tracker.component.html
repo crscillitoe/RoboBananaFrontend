@@ -26,7 +26,7 @@
     </div>
 
     <!-- LEFT TEAM -->
-    <div class="teamLeftContainer" *ngIf="teamLeft.players.length >= 1">
+    <div class="teamLeftContainer" *ngIf="teamLeft.players.length >= 1 && match.roundPhase !== 'shopping'" [@fade]>
         <div class="playerContainer" *ngFor="let player of teamLeft.players">
 
             <!-- ALIVE -->
@@ -36,7 +36,8 @@
                         <img class="agentLeftIcon" src="../../assets/agents/{{player.agentProper}}Icon.png" alt="">
                     </div>
                     <div class="weaponLeftIconContainer">
-                        <img class="weaponLeftIcon" src="../../assets/weapons/{{player.highestWeapon}}Killfeed.png" alt="{{player.highestWeapon}}">
+                        <img class="weaponLeftIcon" src="../../assets/weapons/{{player.highestWeapon}}Killfeed.png"
+                            alt="{{player.highestWeapon}}">
                     </div>
                     <div class="moneyLeft">
                         {{player.money}} <img src="../../assets/shop/ValorantCredits.png">
@@ -46,13 +47,18 @@
                     <div class="playerLeftName">
                         {{player.name}}
                     </div>
-                    <div class="playerLeftUltContainer">
+                    <div class="playerLeftUltContainer" *ngIf="!player.ultReady">
                         <div class="playerLeftUlt" *ngFor="let i of numSequence(player.currUltPoints)">
                             <a id="ultOrbFull"></a>
                         </div>
                         <div class="playerLeftUlt"
                             *ngFor="let i of numSequence(player.maxUltPoints - player.currUltPoints)">
                             <a id="ultOrbEmpty"></a>
+                        </div>
+                    </div>
+                    <div class="playerLeftUltContainer" *ngIf="player.ultReady">
+                        <div class="playerLeftUlt" *ngFor="let i of numSequence(player.currUltPoints)">
+                            <a id="ultOrbMax"></a>
                         </div>
                     </div>
                     <div class="playerLeftHp">
@@ -82,7 +88,7 @@
     </div>
 
     <!-- RIGHT TEAM -->
-    <div class="teamRightContainer" *ngIf="teamRight.players.length >= 1">
+    <div class="teamRightContainer" *ngIf="teamRight.players.length >= 1 && match.roundPhase !== 'shopping'" [@fade]>
         <div class="playerContainer" *ngFor="let player of teamRight.players">
 
             <!-- ALIVE -->
@@ -92,7 +98,8 @@
                         <img class="agentRightIcon" src="../../assets/agents/{{player.agentProper}}Icon.png" alt="">
                     </div>
                     <div class="weaponRightIconContainer">
-                        <img class="weaponRightIcon" src="../../assets/weapons/{{player.highestWeapon}}Killfeed.png" alt="{{player.highestWeapon}}">
+                        <img class="weaponRightIcon" src="../../assets/weapons/{{player.highestWeapon}}Killfeed.png"
+                            alt="{{player.highestWeapon}}">
                     </div>
                     <div class="moneyRight">
                         {{player.money}} <img src="../../assets/shop/ValorantCredits.png">
@@ -102,13 +109,18 @@
                     <div class="playerRightHp">
                         <img src="../../assets/shop/Shield{{player.initialShield}}.png" height="100%">
                     </div>
-                    <div class="playerRightUltContainer">
+                    <div class="playerRightUltContainer" *ngIf="!player.ultReady">
                         <div class="playerRightUlt" *ngFor="let i of numSequence(player.currUltPoints)">
                             <a id="ultOrbFull"></a>
                         </div>
                         <div class="playerRightUlt"
                             *ngFor="let i of numSequence(player.maxUltPoints - player.currUltPoints)">
                             <a id="ultOrbEmpty"></a>
+                        </div>
+                    </div>
+                    <div class="playerRightUltContainer" *ngIf="player.ultReady">
+                        <div class="playerRightUlt" *ngFor="let i of numSequence(player.currUltPoints)">
+                            <a id="ultOrbMax"></a>
                         </div>
                     </div>
                     <div class="playerRightName">
@@ -121,7 +133,8 @@
             <div class="playerDisplay-{{player.position}}-dead-right" *ngIf="!player.isAlive">
                 <div class="playerRightUpper">
                     <div class="agentRightIconContainer-dead">
-                        <img class="agentRightIcon-dead" src="../../assets/agents/{{player.agentProper}}Icon.png" alt="">
+                        <img class="agentRightIcon-dead" src="../../assets/agents/{{player.agentProper}}Icon.png"
+                            alt="">
                     </div>
                     <div class="moneyRight">
                         {{player.money}} <img src="../../assets/shop/ValorantCredits.png">
@@ -135,6 +148,160 @@
             </div>
 
 
+        </div>
+    </div>
+
+    <!-- SHOPPING HUD -->
+    <div class="shoppingDisplayContainer" *ngIf="teamRight.players.length >= 1 && match.roundPhase === 'shopping'" [@fade]>
+        <div class="shoppingMatchInfoContainer">
+            <div class="shoppingMatchInfoLeftContainer">
+                <div class="shoppingMatchInfoLeftIconContainer" [style.background-color]="teamLeftColor">
+                    <img class="shoppingMatchInfoLeftIcon" src="../../assets/agents/AstraIcon.png">
+                </div>
+                <div class="shoppingMatchInfoLeftTeamName">
+                    {{teamLeft.teamName}}
+                </div>
+                <div class="shoppingMatchInfoLeftLoadoutValue">
+                    Loadout Value: 10000 <img src="../../assets/shop/ValorantCredits.png">
+                </div>
+            </div>
+            <div class="shoppingMatchInfoRoundsContainer">
+                <div class="shoppingMatchInfoTeamName">
+                    {{teamLeft.teamName}}
+                </div>
+                <div class="shoppingMatchInfoTeamScore" [style.color]="teamLeftColor">
+                    {{teamLeft.roundsWon}}
+                </div>
+                <div class="shoppingMatchInfoTeamName-right">
+                    {{teamRight.teamName}}
+                </div>
+                <div class="shoppingMatchInfoTeamScore-right" [style.color]="teamRightColor">
+                    {{teamRight.roundsWon}}
+                </div>
+                <div class="shoppingMatchInfoTimelineContainer" id="iht-timelineTeam">
+                    <div class="shoppingMatchInfoTimelineTeam" id="iht-timelineTeamLeft">
+                        <div class="shoppingMatchInfoTimelineTeamBlock" *ngFor="let outcome of teamLeft.roundRecord; let idx = index">
+                            <div class="shoppingMatchInfoTimelineTeamBlockWon" *ngIf="outcome === true" [style.background-color]="teamLeftColor"></div>
+                            <div class="shoppingMatchInfoTimelineTeamBlockLost" *ngIf="outcome === false">{{idx}}</div>
+                        </div>
+                    </div>
+                    <div class="shoppingMatchInfoTimelineTeam-right" id="iht-timelineTeamRight">
+                        <div class="shoppingMatchInfoTimelineTeamBlock" *ngFor="let outcome of teamRight.roundRecord; let idx = index">
+                            <div class="shoppingMatchInfoTimelineTeamBlockWon" *ngIf="outcome === true" [style.background-color]="teamRightColor"></div>
+                            <div class="shoppingMatchInfoTimelineTeamBlockLost" *ngIf="outcome === false">{{idx}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shoppingMatchInfoRightContainer">
+                <div class="shoppingMatchInfoRightIconContainer" [style.background-color]="teamRightColor">
+                    <img class="shoppingMatchInfoRightIcon" src="../../assets/agents/CloveIcon.png">
+                </div>
+                <div class="shoppingMatchInfoRightTeamName">
+                    {{teamRight.teamName}}
+                </div>
+                <div class="shoppingMatchInfoRightLoadoutValue">
+                    Loadout Value: 10000 <img src="../../assets/shop/ValorantCredits.png">
+                </div>
+            </div>
+        </div>
+        <div class="shoppingTeamInfoContainer">
+
+            <!-- LEFT TEAM -->
+            <div class="shoppingTeamInfoHeaderContainer">
+                <div class="shoppingTeamInfoHeaderName">Player</div>
+                <div class="shoppingTeamInfoHeaderKDA">K D A</div>
+                <div class="shoppingTeamInfoHeaderUlt">Ultimate</div>
+                <div class="shoppingTeamInfoHeaderShield">Shield</div>
+                <div class="shoppingTeamInfoHeaderWeapon">Weapon</div>
+                <div class="shoppingTeamInfoHeaderCredits">Credits</div>
+            </div>
+
+            <div class="shoppingPlayerContainer-{{player.position}}" *ngFor="let player of teamLeft.players">
+                <div class="shoppingPlayerIcon">
+                    <img class="shoppingPlayerIconImg" src="../../assets/agents/{{player.agentProper}}Icon.png" alt="">
+                </div>
+                <div class="shoppingPlayerName">
+                    {{player.name}}
+                </div>
+                <div class="shoppingPlayerKDA">
+                    <pre class="shoppingPlayerKDAText">{{player.kills}}  {{player.deaths}}  {{player.assists}}</pre>
+                </div>
+                <div class="shoppingPlayerUlt">
+                    <div class="shoppingPlayerUltContainer" *ngIf="!player.ultReady">
+                        <div class="shoppingPlayerUlt" *ngFor="let i of numSequence(player.currUltPoints)">
+                            <a id="ultOrbFull"></a>
+                        </div>
+                        <div class="shoppingPlayerUlt"
+                            *ngFor="let i of numSequence(player.maxUltPoints - player.currUltPoints)">
+                            <a id="ultOrbEmpty"></a>
+                        </div>
+                    </div>
+                    <div class="shoppingPlayerUltContainer" *ngIf="player.ultReady">
+                        <div class="shoppingPlayerUlt" *ngFor="let i of numSequence(player.currUltPoints)">
+                            <a id="ultOrbMax"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="shoppingPlayerShield">
+                    <img class="shoppingPlayerShieldIcon" src="../../assets/shop/Shield{{player.initialShield}}.png">
+                </div>
+                <div class="shoppingPlayerWeapon">
+                    <img class="shoppingPlayerWeaponIcon" src="../../assets/weapons/{{player.highestWeapon}}Killfeed.png"
+                        alt="{{player.highestWeapon}}">
+                </div>
+                <div class="shoppingPlayerCredits">
+                    <pre class="shoppingPlayerCreditsPre"><a style="opacity: 1; color: rgba(245, 188, 42, 0.8);">-{{player.moneySpent}}</a> <img src="../../assets/shop/ValorantCredits.png"><br>{{player.money}} <img src="../../assets/shop/ValorantCredits.png"></pre>
+                </div>
+            </div>
+            
+            <!-- RIGHT TEAM -->
+            <div class="shoppingTeamInfoHeaderContainer-right">
+                <div class="shoppingTeamInfoHeaderCredits-right">Credits</div>
+                <div class="shoppingTeamInfoHeaderWeapon-right">Weapon</div>
+                <div class="shoppingTeamInfoHeaderShield-right">Shield</div>
+                <div class="shoppingTeamInfoHeaderUlt-right">Ultimate</div>
+                <div class="shoppingTeamInfoHeaderKDA-right">K D A</div>
+                <div class="shoppingTeamInfoHeaderName-right">Player</div>
+            </div>
+
+            <div class="shoppingPlayerContainer-{{player.position}}-right" *ngFor="let player of teamRight.players">
+                <div class="shoppingPlayerIcon-right">
+                    <img class="shoppingPlayerIconImg-right" src="../../assets/agents/{{player.agentProper}}Icon.png" alt="">
+                </div>
+                <div class="shoppingPlayerName-right">
+                    {{player.name}}
+                </div>
+                <div class="shoppingPlayerKDA-right">
+                    <pre class="shoppingPlayerKDAText-right">{{player.kills}}  {{player.deaths}}  {{player.assists}}</pre>
+                </div>
+                <div class="shoppingPlayerUlt-right">
+                    <div class="shoppingPlayerUltContainer-right" *ngIf="!player.ultReady">
+                        <div class="shoppingPlayerUlt-right" *ngFor="let i of numSequence(player.currUltPoints)">
+                            <a id="ultOrbFull"></a>
+                        </div>
+                        <div class="shoppingPlayerUlt-right"
+                            *ngFor="let i of numSequence(player.maxUltPoints - player.currUltPoints)">
+                            <a id="ultOrbEmpty"></a>
+                        </div>
+                    </div>
+                    <div class="shoppingPlayerUltContainer-right" *ngIf="player.ultReady">
+                        <div class="shoppingPlayerUlt-right" *ngFor="let i of numSequence(player.currUltPoints)">
+                            <a id="ultOrbMax"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="shoppingPlayerShield-right">
+                    <img class="shoppingPlayerShieldIcon-right" src="../../assets/shop/Shield{{player.initialShield}}.png">
+                </div>
+                <div class="shoppingPlayerWeapon-right">
+                    <img class="shoppingPlayerWeaponIcon-right" src="../../assets/weapons/{{player.highestWeapon}}Killfeed.png"
+                        alt="{{player.highestWeapon}}">
+                </div>
+                <div class="shoppingPlayerCredits-right">
+                    <pre class="shoppingPlayerCreditsPre-right"><a style="opacity: 1; color: rgba(245, 188, 42, 0.8);">-{{player.moneySpent}}</a> <img src="../../assets/shop/ValorantCredits.png"><br>{{player.money}} <img src="../../assets/shop/ValorantCredits.png"></pre>
+                </div>
+            </div>
         </div>
     </div>
 </div>
