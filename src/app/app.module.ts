@@ -46,6 +46,7 @@ import { SpotifyComponent } from './spotify-nowplaying/spotify-nowplaying.compon
 import { EmotePopupsComponent } from './emote-popups/emote-popups.component';
 import { EmotePopupsDirective } from './emote-popups/emote-popups-directive';
 import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.component';
+import { InhouseTrackerComponent } from './inhouse-tracker/inhouse-tracker.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.com
     SpotifyComponent,
     EmotePopupsComponent,
     EmotePopupsDirective,
-    EmotePopupIconComponent
+    EmotePopupIconComponent,
+    InhouseTrackerComponent
   ],
   imports: [
     BrowserModule,

@@ -63,6 +63,7 @@ app-cool {
     position: absolute;
     bottom: 228px;
     left: 266px;
+    z-index: 1000;
 }
 
 app-poll-render {
@@ -116,6 +117,16 @@ app-spotify {
     position: absolute;
     bottom: 154px;
     left: 0px;
+}
+
+app-inhouse-tracker {
+    width: 1646px;
+    height: 926px;
+    display: block;
+    position: absolute;
+    bottom: 154px;
+    left: 274px;
+    z-index: 10;
 }
 
 img#footer {
