@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BotConnectorService } from '../services/bot-connector.service';
 import { InhouseTrackerService } from '../services/inhouse-tracker.service';
 import { getBaseStreamURL } from '../utility';
