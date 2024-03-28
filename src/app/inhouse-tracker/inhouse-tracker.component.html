@@ -1,74 +1,140 @@
 <div class="inhouse-tracker" class="trackerMain" *ngIf="activelyTracking">
 
+    <!-- MATCH INFO DISPLAY -->
+    <div class="matchInfoContainer" *ngIf="teamRight.players.length >= 1">
+        <div class="matchInfoLeft">
+            <div id="arrowLeft"></div>
+            <div class="matchInfoLeftTeamInfo">
+                {{teamLeft.teamName}}
+            </div>
+            <div class="matchInfoLeftScore" [style.background-color]="teamLeftColor">
+                {{teamLeft.roundsWon}}
+            </div>
+        </div>
+        <div class="matchInfoPhase">
+            {{match.roundPhase}}
+        </div>
+        <div class="matchInfoRight">
+            <div class="matchInfoRightScore" [style.background-color]="teamRightColor">
+                {{teamRight.roundsWon}}
+            </div>
+            <div class="matchInfoRightTeamInfo">
+                {{teamRight.teamName}}
+            </div>
+            <div id="arrowRight"></div>
+        </div>
+    </div>
+
     <!-- LEFT TEAM -->
     <div class="teamLeftContainer" *ngIf="teamLeft.players.length >= 1">
         <div class="playerContainer" *ngFor="let player of teamLeft.players">
-            <div class="playerLeftDisplay-{{player.position}}">
+
+            <!-- ALIVE -->
+            <div class="playerDisplay-{{player.position}}" *ngIf="player.isAlive">
                 <div class="playerLeftUpper">
-                    <span class="agentLeftIconContainer">
-                        <img class="agentLeftIcon" src="../../assets/agents/{{player.agentProper}}Icon.png">
-                    </span>
-                    <span class="weaponLeftIconContainer">
-                        <img class="weaponLeftIcon" src="../../assets/weapons/{{player.highestWeapon}}Killfeed.png">
-                    </span>
-                    <span class="moneyLeft">
+                    <div class="agentLeftIconContainer">
+                        <img class="agentLeftIcon" src="../../assets/agents/{{player.agentProper}}Icon.png" alt="">
+                    </div>
+                    <div class="weaponLeftIconContainer">
+                        <img class="weaponLeftIcon" src="../../assets/weapons/{{player.highestWeapon}}Killfeed.png" alt="{{player.highestWeapon}}">
+                    </div>
+                    <div class="moneyLeft">
                         {{player.money}} <img src="../../assets/ValorantCredits.png">
-                    </span>
+                    </div>
                 </div>
-                <div class="playerLeftLower">
-                    <span class="playerLeftName">
+                <div class="playerLeftLower" [style.background-color]="teamLeftColorFeint">
+                    <div class="playerLeftName">
                         {{player.name}}
-                    </span>
-                    <span class="playerLeftUltContainer">
-                        <span class="playerLeftUlt" *ngFor="let i of numSequence(player.currUltPoints)">
+                    </div>
+                    <div class="playerLeftUltContainer">
+                        <div class="playerLeftUlt" *ngFor="let i of numSequence(player.currUltPoints)">
                             <a id="ultOrbFull"></a>
-                        </span>
-                        <span class="playerLeftUlt"
+                        </div>
+                        <div class="playerLeftUlt"
                             *ngFor="let i of numSequence(player.maxUltPoints - player.currUltPoints)">
                             <a id="ultOrbEmpty"></a>
-                        </span>
-                    </span>
-                    <span class="playerLeftHp">
+                        </div>
+                    </div>
+                    <div class="playerLeftHp">
                         50 100
-                    </span>
+                    </div>
                 </div>
             </div>
+
+            <!-- DEAD -->
+            <div class="playerDisplay-{{player.position}}-dead" *ngIf="!player.isAlive">
+                <div class="playerLeftUpper">
+                    <div class="agentLeftIconContainer-dead">
+                        <img class="agentLeftIcon-dead" src="../../assets/agents/{{player.agentProper}}Icon.png" alt="">
+                    </div>
+                    <div class="moneyLeft">
+                        {{player.money}} <img src="../../assets/ValorantCredits.png">
+                    </div>
+                </div>
+                <div class="playerLeftLower-dead">
+                    <div class="playerLeftName-dead">
+                        {{player.name}}
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <!-- RIGHT TEAM -->
     <div class="teamRightContainer" *ngIf="teamRight.players.length >= 1">
         <div class="playerContainer" *ngFor="let player of teamRight.players">
-            <div class="playerRightDisplay-{{player.position}}">
+
+            <!-- ALIVE -->
+            <div class="playerDisplay-{{player.position}}-right" *ngIf="player.isAlive">
                 <div class="playerRightUpper">
-                    <span class="moneyRight">
+                    <div class="agentRightIconContainer">
+                        <img class="agentRightIcon" src="../../assets/agents/{{player.agentProper}}Icon.png" alt="">
+                    </div>
+                    <div class="weaponRightIconContainer">
+                        <img class="weaponRightIcon" src="../../assets/weapons/{{player.highestWeapon}}Killfeed.png" alt="{{player.highestWeapon}}">
+                    </div>
+                    <div class="moneyRight">
                         {{player.money}} <img src="../../assets/ValorantCredits.png">
-                    </span>
-                    <span class="weaponRightIconContainer">
-                        <img class="weaponRightIcon" src="../../assets/weapons/{{player.highestWeapon}}Killfeed.png">
-                    </span>
-                    <span class="agentRightIconContainer">
-                        <img class="agentRightIcon" src="../../assets/agents/{{player.agentProper}}Icon.png">
-                    </span>
+                    </div>
                 </div>
-                <div class="playerRightLower">
-                    <span class="playerRightHp">
+                <div class="playerRightLower" [style.background-color]="teamRightColorFeint">
+                    <div class="playerRightHp">
                         50 100
-                    </span>
-                    <span class="playerRightUltContainer">
-                        <span class="playerRightUlt" *ngFor="let i of numSequence(player.currUltPoints)">
+                    </div>
+                    <div class="playerRightUltContainer">
+                        <div class="playerRightUlt" *ngFor="let i of numSequence(player.currUltPoints)">
                             <a id="ultOrbFull"></a>
-                        </span>
-                        <span class="playerRightUlt"
+                        </div>
+                        <div class="playerRightUlt"
                             *ngFor="let i of numSequence(player.maxUltPoints - player.currUltPoints)">
                             <a id="ultOrbEmpty"></a>
-                        </span>
-                    </span>
-                    <span class="playerRightName">
+                        </div>
+                    </div>
+                    <div class="playerRightName">
                         {{player.name}}
-                    </span>
+                    </div>
                 </div>
             </div>
+
+            <!-- DEAD -->
+            <div class="playerDisplay-{{player.position}}-dead-right" *ngIf="!player.isAlive">
+                <div class="playerRightUpper">
+                    <div class="agentRightIconContainer-dead">
+                        <img class="agentRightIcon-dead" src="../../assets/agents/{{player.agentProper}}Icon.png" alt="">
+                    </div>
+                    <div class="moneyRight">
+                        {{player.money}} <img src="../../assets/ValorantCredits.png">
+                    </div>
+                </div>
+                <div class="playerRightLower-dead">
+                    <div class="playerRightName-dead">
+                        {{player.name}}
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
