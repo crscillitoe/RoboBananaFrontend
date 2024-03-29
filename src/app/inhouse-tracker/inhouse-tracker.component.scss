@@ -113,7 +113,7 @@ $shoppingMatchInfoBackgroundLight: rgba(90, 95, 100, 0.7);
     height: 100%;
     width: 30%;
     right: 0;
-    font-size: 325%;
+    font-size: 300%;
     color: $matchInfoBrackground;
     font-weight: bolder;
     background-color: $attacker;
@@ -655,6 +655,13 @@ $shoppingMatchInfoBackgroundLight: rgba(90, 95, 100, 0.7);
 .shoppingMatchInfoTimelineTeamBlockWon {
     height: 100%;
     width: 100%;
+}
+
+.shoppingMatchInfoTimelineTeamBlockWonIcon {
+    height: 100%;
+    max-width: 80%;
+    object-fit: contain;
+    margin: auto;
 }
 
 .shoppingMatchInfoTimelineTeamBlockLost {

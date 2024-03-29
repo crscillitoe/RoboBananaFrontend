@@ -162,7 +162,7 @@
                     {{teamLeft.teamName}}
                 </div>
                 <div class="shoppingMatchInfoLeftLoadoutValue">
-                    Loadout Value: 10000 <img src="../../assets/shop/ValorantCredits.png">
+                    Spent This Round: {{teamLeft.spentThisRound}} <img src="../../assets/shop/ValorantCredits.png">
                 </div>
             </div>
             <div class="shoppingMatchInfoRoundsContainer">
@@ -181,14 +181,14 @@
                 <div class="shoppingMatchInfoTimelineContainer" id="iht-timelineTeam">
                     <div class="shoppingMatchInfoTimelineTeam" id="iht-timelineTeamLeft">
                         <div class="shoppingMatchInfoTimelineTeamBlock" *ngFor="let outcome of teamLeft.roundRecord; let idx = index">
-                            <div class="shoppingMatchInfoTimelineTeamBlockWon" *ngIf="outcome === true" [style.background-color]="teamLeftColor"></div>
-                            <div class="shoppingMatchInfoTimelineTeamBlockLost" *ngIf="outcome === false">{{idx}}</div>
+                            <div class="shoppingMatchInfoTimelineTeamBlockWon" *ngIf="outcome !== 'lost'" [style.background-color]="teamLeftColor"><img class="shoppingMatchInfoTimelineTeamBlockWonIcon" src="../../assets/roundWinReason/{{outcome}}.png"></div>
+                            <div class="shoppingMatchInfoTimelineTeamBlockLost" *ngIf="outcome === 'lost'">{{idx+1}}</div>
                         </div>
                     </div>
                     <div class="shoppingMatchInfoTimelineTeam-right" id="iht-timelineTeamRight">
                         <div class="shoppingMatchInfoTimelineTeamBlock" *ngFor="let outcome of teamRight.roundRecord; let idx = index">
-                            <div class="shoppingMatchInfoTimelineTeamBlockWon" *ngIf="outcome === true" [style.background-color]="teamRightColor"></div>
-                            <div class="shoppingMatchInfoTimelineTeamBlockLost" *ngIf="outcome === false">{{idx}}</div>
+                            <div class="shoppingMatchInfoTimelineTeamBlockWon" *ngIf="outcome !== 'lost'" [style.background-color]="teamRightColor"><img class="shoppingMatchInfoTimelineTeamBlockWonIcon" src="../../assets/roundWinReason/{{outcome}}.png"></div>
+                            <div class="shoppingMatchInfoTimelineTeamBlockLost" *ngIf="outcome === 'lost'">{{idx+1}}</div>
                         </div>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                     {{teamRight.teamName}}
                 </div>
                 <div class="shoppingMatchInfoRightLoadoutValue">
-                    Loadout Value: 10000 <img src="../../assets/shop/ValorantCredits.png">
+                    Spent This Round: {{teamRight.spentThisRound}} <img src="../../assets/shop/ValorantCredits.png">
                 </div>
             </div>
         </div>
