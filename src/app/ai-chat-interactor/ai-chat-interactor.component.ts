@@ -72,6 +72,8 @@ export class AiChatInteractorComponent implements OnInit {
   currentTTSVoice: any = "";
   currentTTSInvoker: any = "";
 
+  lastT3TTSMessage: PendingTTS | null = null;
+
   pendingTTS: PendingTTS[] = [];
 
   public audio: HTMLAudioElement;
@@ -221,6 +223,7 @@ export class AiChatInteractorComponent implements OnInit {
             this.audio.src = url;
             this.audio.play();
 
+            this.lastT3TTSMessage = pendingMessage;
             this.currentTTSMessage = pendingMessage.message;
             this.currentTTSVoice = pendingMessage.voiceName;
             this.currentTTSInvoker = pendingMessage.senderName;
@@ -283,6 +286,10 @@ export class AiChatInteractorComponent implements OnInit {
           voiceID: data.voice_id,
           voiceName: data.voice_name
         });
+      } else if (data.type === "repeat-tts") {
+        if (this.lastT3TTSMessage != null) {
+          this.pendingTTS.push(this.lastT3TTSMessage);
+        }
       }
     });
 
