@@ -16,6 +16,7 @@ export class PollRenderComponent implements OnInit {
   totalVotes: number = 0;
 
   timerInterval: NodeJS.Timer | undefined;
+  timeLeftPercent = `100%`;
 
   whoVoted: Set<number> = new Set<number>();
   votes: Map<number, Set<number>> = new Map<number, Set<number>>();
@@ -85,9 +86,10 @@ export class PollRenderComponent implements OnInit {
     });
   }
 
+  TIMER_DURATION_SECONDS = 60;
   private startTimer() {
     const now = new Date();
-    const later = now.getTime() + 60000;
+    const later = now.getTime() + (this.TIMER_DURATION_SECONDS * 1000);
 
 
     let timer = Math.round((later - now.getTime()) / 1000);
@@ -102,12 +104,15 @@ export class PollRenderComponent implements OnInit {
       seconds = seconds < 10 ? "0" + seconds : seconds;
 
       this.predictionTimer = minutes + ":" + seconds;
+      this.timeLeftPercent = `${(timer / this.TIMER_DURATION_SECONDS) * 100}%`;
 
-      if (--timer < 0) {
+      if (timer < 0) {
         timer = 0;
         this.timeLeft = 0;
+        this.timeLeftPercent = "100%";
         clearInterval(this.timerInterval);
       }
+      --timer;
     }
     updateTimer();
     this.timerInterval = setInterval(updateTimer, 1000);
