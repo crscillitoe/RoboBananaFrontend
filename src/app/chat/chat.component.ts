@@ -133,6 +133,11 @@ export class ChatComponent implements OnInit {
   processChatStream(data: any) {
     let modified = this.chatProcessingService.processChat(data, this.vod_reviewee_id, this.previous_message_author_id, this.regionCheck);
 
+    // For some reason .gif stickers are NOT available under cdn.discordapp.com/stickers... and only in the media paths. Temporary fix until Discord fixes this.
+    if (modified && modified.stickerURL && modified.stickerURL.endsWith(".gif")) {
+      modified.stickerURL = (modified.stickerURL as string).replace("cdn.", "media.").replace(".com", ".net");
+    }
+
     this.previous_message_author_id = data.author_id;
     if (modified == undefined) return;
 
