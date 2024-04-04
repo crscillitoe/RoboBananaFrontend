@@ -55,7 +55,7 @@ export class EmotePopupIconComponent implements OnInit, AfterViewInit {
    */
   getRandomJumpHeight(): number {
     var x = Math.random() * 100;
-    x = Math.min(x, 70); //70 is minimum jump height, otherwise it looks bad
+    x = Math.min(x, 50); //70 is minimum jump height, otherwise it looks bad
     return Math.round(x);
   }
 }

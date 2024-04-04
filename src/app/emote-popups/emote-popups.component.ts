@@ -15,7 +15,9 @@ export class EmotePopupsComponent implements OnInit {
   public static isTesting: boolean = false;
 
   static emojiRegex = new RegExp(/\p{Emoji_Presentation}/gu);
-  constructor(private botService: BotConnectorService, private chatProcessorService: ChatProcessorService) { }
+  constructor(private botService: BotConnectorService, private chatProcessorService: ChatProcessorService) {
+    this.defaultEmoteProperties = new EmoteProperties();
+  }
 
   @ViewChild(EmotePopupsDirective, { static: true }) emotePopupSpace!: EmotePopupsDirective;
 
@@ -27,11 +29,8 @@ export class EmotePopupsComponent implements OnInit {
   // Whether chat messages should currently trigger emote jumps
   protected enabled: boolean = false;
 
-  // Jump duration in ms
-  protected duration: number = 1500;
+  protected defaultEmoteProperties: EmoteProperties;
 
-  // the size of an emote blip in px (square) //a size of 40 or smaller is recommended
-  protected size: number = 40;
   ngOnInit(): void {
 
     this.botService.getStream("streamdeck").subscribe(data => {
@@ -43,16 +42,16 @@ export class EmotePopupsComponent implements OnInit {
         }
 
         if (data.duration != null) {
-          this.duration = data.duration;
+          this.defaultEmoteProperties.duration = data.duration;
         }
 
         if (data.emoteSize != null) {
-          this.size = data.emoteSize;
+          this.defaultEmoteProperties.size = data.emoteSize;
         }
 
         if (data.amount != null) {
           for (let index = 0; index < data.amount; index++) {
-            this.createPopupEmote({imageUrl: "assets/cool.webp"});
+            this.createPopupEmote(structuredClone(this.defaultEmoteProperties));
           }
         }
       }
@@ -62,48 +61,89 @@ export class EmotePopupsComponent implements OnInit {
       if (!this.enabled)  return;
       if (data.content.length > 200) return;
 
+      var emoteProperties = structuredClone(this.defaultEmoteProperties);
+
       // creates a default emote from each message if we are in test mode
       // done so fake messages trigger emotes to display
-      if (EmotePopupsComponent.isTesting) this.createPopupEmote({imageUrl: "assets/cool.webp"});
+      // if (EmotePopupsComponent.isTesting) this.createPopupEmote(structuredClone(emoteProperties));
 
       const message = this.chatProcessorService.processChat(data, undefined, 0, 0);
       const emotes = message.chatMessage.chunks.filter((e: ChatChunk) => {return e.type === ChatChunkType.IMG});
+      emoteProperties.chatData = message;
 
       // block for identifying unicode emojis and rendering up to 4
       let unicodeEmotes = [...message.content.matchAll(EmotePopupsComponent.emojiRegex)];
       unicodeEmotes = unicodeEmotes.slice(0, 4);
       unicodeEmotes.forEach(e => {
-        this.createPopupEmote({textContent: e});
+        emoteProperties.asset = e.toString();
+        emoteProperties.type = "text";
+        this.createPopupEmote(emoteProperties);
       });
 
       // block for rendering discord emotes
       if (emotes.length > 0) {
         emotes.forEach((emote: ChatChunk) => {
-          this.createPopupEmote({imageUrl: emote.content});
+          emoteProperties.asset = emote.content;
+          this.createPopupEmote(emoteProperties);
         });
       }
 
       //block for rendering stickers
       if (message.stickerURL !== "") {
-        this.createPopupEmote({imageUrl: message.stickerURL});
+        emoteProperties.asset = message.stickerURL;
+        this.createPopupEmote(emoteProperties);
       }
     });
   }
 
-  createPopupEmote(assets: {imageUrl?: string, textContent?: string}): void {
+  createPopupEmote(properties: EmoteProperties): void {
+    if (this.filterEmotes(properties)) {
+      this.adjustEmoteProperties(properties);
+      this._createPopupEmoteContainer(properties);
+    }
+  }
+
+  _createPopupEmoteContainer(properties: EmoteProperties): void {
+    if (properties.amount <= 0) return;  //recursion exit
+
     const viewContainerRef = this.emotePopupSpace.viewContainerRef;
     const componentRef = viewContainerRef.createComponent<EmotePopupIconComponent>(EmotePopupIconComponent);
 
-    if (assets.imageUrl)
-      componentRef.instance.imageAsset = assets.imageUrl;
-    else if (assets.textContent)
-      componentRef.instance.textAsset = assets.textContent;
+    if (properties.type == "img")
+      componentRef.instance.imageAsset = properties.asset;
+    else if (properties.type == "text")
+      componentRef.instance.textAsset = properties.asset;
 
     componentRef.instance.direction = this.direction;
-    componentRef.instance.size = this.size;
-    componentRef.instance.duration = this.duration;
-    timer(this.duration).subscribe(() => {
+    componentRef.instance.size = properties.size;
+    componentRef.instance.duration = properties.duration;
+    timer(properties.duration).subscribe(() => {
       componentRef.destroy();
     });
+
+    //recursion entry
+    properties.amount--;
+    timer(properties.consecutiveDelay).subscribe(() => {
+      this._createPopupEmoteContainer(properties);
+    });
   }
+
+  //return true when emote should be displayed
+  filterEmotes(properties: EmoteProperties): boolean {
+    return true;
+  }
+
+  adjustEmoteProperties(properties: EmoteProperties): void {}
+
+}
+
+export class EmoteProperties {
+  //default values can be set here
+  asset: string = "assets/cool.webp";
+  type: "img" | "text" = "img";
+  size = 80;
+  duration = 1500;
+  amount = 1;
+  consecutiveDelay = 200;
+  chatData?: any;
 }
