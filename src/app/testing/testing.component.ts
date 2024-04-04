@@ -164,6 +164,8 @@ export class TestingComponent implements OnInit {
       randomMessage.content = "" + (Math.floor(Math.random() * 4) + 1);
     }
 
+    randomMessage.content += "🦀";
+
     return randomMessage;
   }
 

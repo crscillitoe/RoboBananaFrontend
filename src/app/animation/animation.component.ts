@@ -1,27 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { BotConnectorService } from '../services/bot-connector.service';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-animation',
   templateUrl: './animation.component.html',
   styleUrls: ['./animation.component.scss']
 })
-export class AnimationComponent implements OnInit {
-  display: boolean = false;
+export class AnimationComponent implements OnDestroy, AfterViewInit {
   source: string = "";
+  image = false;
+  video = false;
+  playing = false;
 
-  constructor(private botService: BotConnectorService) { }
+  contentLoadedCallack!: Function;
 
-  ngOnInit(): void {
-    this.botService.getStream('streamdeck').subscribe(data => {
-      if (data.type === "animation") {
-        this.display = true;
-        this.source = data.source;
+  @ViewChild('videoPlayer') videoPlayer!: ElementRef;
 
-        setTimeout(() => {
-          this.display = false;
-        }, data.duration * 1000);
-      }
-    });
+  constructor(public viewContainerRef: ViewContainerRef) { }
+
+  ngAfterViewInit(): void {
+    this.videoPlayer.nativeElement.onloadeddata = this._videoLoaded.bind(this);
+  }
+
+  ngOnDestroy(): void {
+    this.playing = false;
+    this.image = false;
+    this.video = false;
+    this.source = "";
+  }
+
+  _imageLoaded() {
+    if (this.playing) return;
+    this.playing = true;
+    this.image = true;
+    this.contentLoaded();
+  }
+
+  _videoLoaded() {
+    if (this.playing) return;
+    this.playing = true;
+    this.video = true;
+    this.contentLoaded();
+  }
+
+  contentLoaded(): void {
+    this.contentLoadedCallack();
   }
 }

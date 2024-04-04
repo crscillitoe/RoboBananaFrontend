@@ -1,7 +1,6 @@
-<ng-container *ngIf="display">
-    <div class="animation-display">
-        <div class="vertical">
-            <img class="animation" src="{{source}}"/>
-        </div>
-    </div>
-</ng-container>
+<div class="">
+    <img [hidden]="!image" class="animation" src="{{source}}" (load)="_imageLoaded()">
+    <video #videoPlayer [hidden]="!video" class="animation" autoplay muted>
+        <source src="{{source}}">
+    </video>
+</div>

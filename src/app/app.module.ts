@@ -46,6 +46,8 @@ import { SpotifyComponent } from './spotify-nowplaying/spotify-nowplaying.compon
 import { EmotePopupsComponent } from './emote-popups/emote-popups.component';
 import { EmotePopupsDirective } from './emote-popups/emote-popups-directive';
 import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.component';
+import { EmotePopupsComponentMultiple } from './emote-popups/subclasses/emote-popups-multiple.component';
+import { AnimationHostComponent, AnimationHostDirective } from './animation/animation-host.component';
 
 @NgModule({
   declarations: [
@@ -83,11 +85,14 @@ import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.com
     ConnectFourComponent,
     TeamLogoComponent,
     AnimationComponent,
+    AnimationHostComponent,
+    AnimationHostDirective,
     AiChatInteractorComponent,
     ChatMessageComponent,
     ViewerComponent,
     SpotifyComponent,
     EmotePopupsComponent,
+    EmotePopupsComponentMultiple,
     EmotePopupsDirective,
     EmotePopupIconComponent
   ],

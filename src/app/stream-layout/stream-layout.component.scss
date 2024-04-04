@@ -18,7 +18,7 @@ app-ai-chat-interactor {
     z-index: 5001;
 }
 
-app-animation {
+app-animation-host {
     position: absolute;
     top: 0px;
     // Centered on capture card, not the screen
@@ -138,8 +138,8 @@ video#footer {
 
 #bottomEdgeEmotePopupContainer {
     position: absolute;
-    width: 1606px;  //beware overflow due to emote size
-    height: 20%;
+    width: 1566px;  //beware overflow due to emote size
+    height: 30%;
     left: 274px;
     bottom: 154px;
 }
@@ -147,15 +147,15 @@ video#footer {
 #leftEdgeEmotePopupContainer {
     position: absolute;
     width: 30%;
-    height: 892px;
-    bottom: 194px;  //beware overflow due to emote size
+    height: 852px;
+    bottom: 234px;  //beware overflow due to emote size
     left: 274px;
 }
 
 #topEdgeEmotePopupContainer {
     position: absolute;
-    width: 1606px;  //beware overflow due to emote size
-    height: 20%;
+    width: 1566px;  //beware overflow due to emote size
+    height: 30%;
     top: 0px;  
     left: 274px;
 }
@@ -163,7 +163,7 @@ video#footer {
 #rightEdgeEmotePopupContainer {
     position: absolute;
     width: 30%;
-    height: 892px;
-    bottom: 194px;  //beware overflow due to emote size
+    height: 852px;
+    bottom: 234px;  //beware overflow due to emote size
     right: 0px;
 }
