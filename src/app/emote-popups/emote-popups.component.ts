@@ -13,6 +13,9 @@ import { ChatChunk, ChatChunkType, ChatProcessorService } from "../services/chat
 export class EmotePopupsComponent implements OnInit {
 
   public static isTesting: boolean = false;
+  protected static shouldActivateOnStartup(name?: string) {
+    return name == "bottomEdgeMultiple";
+  }
 
   static emojiRegex = new RegExp(/\p{Emoji_Presentation}/gu);
   constructor(private botService: BotConnectorService, private chatProcessorService: ChatProcessorService) {
@@ -32,6 +35,7 @@ export class EmotePopupsComponent implements OnInit {
   protected defaultEmoteProperties: EmoteProperties;
 
   ngOnInit(): void {
+    this.enabled = EmotePopupsComponent.shouldActivateOnStartup(this.name);
 
     this.botService.getStream("streamdeck").subscribe(data => {
 
@@ -84,6 +88,7 @@ export class EmotePopupsComponent implements OnInit {
       if (emotes.length > 0) {
         emotes.forEach((emote: ChatChunk) => {
           emoteProperties.asset = emote.content;
+          emoteProperties.type = "img";
           this.createPopupEmote(emoteProperties);
         });
       }
@@ -91,15 +96,17 @@ export class EmotePopupsComponent implements OnInit {
       //block for rendering stickers
       if (message.stickerURL !== "") {
         emoteProperties.asset = message.stickerURL;
+        emoteProperties.type = "img";
         this.createPopupEmote(emoteProperties);
       }
     });
   }
 
   createPopupEmote(properties: EmoteProperties): void {
-    if (this.filterEmotes(properties)) {
-      this.adjustEmoteProperties(properties);
-      this._createPopupEmoteContainer(properties);
+    let props = structuredClone(properties);
+    if (this.filterEmotes(props)) {
+      this.adjustEmoteProperties(props);
+      this._createPopupEmoteContainer(props);
     }
   }
 
