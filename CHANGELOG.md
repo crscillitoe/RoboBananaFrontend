@@ -1,5 +1,14 @@
 # RoboBananaFrontend Changelog
-## 2024.03.04
+## 2024.04.04
+### Additions and Fixes:
+- Animation endpoint now supports images AND videos (https://github.com/crscillitoe/RoboBananaFrontend/pull/36) (By [Tiranthine](https://github.com/Tiranthine))
+  - Objects only start playing after they are done loading
+  - Duration parameter is now in MS
+  - Content is no longer cached so animations restart
+ 
+- New "bottomEdgeMultiple" zone for jumping emoji that multiplies emoji amount based on usage in last 10 seconds (https://github.com/crscillitoe/RoboBananaFrontend/pull/36) (By [Tiranthine](https://github.com/Tiranthine))
+
+## 2024.04.03
 ### Additions and Fixes:
 - Added progress bar to polls to display time left (https://github.com/crscillitoe/RoboBananaFrontend/pull/29)
 - Added animation to spotify progress, making the progress bar smoother (https://github.com/crscillitoe/RoboBananaFrontend/pull/30)
