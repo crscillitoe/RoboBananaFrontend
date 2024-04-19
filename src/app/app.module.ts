@@ -48,6 +48,7 @@ import { EmotePopupsDirective } from './emote-popups/emote-popups-directive';
 import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.component';
 import { EmotePopupsComponentMultiple } from './emote-popups/subclasses/emote-popups-multiple.component';
 import { AnimationHostComponent, AnimationHostDirective } from './animation/animation-host.component';
+import { UnderpeelDraftComponent } from './underpeel-draft/underpeel-draft.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { AnimationHostComponent, AnimationHostDirective } from './animation/anim
     EmotePopupsComponent,
     EmotePopupsComponentMultiple,
     EmotePopupsDirective,
-    EmotePopupIconComponent
+    EmotePopupIconComponent,
+    UnderpeelDraftComponent,
   ],
   imports: [
     BrowserModule,

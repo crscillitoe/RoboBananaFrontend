@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+.underpeel-draft {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 27%;
+  width: 100%;
+}
+
+.upDraftCurrentTeamContainer {
+  position: absolute;
+  height: 260px;
+  width: 15%;
+  left: 0.75%;
+  bottom: 3%;
+  border-bottom: 0;
+}
+
+.upDraftCurrentTeamImageContainer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 90px;
+  background-image: linear-gradient(to bottom right, rgba(48, 23, 191, 0.75), rgba(0, 179, 255, 0.75));
+}
+
+.upDraftCurrentTeamImage {
+  max-width: 80%;
+  object-fit: contain;
+  margin: auto;
+  margin-top: -10px;
+}
+
+.upDraftCurrentTeamNameContainer {
+  position: absolute;
+  height: 15%;
+  width: 100%;
+  bottom: 7.5%;
+  text-align: center;
+}
+
+.upDraftCurrentTeamName {
+  font-size: 40px;
+  font-weight: 1000;
+  text-transform: uppercase;
+  color: rgb(241, 241, 241);
+}
+
+.upDraftTickerContainer {
+  position: absolute;
+  width: 84%;
+  height: 65px;
+  bottom: 3%;
+  left: 15.5%;
+  display: inline-flex;
+  justify-content: center;
+  border-bottom: 0;
+  border-radius: 50px;
+  background-image: linear-gradient(to left, rgba(48, 23, 191, 0.75), rgba(0, 179, 255, 0.75));
+  overflow-x: hidden;
+  text-wrap: nowrap;
+}
+
+.upDraftTickerText {
+  padding: 3px;
+  line-height: 100%;
+  font-size: 40px;
+  font-weight: 550;
+  object-fit: contain;
+  color: rgb(241, 241, 241);
+  margin: 12px;
+}
