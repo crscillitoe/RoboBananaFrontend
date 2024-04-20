@@ -13,8 +13,8 @@ enum Colors {
 
 @Component({
   selector: 'app-inhouse-tracker',
-  templateUrl: './inhouse-tracker-v2.component.html',
-  styleUrls: ['./inhouse-tracker-scoreboard.component.scss'],
+  templateUrl: './inhouse-tracker.component.html',
+  styleUrls: ['./inhouse-tracker.component.scss'],
   animations: [
     trigger('fade', [
       transition(':enter', [

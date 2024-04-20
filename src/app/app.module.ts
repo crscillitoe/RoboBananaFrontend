@@ -48,6 +48,8 @@ import { EmotePopupsDirective } from './emote-popups/emote-popups-directive';
 import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.component';
 import { InhouseTrackerComponent } from './inhouse-tracker/inhouse-tracker.component';
 import { InhouseTrackerTopscoreComponent } from './inhouse-tracker/topscore/inhouse-tracker-topscore.component';
+import { InhouseTrackerScoreboardComponent } from './inhouse-tracker/scoreboard/inhouse-tracker-scoreboard.component';
+import { InhouseTrackerPlayercardsComponent } from './inhouse-tracker/playercards/inhouse-tracker-playercards.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +95,9 @@ import { InhouseTrackerTopscoreComponent } from './inhouse-tracker/topscore/inho
     EmotePopupsDirective,
     EmotePopupIconComponent,
     InhouseTrackerComponent,
-    InhouseTrackerTopscoreComponent
+    InhouseTrackerTopscoreComponent,
+    InhouseTrackerScoreboardComponent,
+    InhouseTrackerPlayercardsComponent
   ],
   imports: [
     BrowserModule,
