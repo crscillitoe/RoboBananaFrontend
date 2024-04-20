@@ -1,4 +1,4 @@
-.overlap-group {
+.topscore {
     position: absolute;
     width: 601px;
     height: 143px;
@@ -6,7 +6,7 @@
     left: 660px;
 }
 
-.frame {
+.topscore-container {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +16,7 @@
     left: 0;
 }
 
-.header-scoreboard {
+.scoreboard {
     display: inline-flex;
     height: 62.76px;
     align-items: flex-start;
@@ -28,7 +28,7 @@
     box-shadow: -1px 1px 1px #0000001f;
 }
 
-.div {
+.teamcard {
     display: flex;
     width: 216px;
     align-items: center;
@@ -36,7 +36,7 @@
     align-self: stretch;
 }
 
-.div-2 {
+.teaminfo-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,17 +49,7 @@
     background-color: #0f1923d9;
 }
 
-.div-3 {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    position: relative;
-    flex: 0 0 auto;
-}
-
-.text-wrapper {
+.teamcode {
     position: relative;
     width: fit-content;
     margin-top: -1.21px;
@@ -74,14 +64,21 @@
     white-space: nowrap;
 }
 
-.scb-divider {
+.divider {
     position: relative;
     align-self: stretch;
     width: 3.62px;
-    background-color: #61eab6;
+    &.green {
+        @extend .divider;
+        background-color: #61eab6;
+    }
+    &.red {
+        @extend .divider;
+        background-color: #ff4557;
+    }
 }
 
-.scb-roundswon {
+.scoreblock {
     display: flex;
     flex-direction: column;
     width: 70px;
@@ -90,12 +87,26 @@
     gap: 12.07px;
     position: relative;
     align-self: stretch;
-    background-color: #25ac79;
-    border-radius: 0px 4px 4px 0px;
     border: 0px none;
+    &-left {
+        @extend .scoreblock;
+        border-radius: 0px 4px 4px 0px;
+    }
+    &-right {
+        @extend .scoreblock;
+        border-radius: 4px 0px 0px 4px;
+    }
+    &.green {
+        @extend .scoreblock;
+        background-color: #25ac79;
+    }
+    &.red {
+        @extend .scoreblock;
+        background-color: #b82e3c;
+    }
 }
 
-.text-wrapper-3 {
+.score-text {
     position: relative;
     width: fit-content;
     text-shadow: 0px 1.21px 4.83px rgba(0, 0, 0, 0.12);
@@ -109,95 +120,13 @@
     line-height: normal;
 }
 
-.div-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 70px;
-    align-items: center;
-    justify-content: center;
-    gap: 12.07px;
-    position: relative;
-    align-self: stretch;
-    background-color: #b82e3c;
-    border-radius: 4px 0px 0px 4px;
-    border: 0px none;
-}
-
-.rectangle {
-    position: relative;
-    align-self: stretch;
-    width: 3.62px;
-    background-color: #ff4557;
-}
-
-.polygon {
+.team-image {
     position: relative;
     width: 38.34px;
     height: 38.34px;
 }
 
-.pips-mapwin {
-    position: relative;
-    width: 296px;
-    height: 11px;
-}
-
-.mapwin-left {
-    display: inline-flex;
-    align-items: flex-start;
-    gap: 12px;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.mapwin {
-    position: relative;
-    width: 11px;
-    height: 11px;
-    background-color: #ffffff;
-    border-radius: 999px;
-    border: 1.5px solid;
-    border-color: #ffffff80;
-}
-
-.mapwin-2 {
-    position: relative;
-    width: 11px;
-    height: 11px;
-    border-radius: 999px;
-    border: 1.5px solid;
-    border-color: #ffffff80;
-}
-
-.mapwin-right {
-    display: inline-flex;
-    align-items: flex-start;
-    gap: 12px;
-    position: absolute;
-    top: 0;
-    left: 239px;
-}
-
-.spike-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    position: relative;
-    flex: 0 0 auto;
-}
-
-.spike-icon {
-    position: relative;
-    width: 67.24px;
-    height: 61.99px;
-    margin-top: -7px;
-    margin-bottom: -9px;
-    margin-left: -8px;
-    margin-right: -8px;
-}
-
-.text-wrapper-4 {
+.round-number {
     font-family: "Unbounded-Bold", Helvetica;
     font-weight: 700;
     color: #fefeff99;
@@ -207,75 +136,20 @@
     line-height: normal;
 }
 
-.map-identifier {
-    display: inline-flex;
-    align-items: flex-start;
-    position: absolute;
-    top: 0;
-    left: 4px;
-    gap: 4px;
-    border-radius: 0px 0px 8px 8px;
-    overflow: hidden;
-}
+// .spike-indicator {
+//     display: inline-flex;
+//     align-items: center;
+//     gap: 9px;
+//     position: relative;
+//     flex: 0 0 auto;
+// }
 
-.map-pill {
-    display: flex;
-    width: 180px;
-    height: 24px;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 0px 10px 2px;
-    position: relative;
-    z-index: 2;
-    background: linear-gradient(90deg, rgba(15, 25, 35, 0.85) 0%, rgba(31.14, 37.75, 40.58, 0.85) 100%);
-}
-
-.text-wrapper-5 {
-    position: relative;
-    width: fit-content;
-    font-family: Montserrat, Helvetica;
-    font-weight: 800;
-    color: #ffffff;
-    font-size: 14px;
-    font-style: normal;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-    
-}
-
-.ad-display {
-    position: absolute;
-    width: 240px;
-    height: 88px;
-    top: 0;
-    left: 1680px;
-    background: rgba(0, 0, 0, 0.6)
-}
-
-.UP-onlylogo {
-    position: absolute;
-    width: 156px;
-    height: 71px;
-    top: 11px;
-    left: 42px;
-    object-fit: cover;
-}
-
-.event-name {
-    display: inline-flex;
-    height: 24px;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 0px 10px 2px;
-    position: absolute;
-    top: 0;
-    left: 1363px;
-    border-radius: 0px 0px 8px 8px;
-    overflow: hidden;
-    background: linear-gradient(90deg, rgba(15, 25, 35, 0.85) 0%, rgba(31.14, 37.75, 40.58, 0.85) 100%);
-}
+// .spike-icon {
+//     position: relative;
+//     width: 67.24px;
+//     height: 61.99px;
+//     margin-top: -7px;
+//     margin-bottom: -9px;
+//     margin-left: -8px;
+//     margin-right: -8px;
+// }

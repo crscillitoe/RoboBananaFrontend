@@ -1,66 +1,33 @@
-<div class="overlap-group">
-    <div class="frame">
-        <div class="header-scoreboard">
-            <div class="div">
-                <div class="div-2">
-                    <img class="polygon" src="https://dnkl.gg/UP7NG" />
-                    <div class="div-3">
-                        <div class="text-wrapper">{{match.teams[0].teamName}}</div>
-                        <!-- <div class="text-wrapper-2">AMER#1</div> -->
-                    </div>
+<div class="topscore">
+    <div class="topscore-container">
+        <div class="scoreboard">
+            <div class="teamcard">
+                <div class="teaminfo-container">
+                    <img class="team-image" src="https://dnkl.gg/UP7NG" />
+                    <div class="teamcode">{{match.teams[0].teamName}}</div>
                 </div>
-                <div class="scb-divider"></div>
-                <div class="scb-roundswon">
-                    <div class="text-wrapper-3">{{match.teams[0].roundsWon}}</div>
+                <div class="divider" [class]="match.teams[0].isAttacking ? 'red' : 'green'"></div>
+                <div class="scoreblock-left" [class]="match.teams[0].isAttacking ? 'red' : 'green'">
+                    <div class="score-text">{{match.teams[0].roundsWon}}</div>
                 </div>
             </div>
-            <div class="div">
-                <div class="div-wrapper">
-                    <div class="text-wrapper-3">{{match.teams[1].roundsWon}}</div>
+            <div class="teamcard">
+                <div class="scoreblock-right" [class]="match.teams[1].isAttacking ? 'red' : 'green'">
+                    <div class="score-text">{{match.teams[1].roundsWon}}</div>
                 </div>
-                <div class="rectangle"></div>
-                <div class="div-2">
-                    <div class="div-3">
-                        <div class="text-wrapper">{{match.teams[1].teamName}}</div>
-                        <!-- <div class="text-wrapper-2">PAC#1</div> -->
-                    </div>
-                    <img class="polygon" src="https://dnkl.gg/CArdl" />
+                <div class="divider" [class]="match.teams[1].isAttacking ? 'red' : 'green'"></div>
+                <div class="teaminfo-container">
+                    <div class="teamcode">{{match.teams[1].teamName}}</div>
+                    <img class="team-image" src="https://dnkl.gg/CArdl" />
                 </div>
             </div>
         </div>
-        <div class="pips-mapwin">
-            <div class="mapwin-left">
-                <div class="mapwin"></div>
-                <div class="mapwin"></div>
-                <div class="mapwin-2"></div>
-            </div>
-            <div class="mapwin-right">
-                <div class="mapwin-2"></div>
-                <div class="mapwin-2"></div>
-                <div class="mapwin"></div>
-            </div>
-        </div>
+        <app-inhouse-tracker-mapwins *ngIf="false" />
         <!-- <div class="spike-indicator" *ngIf="match.roundPhase === 'combat' && !match.spikePlanted">
             <img class="spike-icon" src="../../assets/shop/Spike-top.svg" />
         </div> -->
     </div>
-    <div class="text-wrapper-4">ROUND {{match.roundNumber}}</div>
+    <div class="round-number">ROUND {{match.roundNumber}}</div>
 </div>
-<div class="map-identifier">
-    <div class="map-pill">
-        <!-- <div class="text-wrapper-5">BIND: PNG 16-14 100B</div> -->
-        <div class="text-wrapper-5">INCREDIBLY</div>
-    </div>
-    <div class="map-pill">
-        <!-- <div class="text-wrapper-5">CURRENT: BREEZE</div> -->
-        <div class="text-wrapper-5">INTERESTING</div>
-    </div>
-    <div class="map-pill">
-        <!-- <div class="text-wrapper-5">NEXT: ASCENT</div> -->
-        <div class="text-wrapper-5">INFORMATION</div>
-    </div>
-</div>
-<div class="ad-display"><img class="UP-onlylogo" src="../../assets/underpeel-logo.png" /></div>
-<div class="event-name">
-    <div class="text-wrapper-5">UNDERPEEL SEASON 4: DEBUG</div>
-</div>
+
+<app-inhouse-tracker-topinfo *ngIf="false" />
