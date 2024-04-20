@@ -190,6 +190,7 @@
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-color: #61eab6;
+    overflow: hidden;
 }
 
 .player-info-right {
@@ -205,6 +206,7 @@
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-color: #FF4557;
+    overflow: hidden;
 }
 
 .player-info-background-alive {
@@ -214,7 +216,7 @@
 
 .player-info-background-alive-right {
     position: absolute;
-    background: linear-gradient(90deg, rgba(255, 69, 87, 0.70) 0%, rgba(31, 122, 88, 0.00) 100%), rgba(15, 25, 35, 0.60);
+    background: linear-gradient(90deg, rgba(255, 69, 87, 0.30) 0%, rgba(31, 122, 88, 0.00) 100%), rgba(15, 25, 35, 0.60);
 }
 
 .player-info-background-dead {
@@ -240,6 +242,8 @@
     align-self: stretch;
     width: 100%;
     flex: 0 0 auto;
+    top: -4px;
+    left: 5px;
 }
 
 .shields-currency {
@@ -293,7 +297,7 @@
     opacity: 0.8;
     font-family: "Montserrat", Helvetica;
     font-weight: 700;
-    color: #FF4557;
+    color: #ff838f;
     font-size: 14px;
     text-align: center;
     letter-spacing: 0;

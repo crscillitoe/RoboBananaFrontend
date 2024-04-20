@@ -330,7 +330,7 @@
     width: 121px;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 3px;
     position: relative;
     align-self: stretch;
   }
@@ -341,7 +341,7 @@
     font-family: "Montserrat", Helvetica;
     font-weight: 600;
     color: #ffffff;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
@@ -381,6 +381,7 @@
     position: relative;
     align-self: stretch;
     margin-left: -85.6px;
+    left: 7px;
   }
   
   .rank-badge {
@@ -415,6 +416,7 @@
     gap: 10px;
     position: relative;
     align-self: stretch;
+    left: 9px;
   }
   .KDA-tracker {
     position: relative;
