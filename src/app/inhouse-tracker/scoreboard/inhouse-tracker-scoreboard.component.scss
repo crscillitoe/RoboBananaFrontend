@@ -65,6 +65,11 @@
     position: relative;
     flex: 0 0 auto;
   }
+
+  .frame-11-right {
+    @extend .frame-11;
+    align-items: flex-end;
+  }
   
   .text-wrapper-6 {
     position: relative;
@@ -312,7 +317,6 @@
   }
   
   .agent-icon {
-    background-image: url(../../../assets/agents/AstraIcon.png);
     background-size: cover;
     background-position: 50% 50%;
     position: relative;
@@ -389,6 +393,19 @@
     background-size: cover;
     background-position: 50% 50%;
   }
+
+  .shield-icon-container {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    top: 19px;
+    left: 110px;
+  }
+
+  .shield-icon {
+    height: 100%;
+    aspect-ratio: 1;
+  }
   
   .KDA-tracker-wrapper {
     display: flex;
@@ -428,7 +445,7 @@
     display: flex;
     width: 216px;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 10px;
     position: relative;
     align-self: stretch;
@@ -447,7 +464,7 @@
   
   .operator-killfeed {
     position: relative;
-    width: 213.33px;
+    // width: 213.33px;
     height: 40px;
     transform: rotate(-180deg);
     object-fit: cover;

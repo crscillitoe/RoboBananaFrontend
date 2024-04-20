@@ -5,23 +5,23 @@
                 <div class="div-2">
                     <img class="polygon" src="https://dnkl.gg/UP7NG" />
                     <div class="div-3">
-                        <div class="text-wrapper">PNG</div>
+                        <div class="text-wrapper">{{match.teams[0].teamName}}</div>
                         <!-- <div class="text-wrapper-2">AMER#1</div> -->
                     </div>
                 </div>
                 <div class="scb-divider"></div>
                 <div class="scb-roundswon">
-                    <div class="text-wrapper-3">6</div>
+                    <div class="text-wrapper-3">{{match.teams[0].roundsWon}}</div>
                 </div>
             </div>
             <div class="div">
                 <div class="div-wrapper">
-                    <div class="text-wrapper-3">9</div>
+                    <div class="text-wrapper-3">{{match.teams[1].roundsWon}}</div>
                 </div>
                 <div class="rectangle"></div>
                 <div class="div-2">
                     <div class="div-3">
-                        <div class="text-wrapper">100B</div>
+                        <div class="text-wrapper">{{match.teams[1].teamName}}</div>
                         <!-- <div class="text-wrapper-2">PAC#1</div> -->
                     </div>
                     <img class="polygon" src="https://dnkl.gg/CArdl" />
@@ -40,21 +40,24 @@
                 <div class="mapwin"></div>
             </div>
         </div>
-        <div class="spike-indicator">
+        <!-- <div class="spike-indicator" *ngIf="match.roundPhase === 'combat' && !match.spikePlanted">
             <img class="spike-icon" src="../../assets/shop/Spike-top.svg" />
-        </div>
+        </div> -->
     </div>
-    <div class="text-wrapper-4">ROUND 15</div>
+    <div class="text-wrapper-4">ROUND {{match.roundNumber}}</div>
 </div>
 <div class="map-identifier">
     <div class="map-pill">
-        <div class="text-wrapper-5">BIND: PNG 16-14 100B</div>
+        <!-- <div class="text-wrapper-5">BIND: PNG 16-14 100B</div> -->
+        <div class="text-wrapper-5">INCREDIBLY</div>
     </div>
     <div class="map-pill">
-        <div class="text-wrapper-5">CURRENT: BREEZE</div>
+        <!-- <div class="text-wrapper-5">CURRENT: BREEZE</div> -->
+        <div class="text-wrapper-5">INTERESTING</div>
     </div>
     <div class="map-pill">
-        <div class="text-wrapper-5">NEXT: ASCENT</div>
+        <!-- <div class="text-wrapper-5">NEXT: ASCENT</div> -->
+        <div class="text-wrapper-5">INFORMATION</div>
     </div>
 </div>
 <div class="ad-display"><img class="UP-onlylogo" src="../../assets/underpeel-logo.png" /></div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-inhouse-tracker-scoreboard',
@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InhouseTrackerScoreboardComponent {
 
+  @Input() match!: any;
+
   constructor() {
+  }
+
+  numSequence(n: number): Array<number> {
+    return Array(n);
   }
 
 }

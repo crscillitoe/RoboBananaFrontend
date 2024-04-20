@@ -36,16 +36,18 @@
 }
 
 .agent-icon {
-    left: 315px;
     z-index: 1;
-    transform: rotateY(180deg);
-    background-image: url(../../../assets/agents/ChamberIcon.png);
     background-size: cover;
     background-position: 50% 50%;
     position: absolute;
     aspect-ratio: 1;
     height: 100%;
     top: 0;
+}
+
+.agent-icon-dead {
+    @extend .agent-icon;
+    filter: grayscale(1);
 }
 
 .player-card {
@@ -167,26 +169,10 @@
     background-position: 50% 50%;
 }
 
-.agent-icon-3 {
+.agent-icon-container {
     left: -44px;
     z-index: 1;
-    background-image: url(../../../assets/agents/ChamberIcon.png);
-    background-size: cover;
-    background-position: 50% 50%;
     position: absolute;
-    aspect-ratio: 1;
-    height: 100%;
-    top: 0;
-}
-
-.agent-icon-3-right {
-    right: -44px;
-    z-index: 1;
-    background-image: url(../../../assets/agents/ChamberIcon.png);
-    background-size: cover;
-    background-position: 50% 50%;
-    position: absolute;
-    aspect-ratio: 1;
     height: 100%;
     top: 0;
 }
@@ -222,14 +208,17 @@
 }
 
 .player-info-background-alive {
+    position:absolute;
     background: linear-gradient(90deg, rgba(31, 122, 88, 0.70) 0%, rgba(31, 122, 88, 0.00) 100%), rgba(15, 25, 35, 0.60);
 }
 
 .player-info-background-alive-right {
+    position: absolute;
     background: linear-gradient(90deg, rgba(255, 69, 87, 0.70) 0%, rgba(31, 122, 88, 0.00) 100%), rgba(15, 25, 35, 0.60);
 }
 
 .player-info-background-dead {
+    position: absolute;
     background: rgba(15, 25, 35, 0.60);
 }
 

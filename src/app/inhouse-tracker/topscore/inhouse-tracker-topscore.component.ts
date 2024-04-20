@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-inhouse-tracker-topscore',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inhouse-tracker-topscore.component.scss'],
 })
 export class InhouseTrackerTopscoreComponent {
+
+  @Input() match!: any;
 
   constructor() {
   }
