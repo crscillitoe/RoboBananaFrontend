@@ -1,75 +1,85 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
 
 .underpeel-draft {
   position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 27%;
-  width: 100%;
+  left: 0px;
+  bottom: 0px;
+  height: 154px;
+  width: 540px;
+  border: solid #FFD359 5px;
 }
 
 .upDraftCurrentTeamContainer {
   position: absolute;
-  height: 260px;
-  width: 15%;
-  left: 0.75%;
-  bottom: 3%;
+  height: 80%;
+  width: 100%;
   border-bottom: 0;
+  background-color: black;
 }
 
 .upDraftCurrentTeamImageContainer {
   position: absolute;
   height: 100%;
-  width: 100%;
+  width: 25%;
   display: inline-flex;
   justify-content: center;
-  border-radius: 90px;
-  background-image: linear-gradient(to bottom right, rgba(48, 23, 191, 0.75), rgba(0, 179, 255, 0.75));
+  background: linear-gradient(180deg, black 0%, black 60%, #FFD359 95%, #FFD359);
 }
 
 .upDraftCurrentTeamImage {
   max-width: 80%;
   object-fit: contain;
   margin: auto;
-  margin-top: -10px;
 }
 
 .upDraftCurrentTeamNameContainer {
   position: absolute;
-  height: 15%;
-  width: 100%;
-  bottom: 7.5%;
-  text-align: center;
+  height: 100%;
+  width: 75%;
+  left: 25%;
 }
 
 .upDraftCurrentTeamName {
-  font-size: 40px;
+  font-size: 75px;
   font-weight: 1000;
   text-transform: uppercase;
-  color: rgb(241, 241, 241);
+  color: #8DBEEC;
+  font-family: "Unbounded", sans-serif;
+  position: absolute;
+  top: 0;
+  left: 10%;
+}
+
+.upDraftCurrentPickingText {
+  font-size: 20px;
+  font-weight: 1000;
+  text-transform: uppercase;
+  color: #8DBEEC;
+  font-family: "Unbounded", sans-serif;
+  position: absolute;
+  top: 65%;
+  left: 10%;
 }
 
 .upDraftTickerContainer {
   position: absolute;
-  width: 84%;
-  height: 65px;
-  bottom: 3%;
-  left: 15.5%;
+  width: 100%;
+  height: 20%;
+  bottom: 0;
+  background-color: #FFD359;
   display: inline-flex;
-  justify-content: center;
-  border-bottom: 0;
-  border-radius: 50px;
-  background-image: linear-gradient(to left, rgba(48, 23, 191, 0.75), rgba(0, 179, 255, 0.75));
-  overflow-x: hidden;
   text-wrap: nowrap;
+  justify-content: center;
 }
 
 .upDraftTickerText {
-  padding: 3px;
-  line-height: 100%;
-  font-size: 40px;
+  height: 100%;
+  font-size: 20px;
   font-weight: 550;
-  object-fit: contain;
-  color: rgb(241, 241, 241);
-  margin: 12px;
+  color: black;
+  margin: 5px;
+  font-family: "Unbounded", sans-serif;
+  overflow: hidden;
+  direction: rtl;
 }

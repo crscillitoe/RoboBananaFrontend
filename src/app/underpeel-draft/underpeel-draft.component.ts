@@ -12,6 +12,9 @@ const GSheetReader = require('g-sheets-api');
 export class UnderpeelDraftComponent implements OnInit {
   apiKey: string = "";
   sheetId: string = "";
+  lastPicks: string[] = [];
+  lastPickPlayer: string = "";
+  currentlyPicking: string = "";
 
   constructor(private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
@@ -20,22 +23,22 @@ export class UnderpeelDraftComponent implements OnInit {
     });
   }
 
-  sheetData: [] = [];
-  tickerData: string = "";
+  sheetData: any = [];
+  tickerData: string = "...Waiting for picks";
 
   async ngOnInit(): Promise<void> {
     this.setupSheetReader();
   }
 
   setupSheetReader() {
-    if (this.apiKey == "" || this.sheetId == "" || !this.sheetId.startsWith("1z5mR1tecFqHgS")) return;
+    if (this.apiKey == "" || this.sheetId == "" || !this.sheetId.startsWith("10rRyMpAZ")) return;
     const options = {
       apiKey: this.apiKey,
       sheetId: this.sheetId,
-      sheetName: "Dunkel Test (Ignore)"
+      sheetName: "vlr pull sheet"
     }
 
-    setInterval(() => {
+    const interval = setInterval(() => {
       GSheetReader(
         options,
         (res: any) => {
@@ -44,22 +47,29 @@ export class UnderpeelDraftComponent implements OnInit {
         },
         (err: any) => {
           console.log(err);
-        }
+          clearInterval(interval);
+          }
       );
     }, 1500);
   }
 
   updateOverlay() {
     this.tickerData = "";
-    let idx = this.sheetData.length - 3;
-    for (let curr = 0; idx < this.sheetData.length; idx++, curr++) {
-      const element = this.sheetData[idx];
-      if (curr != 2) {
-        this.tickerData += `${element["Team Name"]} picks ${element["Player"]} - `;
-      } else {
-        
-      this.tickerData += `${element["Team Name"]} picks ${element["Player"]}`;
+    if (this.sheetData.length >= 0) {
+      if (this.lastPickPlayer != this.sheetData[0]["Player"]) {
+        const newPick = `${this.sheetData[0]["Team Name"]} ▶ ${this.sheetData[0]["Player"]}`;
+        this.lastPicks.push(newPick);
+
+        this.lastPickPlayer = this.sheetData[0]["Player"];
       }
+      this.currentlyPicking = this.sheetData[5]["Player"];
+    }
+    if (this.lastPicks.length > 3) {
+      this.tickerData = this.lastPicks.slice(this.lastPicks.length - 3, this.lastPicks.length).join(" // ");
+    } else if (this.lastPicks.length > 0) {
+      this.tickerData = this.lastPicks.join(" // ");
+    } else {
+      this.tickerData = "...Waiting for picks";
     }
   }
 
