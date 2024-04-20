@@ -47,6 +47,7 @@ import { EmotePopupsComponent } from './emote-popups/emote-popups.component';
 import { EmotePopupsDirective } from './emote-popups/emote-popups-directive';
 import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.component';
 import { InhouseTrackerComponent } from './inhouse-tracker/inhouse-tracker.component';
+import { InhouseTrackerTopscoreComponent } from './inhouse-tracker/topscore/inhouse-tracker-topscore.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { InhouseTrackerComponent } from './inhouse-tracker/inhouse-tracker.compo
     EmotePopupsComponent,
     EmotePopupsDirective,
     EmotePopupIconComponent,
-    InhouseTrackerComponent
+    InhouseTrackerComponent,
+    InhouseTrackerTopscoreComponent
   ],
   imports: [
     BrowserModule,

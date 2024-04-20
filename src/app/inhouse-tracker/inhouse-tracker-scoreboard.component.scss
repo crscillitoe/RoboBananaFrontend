@@ -443,7 +443,7 @@
     position: relative;
     width: fit-content;
     margin-top: -1px;
-    font-family: "Unbounded-ExtraBold", Helvetica;
+    font-family: "Unbounded", Helvetica;
     font-weight: 800;
     color: #ffffff;
     font-size: 36px;
@@ -451,11 +451,12 @@
     letter-spacing: -0.72px;
     line-height: normal;
     white-space: nowrap;
+    text-transform: uppercase;
   }
   
   .UP-previewscreen .text-wrapper-7 {
     margin-top: -1px;
-    font-family: "Unbounded-Bold", Helvetica;
+    font-family: "Unbounded", Helvetica;
     color: #ffffffe6;
     font-size: 12px;
     letter-spacing: 0;
@@ -471,7 +472,7 @@
     position: relative;
     width: fit-content;
     margin-top: -1px;
-    font-family: "Unbounded-Bold", Helvetica;
+    font-family: "Unbounded", Helvetica;
     font-weight: 700;
     color: #ffffff99;
     font-size: 12px;
@@ -756,7 +757,7 @@
   .UP-previewscreen .text-wrapper-9 {
     position: relative;
     width: fit-content;
-    font-family: "Montserrat-SemiBold", Helvetica;
+    font-family: "Montserrat", Helvetica;
     font-weight: 600;
     color: #ffffff;
     font-size: 20px;
@@ -825,7 +826,7 @@
   .UP-previewscreen .KDA-tracker {
     position: relative;
     width: fit-content;
-    font-family: "Unbounded-SemiBold", Helvetica;
+    font-family: "Unbounded", Helvetica;
     font-weight: 600;
     color: transparent;
     font-size: 18px;
@@ -837,6 +838,10 @@
   
   .UP-previewscreen .span {
     color: #ffffff;
+    font-family: "Unbounded", Helvetica;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0;
   }
   
   .UP-previewscreen .text-wrapper-10 {
@@ -887,7 +892,7 @@
     position: relative;
     width: fit-content;
     opacity: 0.8;
-    font-family: "Montserrat-Bold", Helvetica;
+    font-family: "Montserrat", Helvetica;
     font-weight: 700;
     color: #ff4557;
     font-size: 18px;
@@ -897,12 +902,22 @@
     margin: -5px;
   }
   
+  .UP-previewscreen .valorant-credits-scoreboard {
+    position: relative;
+    width: 12px;
+    height: 12px;
+  }
+
   .UP-previewscreen .text-wrapper-11 {
     letter-spacing: 0.42px;
   }
   
   .UP-previewscreen .text-wrapper-12 {
     letter-spacing: 0;
+    opacity: 0.8;
+    font-family: "Montserrat", Helvetica;
+    font-weight: 700;
+    font-size: 18px;
   }
   
   .UP-previewscreen .text-red {
@@ -914,7 +929,7 @@
 
   .UP-previewscreen .p {
     opacity: 0.8;
-    font-family: "Montserrat-Bold", Helvetica;
+    font-family: "Montserrat", Helvetica;
     color: #ffffff;
     font-size: 18px;
     position: relative;
