@@ -52,6 +52,8 @@ import { InhouseTrackerScoreboardComponent } from './inhouse-tracker/scoreboard/
 import { InhouseTrackerPlayercardsComponent } from './inhouse-tracker/playercards/inhouse-tracker-playercards.component';
 import { InhouseTrackerMapwinComponent } from './inhouse-tracker/topscore/mapwins/inhouse-tracker-mapwins.component';
 import { InhouseTrackerTopinfoComponent } from './inhouse-tracker/topscore/topinfo/inhouse-tracker-topinfo.component';
+import { InhouseTrackerPlayerscoreComponent } from './inhouse-tracker/scoreboard/playerscore/inhouse-tracker-playerscore.component';
+import { InhouseTrackerRoundreasonsComponent } from './inhouse-tracker/scoreboard/roundreasons/inhouse-tracker-roundreasons.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +103,9 @@ import { InhouseTrackerTopinfoComponent } from './inhouse-tracker/topscore/topin
     InhouseTrackerScoreboardComponent,
     InhouseTrackerPlayercardsComponent,
     InhouseTrackerMapwinComponent,
-    InhouseTrackerTopinfoComponent
+    InhouseTrackerTopinfoComponent,
+    InhouseTrackerPlayerscoreComponent,
+    InhouseTrackerRoundreasonsComponent
   ],
   imports: [
     BrowserModule,
