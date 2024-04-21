@@ -8,5 +8,8 @@ export const environment = {
   t3DiscordRoleID: 1036807951484203099,
   giftedT3DiscordRoleID: 1045466382470484040,
   spotifyClientID: "468884dbfb994abc96a16a00a6ece770",
-  spotifyRedirectURL: "https://new-overlay.woohooj.in/stream-layout"
+  spotifyRedirectURL: "https://new-overlay.woohooj.in/stream-layout",
+  ranksSheetId: "",
+  ranksSheetName: "",
+  ranksSheetAPIKey: ""
 };
