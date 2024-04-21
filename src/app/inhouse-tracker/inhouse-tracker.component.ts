@@ -91,6 +91,9 @@ export class InhouseTrackerComponent implements OnInit {
     this.teamLeftColorFeint = this.teamLeft.isAttacking ? Colors.ATTACKER_FEINT : Colors.DEFENDER_FEINT;
     this.teamRightColor = this.teamRight.isAttacking ? Colors.ATTACKER_REG : Colors.DEFENDER_REG;
     this.teamRightColorFeint = this.teamRight.isAttacking ? Colors.ATTACKER_FEINT : Colors.DEFENDER_FEINT;
+
+    this.match.ranksEnabled = this.ranksEnabled;
+    this.match.ranksByName = this.ranksByName;
   }
 
   resetTracker() {

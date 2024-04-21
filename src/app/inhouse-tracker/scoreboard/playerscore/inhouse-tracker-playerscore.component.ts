@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class InhouseTrackerPlayerscoreComponent {
 
+  @Input() match!: any;
   @Input() player!: any;
   @Input() color!: "red" | "green";
   @Input() side!: "left" | "right";

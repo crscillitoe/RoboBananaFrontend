@@ -1,8 +1,8 @@
 <div class="playerscore-component" [class]="color">
     <div class="playerinfo-container">
         <img class="agent-icon" src="../../../../assets/agents/{{player.agentProper}}Icon.png" />
-        <div class="rank-icon-container" *ngIf="true">
-            <img class="rank-icon" [class]="side" src="../../../../assets/Radiant_Rank.png" />
+        <div class="rank-icon-container" *ngIf="match.ranksEnabled && match.ranksByName[player.name]">
+            <img class="rank-icon" [class]="side" src="../../../../assets/{{match.ranksByName[player.name]}}_Rank.png" />
         </div>
         <div class="playername-container" [class]="side">
             <div class="playername-text">{{player.name}}</div>

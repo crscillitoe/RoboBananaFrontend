@@ -49,7 +49,7 @@ import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.com
 import { InhouseTrackerComponent } from './inhouse-tracker/inhouse-tracker.component';
 import { InhouseTrackerTopscoreComponent } from './inhouse-tracker/topscore/inhouse-tracker-topscore.component';
 import { InhouseTrackerScoreboardComponent } from './inhouse-tracker/scoreboard/inhouse-tracker-scoreboard.component';
-import { InhouseTrackerPlayercardsComponent } from './inhouse-tracker/playercards/inhouse-tracker-playercards.component';
+import { InhouseTrackerCombatComponent } from './inhouse-tracker/combat/inhouse-tracker-combat.component';
 import { InhouseTrackerMapwinComponent } from './inhouse-tracker/topscore/mapwins/inhouse-tracker-mapwins.component';
 import { InhouseTrackerTopinfoComponent } from './inhouse-tracker/topscore/topinfo/inhouse-tracker-topinfo.component';
 import { InhouseTrackerPlayerscoreComponent } from './inhouse-tracker/scoreboard/playerscore/inhouse-tracker-playerscore.component';
@@ -101,7 +101,7 @@ import { InhouseTrackerRoundreasonsComponent } from './inhouse-tracker/scoreboar
     InhouseTrackerComponent,
     InhouseTrackerTopscoreComponent,
     InhouseTrackerScoreboardComponent,
-    InhouseTrackerPlayercardsComponent,
+    InhouseTrackerCombatComponent,
     InhouseTrackerMapwinComponent,
     InhouseTrackerTopinfoComponent,
     InhouseTrackerPlayerscoreComponent,

@@ -32,6 +32,7 @@
         <div class="playerscore-wrapper">
             <app-inhouse-tracker-playerscore 
                 *ngFor="let player of match.teams[0].players" 
+                [match]="match"
                 [player]="player" 
                 [color]="match.teams[0].isAttacking ? 'red' : 'green'"
                 side="left"
@@ -40,6 +41,7 @@
         <div class="playerscore-wrapper flip">
             <app-inhouse-tracker-playerscore 
                 *ngFor="let player of match.teams[1].players"
+                [match]="match"
                 [player]="player" 
                 [color]="match.teams[1].isAttacking ? 'red' : 'green'"
                 side="right"

@@ -1,5 +1,5 @@
 <div class="UP-mainscreen-lite">
     <app-inhouse-tracker-topscore [match]="match" />
-    <app-inhouse-tracker-playercards *ngIf="match.roundPhase !== 'shopping'" [match]="match" [@fade] />
+    <app-inhouse-tracker-combat *ngIf="match.roundPhase !== 'shopping'" [match]="match" [@fade] />
     <app-inhouse-tracker-scoreboard *ngIf="match.roundPhase === 'shopping'" [match]="match" [@fade] />
 </div>
