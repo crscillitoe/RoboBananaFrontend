@@ -24,7 +24,7 @@
   width: 25%;
   display: inline-flex;
   justify-content: center;
-  background: linear-gradient(180deg, black 0%, black 60%, #FFD359 95%, #FFD359);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(73, 179, 255, 0.20) 100%);
 }
 
 .upDraftCurrentTeamImage {
@@ -44,7 +44,7 @@
   font-size: 75px;
   font-weight: 1000;
   text-transform: uppercase;
-  color: #8DBEEC;
+  color: #FFFFFF;
   font-family: "Unbounded", sans-serif;
   position: absolute;
   top: 0;
@@ -55,7 +55,7 @@
   font-size: 20px;
   font-weight: 1000;
   text-transform: uppercase;
-  color: #8DBEEC;
+  color: #FFFFFF;
   font-family: "Unbounded", sans-serif;
   position: absolute;
   top: 65%;

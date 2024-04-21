@@ -56,18 +56,20 @@ export class UnderpeelDraftComponent implements OnInit {
   updateOverlay() {
     this.tickerData = "";
     if (this.sheetData.length >= 0) {
-      if (this.lastPickPlayer != this.sheetData[0]["Player"]) {
-        const newPick = `${this.sheetData[0]["Team Name"]} ▶ ${this.sheetData[0]["Player"]}`;
+      const player = this.sheetData[0]["Player"];
+      const teamName = this.sheetData[0]["Team Name"];
+      if (this.lastPickPlayer != player && (player != "" && teamName != "")) {
+        const newPick = `${teamName} ▶ ${player}`;
         this.lastPicks.push(newPick);
 
-        this.lastPickPlayer = this.sheetData[0]["Player"];
+        this.lastPickPlayer = player;
       }
       this.currentlyPicking = this.sheetData[5]["Player"];
     }
     if (this.lastPicks.length > 3) {
-      this.tickerData = this.lastPicks.slice(this.lastPicks.length - 3, this.lastPicks.length).join(" // ");
+      this.tickerData = this.lastPicks.slice(this.lastPicks.length - 3, this.lastPicks.length).join(" - ");
     } else if (this.lastPicks.length > 0) {
-      this.tickerData = this.lastPicks.join(" // ");
+      this.tickerData = this.lastPicks.join(" - ");
     } else {
       this.tickerData = "...Waiting for picks";
     }
