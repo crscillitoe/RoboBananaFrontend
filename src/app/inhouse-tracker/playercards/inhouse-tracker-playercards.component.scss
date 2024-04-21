@@ -95,9 +95,11 @@
 .utility-container {
     display: inline-flex;
     height: 21.33px;
+    width: 50%;
     align-items: center;
     gap: 20px;
     position: relative;
+    justify-content: center;
 }
 
 .spike-icon-small {
@@ -133,6 +135,12 @@
     margin-right: -2px;
     background-image: url(../../../assets/shop/ultimate-pip-full.svg);
     background-size: 100% 100%;
+}
+
+.ultimate-full-image {
+    width: 25px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .playercards-leftteam {

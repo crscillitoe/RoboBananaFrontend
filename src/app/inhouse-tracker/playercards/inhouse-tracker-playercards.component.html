@@ -32,9 +32,12 @@
                     </div>
                     <div class="utility-container">
                         <!-- <img class="spike-icon-small" src="img/spike-icon-small.svg" /> -->
-                        <div class="ultimate-tracker">
+                        <div class="ultimate-tracker" *ngIf="!player.ultReady">
                             <div class="pip-ultimate-full" *ngFor="let i of numSequence(player.currUltPoints)"></div>
                             <div class="pip-ultimate" *ngFor="let i of numSequence(player.maxUltPoints - player.currUltPoints)"></div>
+                        </div>
+                        <div class="ultimate-tracker" *ngIf="player.ultReady">
+                            <img class="ultimate-full-image" src="../../../assets/ultimates/{{player.agentProper}}Ultimate.png">
                         </div>
                     </div>
                 </div>
@@ -73,9 +76,12 @@
                     </div>
                     <div class="utility-container">
                         <!-- <img class="spike-icon-small" src="img/spike-icon-small.svg" /> -->
-                        <div class="ultimate-tracker flip">
+                        <div class="ultimate-tracker flip" *ngIf="!player.ultReady">
                             <div class="pip-ultimate-full" *ngFor="let i of numSequence(player.currUltPoints)"></div>
                             <div class="pip-ultimate" *ngFor="let i of numSequence(player.maxUltPoints - player.currUltPoints)"></div>
+                        </div>
+                        <div class="ultimate-tracker" *ngIf="player.ultReady">
+                            <img class="ultimate-full-image" src="../../../assets/ultimates/{{player.agentProper}}Ultimate.png">
                         </div>
                     </div>
                 </div>
