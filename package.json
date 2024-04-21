@@ -24,6 +24,7 @@
     "@types/voice-activity-detection": "^0.0.2",
     "chess.js": "^1.0.0-beta.6",
     "cm-chessboard-ts": "^5.2.23",
+    "g-sheets-api": "^2.2.0",
     "howler": "^2.2.3",
     "rxjs": "~7.5.0",
     "stockfish.js": "^10.0.2",
