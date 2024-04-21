@@ -3,6 +3,7 @@ import { BotConnectorService } from '../services/bot-connector.service';
 import { InhouseTrackerService } from '../services/inhouse-tracker.service';
 import { getBaseStreamURL } from '../utility';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { ActivatedRoute } from '@angular/router';
 
 enum Colors {
   ATTACKER_REG = "rgba(232, 130, 125, 0.75)",
@@ -36,12 +37,18 @@ export class InhouseTrackerComponent implements OnInit {
   teamLeft: any = null;
   teamRight: any = null;
 
+  ranksEnabled: boolean = false;
+  ranksByName: any = {};
+
   teamLeftColor: string = Colors.ATTACKER_REG;
   teamLeftColorFeint: string = Colors.ATTACKER_FEINT;
   teamRightColor: string = Colors.DEFENDER_REG;
   teamRightColorFeint: string = Colors.DEFENDER_FEINT;
 
-  constructor(private botService: BotConnectorService, private inhouseTrackerService: InhouseTrackerService) {
+  constructor(private botService: BotConnectorService, private inhouseTrackerService: InhouseTrackerService, private route: ActivatedRoute) {
+      this.route.queryParams.subscribe(params => {
+        this.ranksEnabled = params["ranks"] == "true" ? true : false;
+      });
   }
 
   async ngOnInit(): Promise<void> {
@@ -67,13 +74,16 @@ export class InhouseTrackerComponent implements OnInit {
       this.updateMatch(JSON.parse(e.data));
       this.activelyTracking = true;
     })
+
+    if (this.ranksEnabled) {
+      this.ranksByName = this.inhouseTrackerService.getRanksFromSheet();
+    }
   }
 
   updateMatch(data: any) {
     this.match = data;
     this.teamLeft = this.match.teams[0];
     this.teamRight = this.match.teams[1];
-
 
     this.teamLeft.teamName = "TIRA";
     this.teamRight.teamName = "DNKL";
