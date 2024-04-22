@@ -311,7 +311,7 @@ export class AiChatInteractorComponent implements OnInit {
       }
 
       if (this.chatOnlyMode) {
-        if (this.pendingTTS.length === 0) {
+        if (this.pendingTTS.length === 0 && !this.isTalking) {
           this.pendingTTS.push({
             message: data.content,
             senderName: data.displayName,
