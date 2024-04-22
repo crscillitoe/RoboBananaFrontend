@@ -1,4 +1,8 @@
 # RoboBananaFrontend Changelog
+## 2024.04.22
+### Additions and Fixes:
+- Add full TTS mode, which can use any message that starts with "hooj" for TTS ([05cfefb...27e5b9e](https://github.com/crscillitoe/RoboBananaFrontend/compare/7f65afe...27e5b9e))
+  
 ## 2024.04.06
 ### Additions and Fixes:
 - Functionality to enable emote popup zones on startup (bottomEdgeMultiple for now) (https://github.com/crscillitoe/RoboBananaFrontend/pull/37) (By [Tiranthine](https://github.com/Tiranthine))
