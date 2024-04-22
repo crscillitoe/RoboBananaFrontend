@@ -16,6 +16,6 @@
     <div [@fadeIn] class="tts-message">
         <div class="tts-invoker">{{currentTTSInvoker}} says:</div>
         {{currentTTSMessage}}
-        <div class="tts-voice">Voice used: {{currentTTSVoice}}</div>
+        <div *ngIf="currentTTSVoice != ''" class="tts-voice">Voice used: {{currentTTSVoice}}</div>
     </div>
 </ng-container>
