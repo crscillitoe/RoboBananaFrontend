@@ -42,6 +42,7 @@ export class AiChatInteractorComponent implements OnInit {
 
   OPEN_AI_KEY: string = "";
   ELEVENLABS_KEY: string = "";
+  CUSTOM_EMOJI_REGEX = /<a?:(\w+):\d{17,19}>?/g;
 
   chatOnlyMode: boolean = false;
 
@@ -299,7 +300,13 @@ export class AiChatInteractorComponent implements OnInit {
 
     this.botService.getStream("chat-message").subscribe((data) => {
       let messageToBot = "";
-      const message = data.content;
+
+      let message = data.content;
+      const customEmoji = [...message.matchAll(this.CUSTOM_EMOJI_REGEX)];
+      for (const match of customEmoji) {
+        message = message.replace(match[0], match[1]);
+      }
+
       const processed = this.chatProcessingService.processChat(data, -1, -1, 0);
 
       // Just slap this bad boy on there
@@ -311,9 +318,9 @@ export class AiChatInteractorComponent implements OnInit {
       }
 
       if (this.chatOnlyMode) {
-        if (this.pendingTTS.length === 0 && !this.isTalking && data.content.toLowerCase().startsWith("hooj")) {
+        if (this.pendingTTS.length === 0 && !this.isTalking && message.toLowerCase().startsWith("hooj")) {
           this.pendingTTS.push({
-            message: data.content,
+            message: message,
             senderName: data.displayName,
             voiceID: "knrPHWnBmmDHMoiMeP3l",
             voiceName: ""
