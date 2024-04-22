@@ -43,6 +43,8 @@ export class AiChatInteractorComponent implements OnInit {
   OPEN_AI_KEY: string = "";
   ELEVENLABS_KEY: string = "";
 
+  chatOnlyMode: boolean = false;
+
   VOICE_ID: string = "";
 
   pendingMessages: PendingMessage[] = [];
@@ -290,6 +292,8 @@ export class AiChatInteractorComponent implements OnInit {
         if (this.lastT3TTSMessage != null) {
           this.pendingTTS.push(this.lastT3TTSMessage);
         }
+      } else if (data.type === "enable-chat-tts") {
+        this.chatOnlyMode = data.value;
       }
     });
 
@@ -304,6 +308,17 @@ export class AiChatInteractorComponent implements OnInit {
           message: message,
           processedMessage: processed
         });
+      }
+
+      if (this.chatOnlyMode) {
+        if (this.pendingTTS.length === 0) {
+          this.pendingTTS.push({
+            message: data.content,
+            senderName: data.displayName,
+            voiceID: "wfj4mbx3FyRr0vexLOne",
+            voiceName: ""
+          });
+        }
       }
 
 
