@@ -315,7 +315,7 @@ export class AiChatInteractorComponent implements OnInit {
           this.pendingTTS.push({
             message: data.content,
             senderName: data.displayName,
-            voiceID: "wfj4mbx3FyRr0vexLOne",
+            voiceID: "knrPHWnBmmDHMoiMeP3l",
             voiceName: ""
           });
         }
