@@ -311,7 +311,7 @@ export class AiChatInteractorComponent implements OnInit {
       }
 
       if (this.chatOnlyMode) {
-        if (this.pendingTTS.length === 0 && !this.isTalking) {
+        if (this.pendingTTS.length === 0 && !this.isTalking && data.content.toLowerCase().startsWith("hooj")) {
           this.pendingTTS.push({
             message: data.content,
             senderName: data.displayName,
