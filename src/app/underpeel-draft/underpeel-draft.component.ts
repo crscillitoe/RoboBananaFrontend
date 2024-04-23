@@ -23,7 +23,6 @@ export class UnderpeelDraftComponent implements OnInit {
     });
   }
 
-  sheetData: any = [];
   tickerData: string = "...Waiting for picks";
 
   async ngOnInit(): Promise<void> {
@@ -42,37 +41,37 @@ export class UnderpeelDraftComponent implements OnInit {
       GSheetReader(
         options,
         (res: any) => {
-          this.sheetData = res;
-          this.updateOverlay();
+          this.updateOverlay(res);
         },
         (err: any) => {
           console.log(err);
           clearInterval(interval);
-          }
+        }
       );
     }, 1500);
   }
 
-  updateOverlay() {
-    this.tickerData = "";
-    if (this.sheetData.length >= 0) {
-      const player = this.sheetData[0]["Player"];
-      const teamName = this.sheetData[0]["Team Name"];
-      if (this.lastPickPlayer != player && (player != "" && teamName != "")) {
-        const newPick = `${teamName} ▶ ${player}`;
-        this.lastPicks.push(newPick);
+  updateOverlay(res: any) {
+    setTimeout(() => {
+      if (res.length >= 0) {
+        const player = res[0]["Player"];
+        const teamName = res[0]["Team Name"];
+        if (this.lastPickPlayer != player && (player != "" && teamName != "")) {
+          const newPick = `${teamName} ▶ ${player}`;
+          this.lastPicks.push(newPick);
 
-        this.lastPickPlayer = player;
+          this.lastPickPlayer = player;
+        }
+        this.currentlyPicking = res[5]["Player"];
       }
-      this.currentlyPicking = this.sheetData[5]["Player"];
-    }
-    if (this.lastPicks.length > 3) {
-      this.tickerData = this.lastPicks.slice(this.lastPicks.length - 3, this.lastPicks.length).join(" - ");
-    } else if (this.lastPicks.length > 0) {
-      this.tickerData = this.lastPicks.join(" - ");
-    } else {
-      this.tickerData = "...Waiting for picks";
-    }
+      if (this.lastPicks.length > 3) {
+        this.tickerData = this.lastPicks.slice(this.lastPicks.length - 3, this.lastPicks.length).join(" - ");
+      } else if (this.lastPicks.length > 0) {
+        this.tickerData = this.lastPicks.join(" - ");
+      } else {
+        this.tickerData = "...Waiting for picks";
+      }
+    }, 5000);
   }
 
 }
