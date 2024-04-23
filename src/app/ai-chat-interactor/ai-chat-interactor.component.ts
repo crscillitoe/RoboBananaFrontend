@@ -44,7 +44,10 @@ export class AiChatInteractorComponent implements OnInit {
   ELEVENLABS_KEY: string = "";
   CUSTOM_EMOJI_REGEX = /<a?:(\w+):\d{17,19}>?/g;
 
+  CHAT_ONLY_TIMEOUT_MS = 0;
+
   chatOnlyMode: boolean = false;
+  chatOnlyLocked: boolean = false;
 
   VOICE_ID: string = "";
 
@@ -236,6 +239,13 @@ export class AiChatInteractorComponent implements OnInit {
               this.isTalking = false;
               this.hiddenTalking = false;
               this.currentTTSMessage = null;
+
+              if (this.chatOnlyMode && this.CHAT_ONLY_TIMEOUT_MS > 0) {
+                this.chatOnlyLocked = true;
+                setTimeout(() => {
+                  this.chatOnlyLocked = false;
+                }, this.CHAT_ONLY_TIMEOUT_MS)
+              }
             }
           },
           error: (error) => {
@@ -295,6 +305,7 @@ export class AiChatInteractorComponent implements OnInit {
         }
       } else if (data.type === "enable-chat-tts") {
         this.chatOnlyMode = data.value;
+        this.CHAT_ONLY_TIMEOUT_MS = typeof data.timeoutMs == "number" ? data.timeoutMs : 0;
       }
     });
 
@@ -318,7 +329,7 @@ export class AiChatInteractorComponent implements OnInit {
       }
 
       if (this.chatOnlyMode) {
-        if (this.pendingTTS.length === 0 && !this.isTalking && message.toLowerCase().startsWith("hooj")) {
+        if (this.pendingTTS.length === 0 && !this.isTalking && message.toLowerCase().startsWith("hooj") && !this.chatOnlyLocked) {
           this.pendingTTS.push({
             message: message,
             senderName: data.displayName,
