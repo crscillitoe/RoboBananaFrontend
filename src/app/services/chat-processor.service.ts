@@ -22,6 +22,7 @@ export interface ChatMessage {
   providedIn: 'root'
 })
 export class ChatProcessorService {
+  CUSTOM_EMOJI_REGEX = /<a?:(\w+):\d{17,19}>?/g;
 
   constructor(private twitchEmotesService: TwitchEmotesService) { }
 
@@ -32,6 +33,13 @@ export class ChatProcessorService {
       if (regionCheck === 1 && !data.isNA) return;
       if (regionCheck === 2 && data.isNA) return;
     }
+
+    
+    const customEmoji = [...data.content.matchAll(this.CUSTOM_EMOJI_REGEX)];
+    for (const match of customEmoji) {
+      data.content = data.content.replace(match[0], match[1]);
+    }
+
     if (data.content.length > 200) {
       return;
     }
