@@ -204,7 +204,7 @@ export class AiChatInteractorComponent implements OnInit {
         'xi-api-key': this.ELEVENLABS_KEY,
       };
 
-      const model = "eleven_multilingual_v2";
+      const model = "eleven_turbo_v2";
 
       const request = {
         "text": tts,
