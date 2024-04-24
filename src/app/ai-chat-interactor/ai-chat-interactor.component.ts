@@ -48,7 +48,7 @@ export class AiChatInteractorComponent implements OnInit {
 
   chatOnlyMode: boolean = false;
   chatOnlyLocked: boolean = false;
-  chatOnlyRole: string = "";
+  chatOnlyRole: number = 0;
 
   VOICE_ID: string = "";
 
@@ -332,7 +332,7 @@ export class AiChatInteractorComponent implements OnInit {
 
       if (this.chatOnlyMode) {
         if (this.pendingTTS.length === 0 && !this.isTalking && message.toLowerCase().startsWith("hooj") && !this.chatOnlyLocked) {
-          if (this.chatOnlyRole != "" && data.roles.some((role: any) => role.id === this.chatOnlyRole)) return;
+          if (this.chatOnlyRole != 0 && data.roles.some((role: any) => role.id === this.chatOnlyRole)) return;
           this.pendingTTS.push({
             message: message,
             senderName: data.displayName,
