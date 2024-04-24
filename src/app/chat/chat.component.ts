@@ -135,8 +135,13 @@ export class ChatComponent implements OnInit {
     let modified = this.chatProcessingService.processChat(data, this.vod_reviewee_id, this.previous_message_author_id, this.regionCheck);
 
     const validPokemonMoves = ["A", "B", "Start", "Select", "Right", "Left", "Up", "Down", "R", "L"]
-    if (validPokemonMoves.includes(data.content)) {
-      this.pokemonService.playMove(data.content);
+
+    if (data.content.startsWith("Pokemon")) {
+      if (validPokemonMoves.includes(data.content.split(" ")[1])) {
+        this.pokemonService.playMove(data.content.split(" ")[1]);
+      }
+
+      return
     }
 
     // For some reason .gif stickers are NOT available under cdn.discordapp.com/stickers... and only in the media paths. Temporary fix until Discord fixes this.
