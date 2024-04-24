@@ -48,6 +48,7 @@ export class AiChatInteractorComponent implements OnInit {
 
   chatOnlyMode: boolean = false;
   chatOnlyLocked: boolean = false;
+  chatOnlyRole: string = "";
 
   VOICE_ID: string = "";
 
@@ -306,6 +307,7 @@ export class AiChatInteractorComponent implements OnInit {
       } else if (data.type === "enable-chat-tts") {
         this.chatOnlyMode = data.value;
         this.CHAT_ONLY_TIMEOUT_MS = typeof data.timeoutMs == "number" ? data.timeoutMs : 0;
+        this.chatOnlyRole = data.role;
       }
     });
 
@@ -330,6 +332,7 @@ export class AiChatInteractorComponent implements OnInit {
 
       if (this.chatOnlyMode) {
         if (this.pendingTTS.length === 0 && !this.isTalking && message.toLowerCase().startsWith("hooj") && !this.chatOnlyLocked) {
+          if (this.chatOnlyRole != "" && data.roles.some((role: any) => role.id === this.chatOnlyRole)) return;
           this.pendingTTS.push({
             message: message,
             senderName: data.displayName,
