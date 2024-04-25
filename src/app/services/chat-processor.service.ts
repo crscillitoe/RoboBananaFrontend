@@ -34,17 +34,17 @@ export class ChatProcessorService {
       if (regionCheck === 2 && data.isNA) return;
     }
 
-    
-    const customEmoji = [...data.content.matchAll(this.CUSTOM_EMOJI_REGEX)];
+    let emojiFixedContent = data.content;
+    const customEmoji = [...emojiFixedContent.matchAll(this.CUSTOM_EMOJI_REGEX)];
     for (const match of customEmoji) {
-      data.content = data.content.replace(match[0], match[1]);
+      emojiFixedContent = emojiFixedContent.replace(match[0], match[1]);
     }
 
-    if (data.content.length > 200) {
+    if (emojiFixedContent.length > 200) {
       return;
     }
 
-    if (data.content.length === 0 && data.stickers.length === 0) {
+    if (emojiFixedContent.length === 0 && data.stickers.length === 0) {
       return;
     }
 
