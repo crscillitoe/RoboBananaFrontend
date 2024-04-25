@@ -6,7 +6,7 @@ import { BotConnectorService } from './bot-connector.service';
 })
 export class ThemeService {
 
-  private theme = "default";
+  private theme: "default" | "christmas" | "custom" = "default";
   private themes = {
     "default": {
       "footer": "assets/footer-woohoojin.png",
@@ -25,6 +25,8 @@ export class ThemeService {
       "bottom-left": "assets/themes/christmas/left.png",
       "bottom-right": "assets/themes/christmas/right.png",
       "ad-background": "assets/themes/christmas/ad-container.png",
+    },
+    "custom": {
     }
   }
 
@@ -37,7 +39,7 @@ export class ThemeService {
 
         this.setTheme(data.value);
       } else if (data.type === "theme_custom") {
-        (this.themes as any)["custom"] = this.fillMissingValues(data.value, this.themes["default"]);
+        (this.themes as any)["custom"] = this.fillMissingValues(data.value, this.themes[this.getTheme()]);
         this.setTheme("custom")
       }
     });
@@ -55,6 +57,10 @@ export class ThemeService {
 
   setTheme(theme: "default" | "christmas" | "custom") {
     this.theme = theme;
+  }
+
+  getTheme(): "default" | "christmas" | "custom" {
+    return this.theme;
   }
 
   getRightImage() {
