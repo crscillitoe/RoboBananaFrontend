@@ -6,7 +6,6 @@ import { TwitchEmotesService } from '../services/twitch-emotes.service';
 import { ParseSourceFile } from '@angular/compiler';
 import { SystemMessageService } from '../services/system-message.service';
 import { ChatChunkType, ChatProcessorService } from '../services/chat-processor.service';
-import { PokemonService } from '../services/pokemon.service';
 
 @Component({
   selector: 'app-chat',
@@ -35,7 +34,7 @@ export class ChatComponent implements OnInit {
   vod_reviewee_id?: number;
   previous_message_author_id: number = -1;
 
-  constructor(private chatProcessingService: ChatProcessorService, private botService: BotConnectorService, private route: ActivatedRoute, private twitchEmotesService: TwitchEmotesService, private systemMessageService: SystemMessageService, private pokemonService: PokemonService) { }
+  constructor(private chatProcessingService: ChatProcessorService, private botService: BotConnectorService, private route: ActivatedRoute, private twitchEmotesService: TwitchEmotesService, private systemMessageService: SystemMessageService) { }
 
   @Input() height?: string | null;
   @Input() width?: string | null;
@@ -133,16 +132,6 @@ export class ChatComponent implements OnInit {
 
   processChatStream(data: any) {
     let modified = this.chatProcessingService.processChat(data, this.vod_reviewee_id, this.previous_message_author_id, this.regionCheck);
-
-    const validPokemonMoves = ["A", "B", "Start", "Select", "Right", "Left", "Up", "Down", "R", "L"]
-
-    if (data.content.startsWith("Pokemon")) {
-      if (validPokemonMoves.includes(data.content.split(" ")[1])) {
-        this.pokemonService.playMove(data.content.split(" ")[1]);
-      }
-
-      return
-    }
 
     // For some reason .gif stickers are NOT available under cdn.discordapp.com/stickers... and only in the media paths. Temporary fix until Discord fixes this.
     if (modified && modified.stickerURL && modified.stickerURL.endsWith(".gif")) {
