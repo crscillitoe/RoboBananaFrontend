@@ -15,9 +15,9 @@ export class PokemonComponent implements OnInit {
       if (data.type == "pokemon-move") {
         // data.move (A|B|Start|....)
         // data.userName (Woohoojin)
-        // data.number (1-9 inclusive) TODO
+        // data.number (1-9 inclusive) 
 
-        this.pokemonService.playMove(data.move);
+        this.pokemonService.playMove(data.move, data.number);
       }
     });
   }
