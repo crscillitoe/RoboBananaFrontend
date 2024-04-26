@@ -1,4 +1,10 @@
 # RoboBananaFrontend Changelog
+## 2024.04.23-26
+### Additions and Fixes:
+- Improve features of chat TTS mode, including a delay between TTS messages and restricting it to people with certain roles ([502673a...4eb5ddf](https://github.com/crscillitoe/RoboBananaFrontend/compare/df08d7f...4eb5ddf))
+- Add functionality to have Overlay pass "Twitch plays Pokemon" commands to local game instance ([62615f2...1f482a4](https://github.com/crscillitoe/RoboBananaFrontend/compare/4eb5ddf...1f482a4))
+- Improve custom theme loading to fill missing values from currently loaded theme instead of always using the default theme ([4b324e8](https://github.com/crscillitoe/RoboBananaFrontend/commit/4b324e88fead4f82ee3e3c412a74482e346374d5))
+
 ## 2024.04.22
 ### Additions and Fixes:
 - Add full TTS mode, which can use any message that starts with "hooj" for TTS ([05cfefb...27e5b9e](https://github.com/crscillitoe/RoboBananaFrontend/compare/7f65afe...27e5b9e))
