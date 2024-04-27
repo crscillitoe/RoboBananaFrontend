@@ -19,7 +19,7 @@ export class PokemonService {
         break
     }
 
-    this.http.post(`http://localhost:5000/mgba-http/button/hold?key=${move}&duration=${frames}`)
+    this.http.post(`http://localhost:5000/mgba-http/button/hold?key=${move}&duration=${frames}`, {})
       .subscribe(data => {})
   }
 }
