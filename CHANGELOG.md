@@ -1,4 +1,10 @@
 # RoboBananaFrontend Changelog
+## 2024.04.28
+### Additions and Fixes
+- Added a multi move option for pokemon playMove, allowing to move multiple spaces with a single command - by [ValpsZ](https://github.com/ValpsZ) - [PR #39](https://github.com/crscillitoe/RoboBananaFrontend/pull/39) & [PR #42](https://github.com/crscillitoe/RoboBananaFrontend/pull/42)
+- Fixed a chat issue where a twitch chat message with a very long username pushed the twitch icon too far to the right - by [Tiranthine](https://github.com/Tiranthine) - [PR #44](https://github.com/crscillitoe/RoboBananaFrontend/pull/44)
+- Also removed the ':' between message name and twitch icon for twitch messages
+
 ## 2024.04.23-26
 ### Additions and Fixes:
 - Improve features of chat TTS mode, including a delay between TTS messages and restricting it to people with certain roles ([502673a...4eb5ddf](https://github.com/crscillitoe/RoboBananaFrontend/compare/df08d7f...4eb5ddf))
