@@ -138,6 +138,11 @@
     width: 100%;
 }
 
+.twitch-message .name-and-badges {
+    @extend .name-and-badges;
+    width: 80%;
+}
+
 .vertical-center {
     height: 100%;
     display: flex;
