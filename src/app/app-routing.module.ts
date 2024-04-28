@@ -14,7 +14,6 @@ import { ConnectFourComponent } from './connect-four/connect-four.component';
 import { ViewerComponent } from './viewer/viewer.component';
 import { SpotifyComponent } from './spotify-nowplaying/spotify-nowplaying.component';
 import { EmotePopupsComponent } from './emote-popups/emote-popups.component';
-import { UnderpeelDraftComponent } from './underpeel-draft/underpeel-draft.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
 
 const routes: Routes = [
@@ -77,10 +76,6 @@ const routes: Routes = [
     {
         path: "emote-popups",
         component: EmotePopupsComponent
-    },
-    {
-        path: "underpeel-draft",
-        component: UnderpeelDraftComponent
     },
     {
         path: "pokemon",
