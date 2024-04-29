@@ -4,10 +4,11 @@ Display cool visuals to go alongside events in the [Woohoojin Discord Server](ht
 
 To run the app locally:
 
-- Rename _environments.prod.ts_ to _environments.dev.ts_
+- Copy **environments.prod.ts** to **environments.dev.ts**
+- Change property _production_ in **environment.dev.ts** to false
+- Adjust other properties in **environment.dev.ts** to fit your dev setup
 - Run:
   ```
-  npm install
-  ng build
-  ng serve
+  npm ci
+  npm run dev
   ```
