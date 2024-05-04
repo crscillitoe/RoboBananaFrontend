@@ -1,4 +1,15 @@
 # RoboBananaFrontend Changelog
+## 2024.05.04
+### Additions and Fixes
+- Added more realistic physics to emote popups (old implementation still exists but is not used)
+- Deactivated old emote zones (left, right, top, bottom)
+- Added new emote popup zone (special) where special emote popup animations are displayed.
+- Special animation is triggered when a streamdeck event happens (works in tandem with new point redemtions in [RoboNana](https://github.com/crscillitoe/RoboBanana/pull/155))
+- Special animation is triggered when the same emote is sent to chat often enough in 30 seconds (will be removed or adjusted depending on how it turns out in stream)
+- General changes to the emote popup coding
+- by [Tiranthine](https://github.com/Tiranthine)
+- [PR #46](https://github.com/crscillitoe/RoboBananaFrontend/pull/46)
+
 ## 2024.04.28
 ### Additions and Fixes
 - Added a multi move option for pokemon playMove, allowing to move multiple spaces with a single command - by [ValpsZ](https://github.com/ValpsZ) - [PR #39](https://github.com/crscillitoe/RoboBananaFrontend/pull/39) & [PR #42](https://github.com/crscillitoe/RoboBananaFrontend/pull/42)
