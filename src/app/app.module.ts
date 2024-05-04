@@ -49,6 +49,9 @@ import { EmotePopupIconComponent } from './emote-popup-icon/emote-popup-icon.com
 import { EmotePopupsComponentMultiple } from './emote-popups/subclasses/emote-popups-multiple.component';
 import { AnimationHostComponent, AnimationHostDirective } from './animation/animation-host.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
+import { EmotePopupsIconPhysicalComponent } from './emote-popup-icon/physical/emote-popup-icon-physical.component';
+import { EmotePopupsComponentSpecial } from './emote-popups/subclasses/emote-popups-special.component';
+import { EmotePopupsIconPhysicalJumpComponent } from './emote-popup-icon/physical/emote-popup-icon-physical-jump.component';
 
 @NgModule({
   declarations: [
@@ -94,8 +97,11 @@ import { PokemonComponent } from './pokemon/pokemon.component';
     SpotifyComponent,
     EmotePopupsComponent,
     EmotePopupsComponentMultiple,
+    EmotePopupsComponentSpecial,
     EmotePopupsDirective,
     EmotePopupIconComponent,
+    EmotePopupsIconPhysicalComponent,
+    EmotePopupsIconPhysicalJumpComponent,
     PokemonComponent,
   ],
   imports: [

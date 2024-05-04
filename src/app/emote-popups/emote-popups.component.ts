@@ -1,9 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ComponentRef, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { EmotePopupIconComponent } from '../emote-popup-icon/emote-popup-icon.component';
 import { EmotePopupsDirective } from './emote-popups-directive';
 import { timer } from "rxjs";
 import { BotConnectorService } from '../services/bot-connector.service';
 import { ChatChunk, ChatChunkType, ChatProcessorService } from "../services/chat-processor.service";
+import { PhysicsInfo } from '../emote-popup-icon/physical/emote-popup-icon-physical.component';
 
 @Component({
   selector: 'app-emote-popups',
@@ -14,11 +15,11 @@ export class EmotePopupsComponent implements OnInit {
 
   public static isTesting: boolean = false;
   protected static shouldActivateOnStartup(name?: string) {
-    return name == "bottomEdgeMultiple";
+    return name == "bottomEdgeMultiple" || name == "special";
   }
 
   static emojiRegex = new RegExp(/\p{Emoji_Presentation}/gu);
-  constructor(private botService: BotConnectorService, private chatProcessorService: ChatProcessorService) {
+  constructor(private botService: BotConnectorService, private chatProcessorService: ChatProcessorService, private element: ElementRef) {
     this.defaultEmoteProperties = new EmoteProperties();
   }
 
@@ -38,68 +39,76 @@ export class EmotePopupsComponent implements OnInit {
     this.enabled = EmotePopupsComponent.shouldActivateOnStartup(this.name);
 
     this.botService.getStream("streamdeck").subscribe(data => {
-
-      if (data.type === "happy-emotes" && (data.location === this.name || data.location === "all")) {
-
-        if (data.enabled != null) {
-          this.enabled = data.enabled;
-        }
-
-        if (data.duration != null) {
-          this.defaultEmoteProperties.duration = data.duration;
-        }
-
-        if (data.emoteSize != null) {
-          this.defaultEmoteProperties.size = data.emoteSize;
-        }
-
-        if (data.amount != null) {
-          for (let index = 0; index < data.amount; index++) {
-            this.createPopupEmote(structuredClone(this.defaultEmoteProperties));
-          }
+      if (data.type === "happy-emotes") {
+        if (data.location === this.name || data.location === "all") {
+          this.onStreamdeckData(data);
         }
       }
     });
 
     this.botService.getStream("chat-message").subscribe(data => {
-      if (!this.enabled)  return;
-      if (data.content.length > 200) return;
+      this.onChatMessage(data);
+    });
+  }
 
-      var emoteProperties = structuredClone(this.defaultEmoteProperties);
+  onStreamdeckData(data: any) {
+    if (data.enabled != null) {
+      this.enabled = data.enabled;
+    }
 
-      // creates a default emote from each message if we are in test mode
-      // done so fake messages trigger emotes to display
-      // if (EmotePopupsComponent.isTesting) this.createPopupEmote(structuredClone(emoteProperties));
+    if (data.duration != null) {
+      this.defaultEmoteProperties.duration = data.duration;
+    }
 
-      const message = this.chatProcessorService.processChat(data, undefined, 0, 0);
-      const emotes = message.chatMessage.chunks.filter((e: ChatChunk) => {return e.type === ChatChunkType.IMG});
-      emoteProperties.chatData = message;
+    if (data.emoteSize != null) {
+      this.defaultEmoteProperties.size = data.emoteSize;
+    }
 
-      // block for identifying unicode emojis and rendering up to 4
-      let unicodeEmotes = [...message.content.matchAll(EmotePopupsComponent.emojiRegex)];
-      unicodeEmotes = unicodeEmotes.slice(0, 4);
-      unicodeEmotes.forEach(e => {
-        emoteProperties.asset = e.toString();
-        emoteProperties.type = "text";
-        this.createPopupEmote(emoteProperties);
-      });
-
-      // block for rendering discord emotes
-      if (emotes.length > 0) {
-        emotes.forEach((emote: ChatChunk) => {
-          emoteProperties.asset = emote.content;
-          emoteProperties.type = "img";
-          this.createPopupEmote(emoteProperties);
-        });
+    if (data.amount != null) {
+      for (let index = 0; index < data.amount; index++) {
+        this.createPopupEmote(structuredClone(this.defaultEmoteProperties));
       }
+    }
+  }
 
-      //block for rendering stickers
-      if (message.stickerURL !== "") {
-        emoteProperties.asset = message.stickerURL;
+  onChatMessage(data: any) {
+    if (!this.enabled)  return;
+    if (data.content.length > 200) return;
+
+    var emoteProperties = structuredClone(this.defaultEmoteProperties);
+
+    // creates a default emote from each message if we are in test mode
+    // done so fake messages trigger emotes to display
+    // if (EmotePopupsComponent.isTesting) this.createPopupEmote(structuredClone(emoteProperties));
+
+    const message = this.chatProcessorService.processChat(data, undefined, 0, 0);
+    const emotes = message.chatMessage.chunks.filter((e: ChatChunk) => {return e.type === ChatChunkType.IMG});
+    emoteProperties.chatData = message;
+
+    // block for identifying unicode emojis and rendering up to 4
+    let unicodeEmotes = [...message.content.matchAll(EmotePopupsComponent.emojiRegex)];
+    unicodeEmotes = unicodeEmotes.slice(0, 4);
+    unicodeEmotes.forEach(e => {
+      emoteProperties.asset = e.toString();
+      emoteProperties.type = "text";
+      this.createPopupEmote(emoteProperties);
+    });
+
+    // block for rendering discord emotes
+    if (emotes.length > 0) {
+      emotes.forEach((emote: ChatChunk) => {
+        emoteProperties.asset = emote.content;
         emoteProperties.type = "img";
         this.createPopupEmote(emoteProperties);
-      }
-    });
+      });
+    }
+
+    //block for rendering stickers
+    if (message.stickerURL !== "") {
+      emoteProperties.asset = message.stickerURL;
+      emoteProperties.type = "img";
+      this.createPopupEmote(emoteProperties);
+    }
   }
 
   createPopupEmote(properties: EmoteProperties): void {
@@ -110,22 +119,18 @@ export class EmotePopupsComponent implements OnInit {
     }
   }
 
-  _createPopupEmoteContainer(properties: EmoteProperties): void {
-    if (properties.amount <= 0) return;  //recursion exit
+  _createPopupEmoteContainer(properties: EmoteProperties): ComponentRef<EmotePopupIconComponent> | null {
+    if (properties.amount <= 0) return null;  //recursion exit
 
-    const viewContainerRef = this.emotePopupSpace.viewContainerRef;
-    const componentRef = viewContainerRef.createComponent<EmotePopupIconComponent>(EmotePopupIconComponent);
+    const componentRef = this._getPopupEmoteContainerRef();
 
-    if (properties.type == "img")
-      componentRef.instance.imageAsset = properties.asset;
-    else if (properties.type == "text")
-      componentRef.instance.textAsset = properties.asset;
+    properties.containerWidth = this.element.nativeElement.offsetWidth;
+    properties.containerHeight = this.element.nativeElement.offsetHeight;
 
-    componentRef.instance.direction = this.direction;
-    componentRef.instance.size = properties.size;
-    componentRef.instance.duration = properties.duration;
-    timer(properties.duration).subscribe(() => {
-      componentRef.destroy();
+    componentRef.instance.properties = properties;
+    
+    componentRef.instance.closeObservable.subscribe((remove: boolean) => {
+      if (remove) componentRef.destroy();
     });
 
     //recursion entry
@@ -133,6 +138,12 @@ export class EmotePopupsComponent implements OnInit {
     timer(properties.consecutiveDelay).subscribe(() => {
       this._createPopupEmoteContainer(properties);
     });
+    return componentRef;
+  }
+
+  _getPopupEmoteContainerRef(): ComponentRef<any> {
+    const viewContainerRef = this.emotePopupSpace.viewContainerRef;
+    return viewContainerRef.createComponent<EmotePopupIconComponent>(EmotePopupIconComponent);
   }
 
   //return true when emote should be displayed
@@ -153,4 +164,8 @@ export class EmoteProperties {
   amount = 1;
   consecutiveDelay = 200;
   chatData?: any;
+  bounces: number = 0;
+  containerWidth: number = 0;
+  containerHeight: number = 0;
+  initialPhysicsState: PhysicsInfo = new PhysicsInfo();
 }

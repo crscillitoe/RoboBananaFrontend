@@ -136,6 +136,14 @@ video#footer {
     z-index: 1001;
 }
 
+#specialEmotePopupContainer {
+    position: absolute;
+    width: 1566px;
+    height: 926px;
+    left: 274px;
+    top: 0px;
+}
+
 #bottomEdgeEmotePopupContainer {
     position: absolute;
     width: 1566px;  //beware overflow due to emote size

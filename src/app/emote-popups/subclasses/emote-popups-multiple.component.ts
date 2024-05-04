@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { EmotePopupsComponent, EmoteProperties } from '../emote-popups.component';
+import { EmotePopupsIconPhysicalJumpComponent } from 'src/app/emote-popup-icon/physical/emote-popup-icon-physical-jump.component';
 
 @Component({
   selector: 'app-emote-popups-multiple',
@@ -15,6 +16,11 @@ export class EmotePopupsComponentMultiple extends EmotePopupsComponent {
   override adjustEmoteProperties(properties: EmoteProperties): void {
     let amountInLastTimeframe = this.findAmountUsedLastTimeframe(properties.asset);
     properties.amount = this.amountFunction(amountInLastTimeframe);
+  }
+
+  override _getPopupEmoteContainerRef() {
+    const viewContainerRef = this.emotePopupSpace.viewContainerRef;
+    return viewContainerRef.createComponent<EmotePopupsIconPhysicalJumpComponent>(EmotePopupsIconPhysicalJumpComponent);
   }
 
   findAmountUsedLastTimeframe(emote: string): number {
