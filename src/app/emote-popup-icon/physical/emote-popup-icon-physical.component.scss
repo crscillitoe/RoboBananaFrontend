@@ -1,0 +1,23 @@
+.jumpContainer {
+    width: var(--emote-size);
+    height: var(--emote-size);
+    position: absolute;
+    z-index: -1;
+    left: var(--emote-pos-x);
+    top: var(--emote-pos-y);
+}
+
+.jumpImg {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+}
+
+.jumpTxt {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    font-size: var(--emote-size);
+    margin: 0 auto;
+    text-align: center;
+}
