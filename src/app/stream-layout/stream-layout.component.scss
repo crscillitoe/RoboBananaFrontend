@@ -46,7 +46,10 @@ app-team-logo {
 app-gameboy-advance {
     position: absolute;
     top: 0px;
-    left: 800px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1003;
 }
 
 app-ads {

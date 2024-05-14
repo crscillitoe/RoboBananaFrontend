@@ -1,5 +1,14 @@
+
 <canvas
+    [ngStyle]="{
+        'position': 'absolute',
+        'display': playing ? '' : 'none',
+        'width': width + 'px',
+        'height': height + 'px',
+        'z-index': '91000',
+        'top': top + 'px',
+        'left': left + 'px'
+    }"
     id="screen"
-    width="240"
-    height="160"
+>
 ></canvas>
