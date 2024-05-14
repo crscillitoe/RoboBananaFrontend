@@ -109,7 +109,7 @@ export class AiChatInteractorComponent implements OnInit {
       }
 
       this.http.post("https://api.openai.com/v1/chat/completions", {
-        model: "gpt-4-1106-preview",
+        model: "gpt-4o",
         messages: [
           ...this.SYSTEM_PROMPTS.map((prompt) => {
             return {
