@@ -43,6 +43,12 @@ app-team-logo {
     z-index: 100;
 }
 
+app-gameboy-advance {
+    position: absolute;
+    top: 0px;
+    left: 800px;
+}
+
 app-ads {
     position: absolute;
     top: 0px;
@@ -164,7 +170,7 @@ video#footer {
     position: absolute;
     width: 1566px;  //beware overflow due to emote size
     height: 30%;
-    top: 0px;  
+    top: 0px;
     left: 274px;
 }
 

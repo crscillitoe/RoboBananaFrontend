@@ -52,6 +52,7 @@ import { PokemonComponent } from './pokemon/pokemon.component';
 import { EmotePopupsIconPhysicalComponent } from './emote-popup-icon/physical/emote-popup-icon-physical.component';
 import { EmotePopupsComponentSpecial } from './emote-popups/subclasses/emote-popups-special.component';
 import { EmotePopupsIconPhysicalJumpComponent } from './emote-popup-icon/physical/emote-popup-icon-physical-jump.component';
+import { GameboyAdvanceComponent } from './gameboy-advance/gameboy-advance.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { EmotePopupsIconPhysicalJumpComponent } from './emote-popup-icon/physica
     EmotePopupsIconPhysicalComponent,
     EmotePopupsIconPhysicalJumpComponent,
     PokemonComponent,
+    GameboyAdvanceComponent,
   ],
   imports: [
     BrowserModule,
