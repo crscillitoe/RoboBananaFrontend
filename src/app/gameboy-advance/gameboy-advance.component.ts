@@ -16,6 +16,8 @@ export class GameboyAdvanceComponent implements OnInit {
   top: number = 63;
   left: number = 294;
 
+  unpressTiming: number = 500;
+
   saveGame(module: mGBAEmulator) {
     module.saveState(0);
     const data = module.FS.readFile('/data/states/PokemonEmerald.ss0');
@@ -26,7 +28,7 @@ export class GameboyAdvanceComponent implements OnInit {
     module.buttonPress(keyName);
     setTimeout(() => {
       module.buttonUnpress(keyName);
-    }, 500);
+    }, this.unpressTiming);
   }
 
   constructor(private botService: BotConnectorService) {}
@@ -87,6 +89,8 @@ export class GameboyAdvanceComponent implements OnInit {
             this.height = data.height;
             this.top = data.top;
             this.left = data.left;
+          } else if (data.value === "debug-unpress") {
+            this.unpressTiming = data.timing;
           }
          }
        });
