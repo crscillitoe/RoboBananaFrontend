@@ -16,7 +16,7 @@ export class GameboyAdvanceComponent implements OnInit {
   top: number = 63;
   left: number = 294;
 
-  unpressTiming: number = 200;
+  unpressTiming: number = 135;
 
   saveGame(module: mGBAEmulator) {
     module.saveState(0);
