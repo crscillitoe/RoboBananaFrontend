@@ -24,6 +24,15 @@ export interface ChatMessage {
 export class ChatProcessorService {
   CUSTOM_EMOJI_REGEX = /<a?:(\w+):\d{17,19}>?/g;
 
+  DEFAULT_MAX_LENGTH = 200;
+  ROLE_AND_USER_OVERRIDE: Map<number, number> = new Map([
+    [1226317841272279131, 300], // Staffdev
+    [932028793093247006, 400], // Mod
+    [1040337265790042172, 400], // Hidden Mod
+    [1237760496191537176, 400], // Hooj's Accountant
+    [204343692960464896, 9999], // Ethan
+  ]);
+
   constructor(private twitchEmotesService: TwitchEmotesService) { }
 
 
@@ -40,7 +49,12 @@ export class ChatProcessorService {
       emojiFixedContent = emojiFixedContent.replace(match[0], match[1]);
     }
 
-    if (emojiFixedContent.length > 200) {
+    const checkArray: number[] = (data.roles as Array<{ id: number }>).map(role => role.id);
+    if (data.platform === "discord") {
+      checkArray.unshift(data.author_id);
+    }
+    let maxLen = this.checkUserLengthOverride(checkArray);
+    if (emojiFixedContent.length > maxLen) {
       return;
     }
 
@@ -195,4 +209,14 @@ export class ChatProcessorService {
       textChunkCount: chatMessage.textChunkCount
     }
   }
+
+  checkUserLengthOverride(checkIds: number[]): number {
+    for (const checkId of checkIds) {
+      if (this.ROLE_AND_USER_OVERRIDE.has(checkId)) {
+        return this.ROLE_AND_USER_OVERRIDE.get(checkId)!;
+      }
+    }
+    return this.DEFAULT_MAX_LENGTH;
+  }
+
 }

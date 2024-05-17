@@ -71,7 +71,6 @@ export class GameboyAdvanceComponent implements OnInit {
        gbaModule.setMainLoopTiming(0, 15);
 
        this.botService.getStream("streamdeck").subscribe(data => {
-        console.log(data);
          if (data.type === 'pokemon-move' && this.playing) {
            this.pressKey(gbaModule, data.move.toLowerCase());
          } else if (data.type === 'pokemon-mod') {
