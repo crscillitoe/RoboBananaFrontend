@@ -1,0 +1,19 @@
+<ng-container *ngIf="avatarNumber !== -1">
+    <img
+        [ngStyle]="{
+            'display': isTalking ? '' : 'none',
+        }"
+        class="chat-avatar"
+        [src]="'assets/chatters/Avatar_' + avatarNumber + '_Talking.png'"
+    />
+
+    <img
+        [ngStyle]="{
+            'display': isTalking ? 'none' : '',
+        }"
+        class="chat-avatar"
+        [src]="'assets/chatters/Avatar_' + avatarNumber + '_Waiting.png'"
+    />
+
+    <div class="name">{{displayName}}</div>
+</ng-container>

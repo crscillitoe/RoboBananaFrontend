@@ -1,0 +1,11 @@
+<div class="flex">
+    <ng-container *ngFor="let key of keys; let i=index;">
+        <app-talking-chatter
+            [talkerID]="key"
+            [displayName]="talkers.get(key)!"
+            [voiceID]="voiceIDs[i]"
+            [avatarNumber]="i + 1"
+        >
+        </app-talking-chatter>
+    </ng-container>
+</div>
