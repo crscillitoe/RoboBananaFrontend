@@ -33,6 +33,8 @@ export class ChatProcessorService {
     [204343692960464896, 9999], // Ethan
   ]);
 
+  VALID_IMAGE_ENDINGS = [".png", ".apng", ".jpg", ".jpeg", ".gif", ".webp"];
+
   constructor(private twitchEmotesService: TwitchEmotesService) { }
 
 
@@ -67,8 +69,10 @@ export class ChatProcessorService {
       // Using regex to check if the string is a valid URL
       const urlRegex = /^(https?:\/\/[^\s]+)$/;
       if (urlRegex.test(data.content)) {
-        data.stickerURL = data.content;
-        data.content = "";
+        if (this.VALID_IMAGE_ENDINGS.some(ending => data.content.endsWith(ending))) {
+          data.stickerURL = data.content;
+          data.content = "";
+        }
       }
     }
 
