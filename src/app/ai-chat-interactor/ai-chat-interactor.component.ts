@@ -330,13 +330,13 @@ export class AiChatInteractorComponent implements OnInit {
         });
       }
 
-      if (this.chatOnlyMode) {
+      if (this.chatOnlyMode && data.isT3) {
         if (this.pendingTTS.length === 0 && !this.isTalking && message.toLowerCase().startsWith("hooj") && !this.chatOnlyLocked) {
           if (this.chatOnlyRole != 0 && data.roles.some((role: any) => role.id === this.chatOnlyRole)) return;
           this.pendingTTS.push({
             message: message,
             senderName: data.displayName,
-            voiceID: "knrPHWnBmmDHMoiMeP3l",
+            voiceID: "rCmVtv8cYU60uhlsOo1M",
             voiceName: ""
           });
         }
