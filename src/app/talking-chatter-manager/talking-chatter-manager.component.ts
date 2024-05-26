@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BotConnectorService } from '../services/bot-connector.service';
 
+interface Talker {
+  name: string;
+  voiceID: string;
+}
+
 @Component({
   selector: 'app-talking-chatter-manager',
   templateUrl: './talking-chatter-manager.component.html',
@@ -10,13 +15,12 @@ export class TalkingChatterManagerComponent implements OnInit {
   constructor(private botService: BotConnectorService) {}
 
   // Lookup table mapping talkerID to displayName
-  talkers: Map<string, string> = new Map<string, string>();
+  talkers: Map<string, Talker> = new Map<string, Talker>();
 
   keys: string[] = [];
 
   talkerID: string = '';
   displayName: string = '';
-  voiceIDs: string[] = ['ryn3WBvkCsp4dPZksMIf', 'rCmVtv8cYU60uhlsOo1M', 'asDeXBMC8hUkhqqL7agO'];
 
   ngOnInit(): void {
     this.botService.getStream('streamdeck').subscribe(data => {
@@ -24,7 +28,6 @@ export class TalkingChatterManagerComponent implements OnInit {
         if (this.talkers.get(data.value) !== undefined) {
           this.talkers.delete(data.value);
           this.updateKeys();
-          console.log(this.talkers);
           return;
         }
 
@@ -32,7 +35,11 @@ export class TalkingChatterManagerComponent implements OnInit {
           return;
         }
 
-        this.talkers.set(data.value, data.name);
+        this.talkers.set(data.value, {
+          name: data.name,
+          voiceID: data.voice
+        });
+
         this.updateKeys();
 
         console.log(this.talkers);

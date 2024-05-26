@@ -2,8 +2,8 @@
     <ng-container *ngFor="let key of keys; let i=index;">
         <app-talking-chatter
             [talkerID]="key"
-            [displayName]="talkers.get(key)!"
-            [voiceID]="voiceIDs[i]"
+            [displayName]="talkers.get(key)!.name"
+            [voiceID]="talkers.get(key)!.voiceID"
             [avatarNumber]="i + 1"
         >
         </app-talking-chatter>
