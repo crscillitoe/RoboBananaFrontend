@@ -19,24 +19,24 @@ export class CoolComponent implements OnInit {
   barTypes: any = {
     "sheesh": {
       cool: {
-        tokens: ["hoojSheesh", "<:hoojSheesh:1076744568818647103>", "SHEESH"],
+        tokens: ["HOOJSHEESH", "<:HOOJSHEESH:1076744568818647103>", "SHEESH", "HOOJPOG", "<:HOOJPOG:1037086315281383536>"],
         color: "#FFC700",
         image: "assets/hoojsheesh.png"
       },
       uncool: {
-        tokens: ["hoojStare", "<:hoojStare:1087887812923232266>"],
+        tokens: ["HOOJSTARE", "<:HOOJSTARE:1087887812923232266>"],
         color: "#262626"
       },
       swap: false
     },
     "joel": {
       cool: {
-        tokens: ["Joel", "<a:Joel:1170523859087269968>"],
+        tokens: ["JOEL", "<a:JOEL:1170523859087269968>"],
         color: "#FFC700",
         image: "assets/Joel.webp"
       },
       uncool: {
-        tokens: ["Hose", "<a:Hose:1170505369043353610>"],
+        tokens: ["HOSE", "<a:HOSE:1170505369043353610>"],
         color: "#24AFFE",
         image: "assets/Hose.webp"
       },
