@@ -86,9 +86,10 @@ export class BotConnectorService {
 
         const T3 = environment.t3DiscordRoleID;
         const GIFTED_T3 = environment.giftedT3DiscordRoleID;
+        const TWITCH_T3 = environment.twitchT3DiscordRoleID;
 
         for (let role of data.roles) {
-          if (role.id == T3 || role.id == GIFTED_T3) {
+          if (role.id == T3 || role.id == GIFTED_T3 || role.id == TWITCH_T3) {
             data["isT3"] = true;
             break
           }

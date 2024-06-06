@@ -11,6 +11,7 @@ export const environment = {
   trustworthyRoleID: 0,
   t3DiscordRoleID: 0,
   giftedT3DiscordRoleID: 0,
+  twitchT3DiscordRoleID: 0,
   spotifyClientID: "0",
   spotifyRedirectURL: "http://?"
 };

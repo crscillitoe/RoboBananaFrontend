@@ -7,6 +7,7 @@ export const environment = {
   trustworthyRoleID: 1118937143935520788,
   t3DiscordRoleID: 1036807951484203099,
   giftedT3DiscordRoleID: 1045466382470484040,
+  twitchT3DiscordRoleID: 935319103302926409,
   spotifyClientID: "468884dbfb994abc96a16a00a6ece770",
   spotifyRedirectURL: "https://new-overlay.woohooj.in/stream-layout"
 };
