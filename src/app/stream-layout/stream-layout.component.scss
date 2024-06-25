@@ -90,7 +90,7 @@ app-poll-render {
     z-index: 1002;
 }
 
-app-prediction-render {
+app-prediction-render, app-game-overlay {
     position: absolute;
     bottom: 0px;
     left: 0px;

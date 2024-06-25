@@ -9,16 +9,19 @@ export class ThemeService {
   private theme: "default" | "christmas" | "custom" = "default";
   private themes = {
     "default": {
-      "footer": "assets/footer-woohoojin.png",
-      "bottom-left": "assets/left.png",
-      "bottom-right": "assets/right.png",
-      "ad-background": "assets/ad-block.png",
-      "title-text": "#0F0F0F",
-      "sub-goal-right-text": "#FFFFFF",
-      "sub-goal-right-background": "#000000",
-      "sub-goal-left-text": "#000000",
+      "bottom-right": "https://i.imgur.com/syvozOL.png",
+      "title-text": "#FFD359",
       "sub-goal-left-background": "#FFFFFF",
-      "prediction-text": "#000000"
+      "sub-goal-left-text": "#000000",
+      "sub-goal-right-background": "#FDD359",
+      "sub-goal-right-text": "#000000",
+
+      "footer": "https://i.imgur.com/ESITlik.png",
+
+      "bottom-left": "https://i.imgur.com/wFMwmDY.png",
+      "prediction-text": "#FFFFFF",
+
+      "ad-background": "https://i.imgur.com/cYRiggp.png"
     },
     "christmas": {
       "footer": "assets/themes/christmas/footer.mp4",
