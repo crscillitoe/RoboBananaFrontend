@@ -41,6 +41,7 @@ export class VodReviewComponent implements OnInit {
   background: string = "Diamond.png"
   complete: boolean = true;
   nameColor: string = this.colors["Diamond"];
+  pronouns: string = "Any/Any";
 
   constructor(private botService: BotConnectorService) { }
 
@@ -52,6 +53,9 @@ export class VodReviewComponent implements OnInit {
       this.nameColor = this.colors[rankName];
       this.riotid = data.riotid;
       this.username = data.username;
+      if (data.pronouns.trim() != "") {
+        this.username += ` (${data.pronouns})`;
+      }
       this.complete = data.complete;
     });
   }
